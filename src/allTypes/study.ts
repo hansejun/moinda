@@ -26,4 +26,4 @@ export interface IStudyDetail {
   studydetail: string | number;
 }
 
-
+export interface IStudy {}
