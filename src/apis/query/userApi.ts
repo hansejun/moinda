@@ -6,12 +6,12 @@ import instance from "@apis/axios";
 
 /** 회원가입 api */
 export const signUp = async (data: ISignUp) => {
-  const response = await axios.post("user/signup", data);
+  const response = await axios.post("/api/users/signup", data);
   return response;
 };
 /** 로그인 api */
 export const logIn = async (data: ILogin) => {
-  const response = await axios.post("user/login", {
+  const response = await axios.post("/api/user/signin", {
     ...data,
     userType: "LOCAL",
   });
@@ -20,13 +20,13 @@ export const logIn = async (data: ILogin) => {
 
 /** 이메일 중복검사 api */
 export const checkEmail = async (email: ICheckEmail) => {
-  const response = await axios.post("auth/nodemailer", email);
+  const response = await axios.post("/api/user/checkEmail", email);
   return response;
 };
 
 /** 닉네임 중복검사 api */
 export const checkNickname = async (data: ICheckNickname) => {
-  const response = await axios.post("user/checkNick", data);
+  const response = await axios.post("/api/user/checkNick", data);
   return response;
 };
 

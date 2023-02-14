@@ -73,10 +73,14 @@ const Header = () => {
                 스터디 모집하기
               </button>
               <span className="flex-center relative mx-[1.6rem] cursor-pointer p-2 hover:text-primary-500 w-[2.1rem]">
-                <BellSvg />
-                <span className="absolute right-[0.3rem] bottom-[1rem] h-[0.9rem] w-[0.9rem] rounded-full bg-primary-main"></span>
+                <span>
+                  <BellSvg className="w-[2.5rem] h-[2.5rem]" />
+                </span>
+                <span className="absolute right-[0rem] bottom-[1rem] h-[0.9rem] w-[0.9rem] rounded-full bg-primary-main"></span>
               </span>
               <Image
+                width={0}
+                height={0}
                 className="aspect-square w-[4.3rem] cursor-pointer rounded-full"
                 src="https://avatars.dicebear.com/api/identicon/2/wooncloud.svg"
                 alt="profile"

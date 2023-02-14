@@ -1,4 +1,4 @@
-import cls from "@utils/cls";
+import cls from "@utils/client/cls";
 import type { UseFormRegisterReturn } from "react-hook-form";
 
 type OnClick = {
