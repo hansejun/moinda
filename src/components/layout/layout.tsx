@@ -1,0 +1,25 @@
+import cls from "@utils/client/cls";
+import Header from "./header";
+import Main from "./main";
+
+interface ILayout {
+  children: JSX.Element[] | JSX.Element;
+  hasBgColor?: boolean;
+  isFullHeight?: boolean;
+}
+
+const Layout = ({ children, hasBgColor, isFullHeight }: ILayout) => {
+  return (
+    <div
+      className={cls(
+        "min-w-max pt-[6rem]",
+        hasBgColor ? "bg-bgColor-200" : "bg-bgColor-100"
+      )}
+    >
+      <Header />
+      <Main isFullHeight={isFullHeight}>{children}</Main>
+    </div>
+  );
+};
+
+export default Layout;

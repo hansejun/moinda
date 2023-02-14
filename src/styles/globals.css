@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css); */
+
+@font-face {
+  font-family: "Spoqa Han Sans Neo";
+  src: url("../../public/fonts/spoqaHanSansNeo-Regular.woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Spoqa Han Sans Neo";
+  src: url("../../public/fonts/spoqaHanSansNeo-Medium.woff2");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Spoqa Han Sans Neo";
+  src: url("../../public/fonts/spoqaHanSansNeo-Bold.woff2");
+  font-weight: 700;
+}
+
+body {
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+  color: #1e1e1e;
+}
+
+html {
+  font-size: 62.5%;
+}
+@media (max-width: 1440px) {
+  html {
+    font-size: 46.8%;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-transition: background-color 9999s ease-out;
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-height {
+  height: 6rem;
+}
+
+.body-height {
+  min-height: calc(100vh - 6.1rem);
+}
+
+.font1 {
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+}
+
+.H1 {
+  font-weight: 700;
+  font-size: 3rem;
+}
+.H2 {
+  font-weight: 700;
+  font-size: 2rem;
+}
+.H3 {
+  font-weight: 500;
+  font-size: 1.8rem;
+}
+
+.Sub1 {
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+.Sub2 {
+  font-weight: 500;
+  font-size: 1.6rem;
+}
+
+.Cap1 {
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+.Cap2 {
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+.Cap3 {
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+.Cap4 {
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+
+/** 라디오버튼 커스텀용 */
+input[type="radio"] {
+  display: none;
+  appearance: none;
+  outline: none;
+}
+
+/** input 입력 후 텍스트 컬러 */
+.textColor {
+  color: #1e1e1e;
+}
+
+.boxShadow {
+  box-shadow: 2px 4px 18px rgba(0, 0, 0, 0.13);
+}
+
+/** 스터디 개설 캘린더 스타일링 */
+.react-datepicker {
+  position: fixed;
+  width: 30rem;
+  height: 35rem;
+  top: 0.025rem;
+  left: 16rem;
+  background-color: #ffffff;
+  box-shadow: 2px 4px 18px rgba(0, 0, 0, 0.13);
+  border-radius: 10px;
+}
+
+.react-datepicker__current-month {
+  font-size: 2.5rem;
+  padding: 1rem;
+}
+
+.react-datepicker__header {
+  width: 29rem;
+  padding: 1rem;
+  background-color: #ffffff;
+  color: #ffffff;
+  border-radius: 1rem 0 0 0;
+  border: none;
+}
+
+.react-datepicker__day-name {
+  font-size: 2rem;
+  margin: 1rem;
+}
+
+.react-datepicker__day {
+  font-size: 1.5rem;
+  margin: 1rem;
+}
+
+.react-datepicker__day--selected {
+  background: #ffb077;
+}
+
+.react-datepicker__day--selected:hover {
+  background: #ffb077;
+}
+
+/*스와이퍼 전용 스타일링*/
+.swiper-pagination-bullet-active {
+  background: #848484 !important;
+}
+.swiper-pagination-bullets {
+  background-color: aqua;
+}
