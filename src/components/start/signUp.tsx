@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 
 import { useRouter } from "next/router";
 import CheckSvg from "@assets/svg/checkSvg";
+import { AxiosError } from "axios";
 
 const SignUp = () => {
   const {
@@ -30,11 +31,15 @@ const SignUp = () => {
   const emailDup = useCallback(
     async (e: React.MouseEvent<HTMLElement>) => {
       e.preventDefault();
-      const { status, data } = await checkEmail({ email: getValues("email") });
-      console.log(status, data);
-      if (status !== 201) return alert("사용할 수 없는 이메일입니다.");
-      // response로 받은 인증번호를 codeNum에 저장
-      setCodeNum(data);
+      try {
+        const { status, data } = await checkEmail({
+          email: getValues("email"),
+        });
+        setCodeNum(+data.payload);
+      } catch (error: any) {
+        const { data } = error.response;
+        alert(data || "이메일 인증에 실패하였습니다.");
+      }
     },
     [getValues]
   );
@@ -92,7 +97,7 @@ const SignUp = () => {
         nickname,
       });
       if (status !== 201) return alert("회원가입에 실패하였습니다.");
-      router.push("start/login");
+      router.push("start/signin");
     },
     [setError, router]
   );

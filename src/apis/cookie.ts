@@ -10,7 +10,7 @@ export const setAccessToken = (accessToken: string) => {
 };
 
 export const getAccessToken = () => {
-  return cookies.get("accessToken");
+  return cookies.get("Authorization");
 };
 
 export const setRefreshToken = (refreshToken: string) => {
@@ -25,6 +25,5 @@ export const getRefreshToken = () => {
 };
 
 export const removeCookieToken = () => {
-  cookies.remove("accessToken", { sameSite: "strict", path: "/" });
-  return cookies.remove("accessToken", { sameSite: "strict", path: "/" });
+  return cookies.remove("Authorization", { sameSite: "strict", path: "/" });
 };

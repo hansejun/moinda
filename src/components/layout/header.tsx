@@ -19,7 +19,7 @@ const Header = () => {
     (pathname: string) => {
       if (pathname === "/mypage" && !isLogin) {
         alert("로그인이 필요한 서비스입니다.");
-        return router.push("/start/login");
+        return router.push("/start/signin");
       } else {
         router.push(pathname);
       }
@@ -84,13 +84,13 @@ const Header = () => {
                 className="aspect-square w-[4.3rem] cursor-pointer rounded-full"
                 src="https://avatars.dicebear.com/api/identicon/2/wooncloud.svg"
                 alt="profile"
-                onClick={() => handleNavigate("/mypage")}
+                onClick={() => handleNavigate("/profile")}
               />
             </>
           ) : (
             <button
               className="Cap2 flex-center bg-primary-ㅡmain h-[4.3rem] w-[7rem] cursor-pointer rounded-full bg-primary-main text-primary-100"
-              onClick={() => router.push("/start/login")}
+              onClick={() => router.push("/start/signin")}
             >
               로그인
             </button>

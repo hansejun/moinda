@@ -32,14 +32,13 @@ const Login = () => {
 
   // 로그인 기능
   const onValidSubmit = useCallback(async (data: ILogin) => {
-    const {
-      data: { accessToken },
-      status,
-    } = await logIn(data);
-    if (status !== 201) return alert("로그인 실패");
-    setAccessToken(accessToken);
-    // axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-    window.location.replace("/");
+    try {
+      const { status } = await logIn(data);
+      window.location.replace("/");
+    } catch (e) {
+      console.log(e);
+      alert("로그인 실패");
+    }
   }, []);
 
   // 카카오 로그인 버튼

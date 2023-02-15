@@ -14,7 +14,8 @@ relationMode = "prisma"
 model User {
   id Int @id @default(autoincrement()) 
   email String @unique
-  nickname String
+  password String? 
+  nickname String 
   avatarImg String?
   score Int @default(0)
   totalTime Int @default(0)

@@ -6,7 +6,7 @@ import instance from "@apis/axios";
 
 /** 회원가입 api */
 export const signUp = async (data: ISignUp) => {
-  const response = await axios.post("/api/users/signup", data);
+  const response = await axios.post("/api/user/signup", data);
   return response;
 };
 /** 로그인 api */
