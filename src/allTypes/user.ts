@@ -23,3 +23,12 @@ export interface ICheckEmailCode {
 export interface ICheckNickname {
   nickname: string;
 }
+
+export interface IMe {
+  id: number;
+  email: string;
+  nickname: string;
+  avatarImg: string;
+  totalTime: number;
+  score: number;
+}

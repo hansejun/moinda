@@ -1,4 +1,4 @@
-import { ICheckEmail, ICheckNickname } from "./../../allTypes/user";
+import { ICheckEmail, ICheckNickname, IMe } from "@allTypes/user";
 import { ILogin, ISignUp } from "allTypes/user";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
@@ -30,9 +30,23 @@ export const checkNickname = async (data: ICheckNickname) => {
   return response;
 };
 
-export const ReadUser = () =>
-  useQuery(
-    ["user"],
+/** 로그인 정보 가져오는 api */
+export const ReadMe = () => {
+  return useQuery(
+    ["loginUser"],
+    async () => {
+      const response = await axios.get("/api/user/me");
+      return response.data;
+    },
+    {
+      retry: 0,
+    }
+  );
+};
+
+export const ReadUser = (userId: number) =>
+  useQuery<IMe>(
+    ["user", userId],
     async () => {
       const { data } = await instance.get(``);
       return data;

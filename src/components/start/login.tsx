@@ -43,13 +43,13 @@ const Login = () => {
 
         setUser(user);
 
-        window.location.replace("/");
+        router.replace("/");
       } catch (e) {
         console.log(e);
         alert("로그인 실패");
       }
     },
-    [setUser]
+    [setUser, router]
   );
 
   // 카카오 로그인 버튼

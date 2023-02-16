@@ -6,11 +6,17 @@ import NewStudy from "@components/main/newStudy";
 import Pomodoro from "@components/main/pomodoro";
 import Studing from "@components/main/studing";
 import StudyCheck from "@components/main/studyCheck";
+import useUser from "@hooks/useUser";
 import type { NextPage } from "next";
+import Head from "next/head";
 
 const Home: NextPage = () => {
+  const user = useUser({ isPrivate: false });
   return (
     <Layout>
+      <Head>
+        <title>MOINDA</title>
+      </Head>
       <div className="flex">
         <CategoryBtn />
         <div className="ml-[2.6rem]">

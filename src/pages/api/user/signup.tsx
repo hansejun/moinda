@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import client from "@utils/server/client";
 import withHandler from "@utils/server/withHandler";
 
-async function signup(req: NextApiRequest, res: NextApiResponse) {
+async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { email, password, nickname } = req.body;
 
   const existUser = await client.user.findUnique({ where: { email } });
@@ -24,4 +24,4 @@ async function signup(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
-export default withHandler("POST", signup);
+export default withHandler({ method: "POST", handler, isPrivate: false });

@@ -1,34 +1,23 @@
-import { removeCookieToken } from "@apis/cookie";
-import { Cookies } from "react-cookie";
-import { useEffect, useState } from "react";
-import { isExpired } from "react-jwt";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
-/*
-  
-*/
-const useUser = () => {
-  const [user, setUser] = useState();
-  const navigate = useNavigate();
+import { ReadMe } from "./../apis/query/userApi";
+
+interface IUserProps {
+  isPrivate?: boolean;
+}
+
+const useUser = ({ isPrivate = true }: IUserProps) => {
+  const { data, error } = ReadMe();
+  const router = useRouter();
+
   useEffect(() => {
-    const cookies = new Cookies();
-    const myToken = cookies.get("accessToken");
-    const isTokenExpired = isExpired(myToken);
-    if (!myToken) {
-      alert("로그인이 필요한 서비스입니다.");
-      return navigate("/start/login");
+    if (isPrivate && error) {
+      alert("로그인이 필요한 서비스 입니다.");
+      router.push("/start/signin");
     }
-
-    if (isTokenExpired) {
-      alert("로그인이 필요한 서비스입니다.");
-      removeCookieToken();
-      return navigate("/login");
-    }
-
-    setUser(myToken);
-  }, [navigate]);
-
-  return [user, removeCookieToken];
+  }, [router, isPrivate, error]);
+  return data;
 };
 
 export default useUser;

@@ -3,7 +3,7 @@ import client from "@utils/server/client";
 import withHandler from "@utils/server/withHandler";
 import withSession from "@utils/server/withSession";
 
-async function signin(req: NextApiRequest, res: NextApiResponse) {
+async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { email, password } = req.body;
   const existUser = await client.user.findUnique({ where: { email } });
   if (!existUser) return res.status(401).send("이메일이 존재하지 않습니다.");
@@ -22,4 +22,6 @@ async function signin(req: NextApiRequest, res: NextApiResponse) {
     },
   });
 }
-export default withSession(withHandler("POST", signin));
+export default withSession(
+  withHandler({ method: "POST", handler, isPrivate: false })
+);

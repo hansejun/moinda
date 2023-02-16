@@ -5,7 +5,7 @@ import mail from "@sendgrid/mail";
 
 mail.setApiKey(process.env.SENDGRID_API_KEY!);
 
-async function checkEmail(req: NextApiRequest, res: NextApiResponse) {
+async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { email } = req.body;
     if (!email) return res.status(401).send("이메일을 확인해주세요.");
@@ -28,4 +28,4 @@ async function checkEmail(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
-export default withHandler("POST", checkEmail);
+export default withHandler({ method: "POST", handler, isPrivate: false });
