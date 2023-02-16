@@ -14,6 +14,12 @@ async function signin(req: NextApiRequest, res: NextApiResponse) {
   };
   await req.session.save();
   // 이메일,닉네임,비밀번호를 저장
-  res.status(201).json({});
+  const { id, avatarImg } = existUser;
+  res.status(201).json({
+    user: {
+      id,
+      avatarImg,
+    },
+  });
 }
 export default withSession(withHandler("POST", signin));

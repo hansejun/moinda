@@ -1,19 +1,22 @@
 import BellSvg from "@assets/svg/bellSvg";
 import SearchSvg from "@assets/svg/searchSvg";
+import { userAtom } from "@atoms/userAtom";
 import cls from "@utils/client/cls";
 import { isExistToken } from "@utils/client/isLogin";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Children, useCallback, useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
 
 const Header = () => {
   const [isLogin, setIsLogin] = useState(false);
   const router = useRouter();
+  const loginUser = useRecoilValue(userAtom);
 
   useEffect(() => {
-    setIsLogin(isExistToken());
-  }, [router]);
+    setIsLogin(loginUser);
+  }, [router, loginUser]);
 
   const handleNavigate = useCallback(
     (pathname: string) => {

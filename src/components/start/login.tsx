@@ -11,8 +11,9 @@ import FacebookSvg from "@assets/svg/facebookSvg";
 import GoogleSvg from "@assets/svg/googleSvg";
 import KakaoSvg from "@assets/svg/kakaoSvg";
 import { logIn } from "@apis/query/userApi";
-import { setAccessToken } from "@apis/cookie";
 import { useRouter } from "next/router";
+import { useSetRecoilState } from "recoil";
+import { userAtom } from "@atoms/userAtom";
 
 const styles = {
   socialWrapper: "flex flex-col items-center",
@@ -23,6 +24,8 @@ const styles = {
 
 const Login = () => {
   const router = useRouter();
+  const setUser = useSetRecoilState(userAtom);
+
   const {
     register,
     handleSubmit,
@@ -31,15 +34,23 @@ const Login = () => {
   } = useForm<ILogin>({ mode: "onChange" });
 
   // 로그인 기능
-  const onValidSubmit = useCallback(async (data: ILogin) => {
-    try {
-      const { status } = await logIn(data);
-      window.location.replace("/");
-    } catch (e) {
-      console.log(e);
-      alert("로그인 실패");
-    }
-  }, []);
+  const onValidSubmit = useCallback(
+    async (data: ILogin) => {
+      try {
+        const {
+          data: { user },
+        } = await logIn(data);
+
+        setUser(user);
+
+        window.location.replace("/");
+      } catch (e) {
+        console.log(e);
+        alert("로그인 실패");
+      }
+    },
+    [setUser]
+  );
 
   // 카카오 로그인 버튼
   const onClickKakao = useCallback(() => {}, []);
