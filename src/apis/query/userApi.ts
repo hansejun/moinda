@@ -40,6 +40,7 @@ export const ReadMe = () => {
     },
     {
       retry: 0,
+      refetchOnWindowFocus: false,
     }
   );
 };
