@@ -28,4 +28,4 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
-export default withHandler({ method: "POST", handler, isPrivate: false });
+export default withHandler({ methods: ["POST"], handler, isPrivate: false });

@@ -21,4 +21,33 @@ model User {
   totalTime Int @default(0)
   createdAt DateTime @default(now()) 
   updatedAt DateTime @updatedAt 
+  studyList Study[]
+}
+
+model Study{
+  id Int @id @default(autoincrement())
+  user User @relation(fields: [userId],references: [id],onDelete: Cascade)
+  userId Int
+  title String
+  category String
+  studyName String
+  content String @db.MediumText
+  icon Int
+  studyStatus String
+  targetTime Int
+  tel String
+  views Int
+  startDate DateTime
+  createdAt DateTime @default(now()) 
+  updatedAt DateTime @updatedAt 
+  hashTagList HashTag[]
+  @@index([userId])
+}
+
+model HashTag{
+  id Int @id @default(autoincrement())
+  study Study @relation(fields: [studyId],references: [id],onDelete: Cascade)
+  studyId Int
+  tagName String
+  @@index([studyId])
 }

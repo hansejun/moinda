@@ -8,4 +8,4 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     res.status(401).json({ message: "닉네임을 확인해주세요" });
   res.status(201).end();
 }
-export default withHandler({ method: "POST", handler, isPrivate: false });
+export default withHandler({ methods: ["POST"], handler, isPrivate: false });

@@ -11,4 +11,4 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { id, email, avatarImg, nickname, score, totalTime } = profile;
   res.status(201).json({ id, email, avatarImg, nickname, score, totalTime });
 }
-export default withSession(withHandler({ method: "GET", handler }));
+export default withSession(withHandler({ methods: ["GET"], handler }));

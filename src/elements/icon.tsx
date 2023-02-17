@@ -20,6 +20,29 @@ import Icon19 from "@assets/icons/icon19";
 import Icon20 from "@assets/icons/icon20";
 import { ReactChild } from "react";
 
+export const Icons = {
+  1: <Icon1 />,
+  2: <Icon2 />,
+  3: <Icon3 />,
+  4: <Icon4 />,
+  5: <Icon5 />,
+  6: <Icon6 />,
+  7: <Icon7 />,
+  8: <Icon8 />,
+  9: <Icon9 />,
+  10: <Icon10 />,
+  11: <Icon11 />,
+  12: <Icon12 />,
+  13: <Icon13 />,
+  14: <Icon14 />,
+  15: <Icon15 />,
+  16: <Icon16 />,
+  17: <Icon17 />,
+  18: <Icon18 />,
+  19: <Icon19 />,
+  20: <Icon20 />,
+};
+
 export type TNumber =
   | 1
   | 2

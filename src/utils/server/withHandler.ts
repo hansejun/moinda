@@ -1,19 +1,21 @@
 import { NextApiResponse } from "next";
 import { NextApiRequest } from "next";
 
+type TMethod = "GET" | "POST" | "PUT" | "DELETE";
+
 interface IConfig {
-  method: "GET" | "POST" | "PUT" | "DELETE";
+  methods: TMethod[];
   handler: (req: NextApiRequest, res: NextApiResponse) => void;
   isPrivate?: boolean;
 }
 
 export default function withHandler({
-  method,
+  methods,
   handler,
   isPrivate = true,
 }: IConfig) {
   return async function (req: NextApiRequest, res: NextApiResponse) {
-    if (req.method !== method) {
+    if (req.method && !methods.includes(req.method as TMethod)) {
       return res.status(405).end();
     }
     if (isPrivate && !req.session.user) {
