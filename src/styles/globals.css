@@ -169,7 +169,7 @@ abbr[title] {
 .react-calendar__tile:enabled:hover,
 .react-calendar__tile:enabled:focus {
   background: #f8f8fa;
-  color: #6f48eb;
+  color: #1e1e1e;
   border-radius: 6px;
 }
 .react-calendar__tile--now {
@@ -229,6 +229,12 @@ abbr[title] {
 }
 .react-calendar__month-view__days {
   padding-bottom: 10px;
+}
+.react-calendar__navigation button {
+  color: #ed7868;
+}
+.react-calendar__tile--active {
+  background: #ed7868;
 }
 /*스와이퍼 전용 스타일링*/
 .swiper-pagination-bullet-active {

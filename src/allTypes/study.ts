@@ -30,7 +30,7 @@ export interface IWrite {
   studyName: string;
   category: string;
   tel: string;
-  hashTag: string;
+  hashTagList: string[];
   startDate: Date;
   content: string;
 }

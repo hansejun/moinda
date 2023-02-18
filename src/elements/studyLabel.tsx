@@ -1,4 +1,5 @@
 import cls from "@utils/client/cls";
+import Image from "next/image";
 import { UseFormRegisterReturn } from "react-hook-form";
 
 interface ILabel {
@@ -7,6 +8,7 @@ interface ILabel {
   register?: UseFormRegisterReturn;
   placeholder?: string;
   onClick?: () => void;
+  src?: string;
   children?: JSX.Element | JSX.Element[];
 }
 
@@ -15,6 +17,7 @@ const StudyLabel = ({
   label,
   register,
   placeholder,
+  src,
   onClick,
   children,
 }: ILabel) => {
@@ -32,6 +35,7 @@ const StudyLabel = ({
 
       {type === "textarea" && (
         <textarea
+          {...register}
           className={cls(styles.input, "leading-[2.5rem]")}
           placeholder={placeholder}
           cols={50}
@@ -45,7 +49,18 @@ const StudyLabel = ({
 
       {type === "iconBox" && (
         <div onClick={onClick}>
-          <div className={cls(styles.iconBox)}>{children}</div>
+          <div className={cls(styles.iconBox)}>
+            {src ? (
+              <span className="w-[5rem]">
+                <Image src={src} alt="icon" width={60} height={60} />
+              </span>
+            ) : (
+              <>
+                아이콘
+                <br /> 선택
+              </>
+            )}
+          </div>
         </div>
       )}
 

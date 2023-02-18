@@ -1,20 +1,20 @@
 import { IWrite } from "@allTypes/study";
 import Layout from "@components/layout/layout";
-import StartDatePicker from "@components/study/datePicker";
-import IconModal from "@components/study/iconModal";
+import StartDatePicker from "@components/study/write/datePicker";
+import HashTagList from "@components/study/write/hashTagList";
+import IconModal from "@components/study/write/iconModal";
 import Icons from "@elements/icon";
 import StudyLabel from "@elements/studyLabel";
 import withSessionSsr from "@utils/client/withSessionSsr";
-import Image from "next/image";
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 
 const Write = ({ loginUser }: any) => {
-  const { register, handleSubmit, watch, setValue } = useForm<IWrite>({
-    mode: "onChange",
-  });
+  const { register, handleSubmit, watch, setValue, getValues } =
+    useForm<IWrite>({
+      mode: "onChange",
+    });
   const [iconMode, setIconMode] = useState(false);
-  console.log(watch("startDate"));
   const onValid = useCallback(() => {}, []);
   return (
     <Layout loginUser={loginUser}>
@@ -27,23 +27,8 @@ const Write = ({ loginUser }: any) => {
             type="iconBox"
             label="대표아이콘"
             onClick={() => setIconMode(true)}
-          >
-            {Icons[watch("icon")] ? (
-              <span className="w-[5rem]">
-                <Image
-                  src={Icons[watch("icon")]}
-                  alt="icon"
-                  width={60}
-                  height={60}
-                />
-              </span>
-            ) : (
-              <>
-                아이콘
-                <br /> 선택
-              </>
-            )}
-          </StudyLabel>
+            src={Icons[watch("icon")]}
+          ></StudyLabel>
           <StudyLabel
             register={{ ...register("title", { required: true }) }}
             type="input"
@@ -69,11 +54,11 @@ const Write = ({ loginUser }: any) => {
             label="연락 수단"
             placeholder="링크를 붙여넣거나 휴대폰 번호를 적어주세요."
           />
-          <StudyLabel
-            register={{ ...register("hashTag") }}
-            type="input"
+          <HashTagList
             label="해시태그"
             placeholder="#취업 #출석체크 #주5회출석 "
+            setValue={setValue}
+            defaultValue={getValues("hashTagList") || []}
           />
           <StudyLabel
             register={{ ...register("startDate", { required: true }) }}
@@ -91,6 +76,11 @@ const Write = ({ loginUser }: any) => {
             label="스터디 내용"
             placeholder="링크를 붙여넣거나 휴대폰 번호를 적어주세요."
           />
+          <div className="grid grid-cols-[1fr_3fr] gap-[2.6rem]">
+            <p className="col-start-2 text-right mt-[-1rem] text-[1.2rem]">
+              {watch("content")?.length}/3000
+            </p>
+          </div>
           <div className="grid grid-cols-[1fr_3fr] gap-[2.6rem] rounded-full ">
             <button className="col-start-2 bg-primary-main text-white Sub2 py-[2rem] rounded-full">
               스터디 모집 글 작성롼료
