@@ -12,13 +12,13 @@ const CategoryBtn = () => {
   ];
   const [click, setClick] = useState("전체 분야");
   return (
-    <div className="mt-[10rem]">
+    <div className=" hidden mt-[10rem] w-[21rem] lg:flex flex-col lg:visible">
       {categorys.map((cate) => (
         <div
           key={cate}
           onClick={() => setClick(cate)}
           className={cls(
-            "H3 h-[5.4rem] w-[21rem] cursor-pointer py-[1.4rem] px-[3.6rem]",
+            "H3 h-[5.4rem] cursor-pointer py-[1.4rem] px-[3.6rem]",
             cate === click
               ? "rounded-full bg-primary-500 text-primary-100"
               : " text-primary-600"

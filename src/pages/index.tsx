@@ -7,8 +7,7 @@ import NewStudy from "@components/main/newStudy";
 import Pomodoro from "@components/main/pomodoro";
 import Studing from "@components/main/studing";
 import StudyCheck from "@components/main/studyCheck";
-import useUser from "@hooks/useUser";
-import { withIronSessionSsr } from "iron-session/next";
+import withSessionSsr from "@utils/client/withSessionSsr";
 import type { NextPage } from "next";
 import Head from "next/head";
 
@@ -18,7 +17,7 @@ const Home: NextPage = ({ loginUser }: IHomeProps) => {
       <Head>
         <title>MOINDA</title>
       </Head>
-      <div className="flex">
+      <div className="flex justify-center">
         <CategoryBtn />
         <div className="ml-[2.6rem]">
           <BestStudy />
@@ -42,26 +41,4 @@ const Home: NextPage = ({ loginUser }: IHomeProps) => {
 
 export default Home;
 
-export const getServerSideProps = withIronSessionSsr(
-  async ({ req }) => {
-    const loginUser = req.session?.user;
-
-    if (!loginUser) {
-      return {
-        props: {
-          loginUser: {},
-        },
-      };
-    }
-
-    return {
-      props: {
-        loginUser,
-      },
-    };
-  },
-  {
-    password: process.env.SESSION_PASSWORD!,
-    cookieName: "Authorization",
-  }
-);
+export const getServerSideProps = withSessionSsr({ isPrivate: false });

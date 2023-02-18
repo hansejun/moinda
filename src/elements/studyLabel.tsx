@@ -1,7 +1,5 @@
-import CalendarSvg from "@assets/svg/calendarSvg";
 import cls from "@utils/client/cls";
 import { UseFormRegisterReturn } from "react-hook-form";
-import Icons from "./icon";
 
 interface ILabel {
   type: string;
@@ -42,15 +40,7 @@ const StudyLabel = ({
       )}
 
       {type === "date" && (
-        <div className="flex relative items-center ">
-          <button
-            className={cls(styles.input, "flex-1 text-left text-primary-400")}
-          >
-            2022 / 02 / 01
-          </button>
-
-          <CalendarSvg className="w-[2.3rem] absolute right-[1.8rem] cursor-pointer hover:text-primary-500" />
-        </div>
+        <div className="flex relative items-center ">{children}</div>
       )}
 
       {type === "iconBox" && (

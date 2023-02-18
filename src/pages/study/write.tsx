@@ -1,18 +1,20 @@
 import { IWrite } from "@allTypes/study";
 import Layout from "@components/layout/layout";
+import StartDatePicker from "@components/study/datePicker";
 import IconModal from "@components/study/iconModal";
 import Icons from "@elements/icon";
 import StudyLabel from "@elements/studyLabel";
-import { withIronSessionSsr } from "iron-session/next";
+import withSessionSsr from "@utils/client/withSessionSsr";
 import Image from "next/image";
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 
 const Write = ({ loginUser }: any) => {
-  const { register, handleSubmit, watch } = useForm<IWrite>({
+  const { register, handleSubmit, watch, setValue } = useForm<IWrite>({
     mode: "onChange",
   });
   const [iconMode, setIconMode] = useState(false);
+  console.log(watch("startDate"));
   const onValid = useCallback(() => {}, []);
   return (
     <Layout loginUser={loginUser}>
@@ -77,8 +79,10 @@ const Write = ({ loginUser }: any) => {
             register={{ ...register("startDate", { required: true }) }}
             type="date"
             label="스터디 시작일"
-            placeholder="2022 / 02 / 01"
-          />
+          >
+            <StartDatePicker setValue={setValue} />
+          </StudyLabel>
+
           <StudyLabel
             register={{
               ...register("content", { required: true, maxLength: 3000 }),
@@ -105,28 +109,4 @@ const Write = ({ loginUser }: any) => {
 };
 export default Write;
 
-export const getServerSideProps = withIronSessionSsr(
-  async ({ req, res }) => {
-    const loginUser = req.session?.user;
-    if (!loginUser) {
-      res.setHeader("location", "/start/signin");
-      res.statusCode = 302;
-      res.end();
-      return {
-        props: {
-          loginUser: {},
-        },
-      };
-    }
-
-    return {
-      props: {
-        loginUser,
-      },
-    };
-  },
-  {
-    password: process.env.SESSION_PASSWORD!,
-    cookieName: "Authorization",
-  }
-);
+export const getServerSideProps = withSessionSsr({});
