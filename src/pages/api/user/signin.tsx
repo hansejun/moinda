@@ -11,6 +11,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     return res.status(401).send("비밀번호가 일치하지 않습니다.");
   req.session.user = {
     id: existUser?.id,
+    avatarImg: existUser?.avatarImg,
   };
   await req.session.save();
   // 이메일,닉네임,비밀번호를 저장

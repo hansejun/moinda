@@ -1,12 +1,12 @@
 import cls from "@utils/client/cls";
-import { NowProps } from "allTypes/props";
 import { useRouter } from "next/router";
-import Icon from "@elements/icon";
+import Icons, { iconBackgrounds } from "@elements/icon";
 import GroupSvg from "@assets/svg/groupSvg";
 import CategorySvg from "@assets/svg/categorySvg";
 import NextSvg from "@assets/svg/nextSvg";
+import Image from "next/image";
 
-const Studing = ({ now }: NowProps) => {
+const Studing = ({ now }: any) => {
   const router = useRouter();
   return (
     <div
@@ -16,8 +16,15 @@ const Studing = ({ now }: NowProps) => {
       )}
       onClick={() => router.push("/mystudy/1")}
     >
-      <div className="flex-center h-[5.4rem] w-[5.4rem] rounded-[1.2rem] bg-green-400">
-        <span className="w-[4rem]">{Icon(1)}</span>
+      <div
+        className={cls(
+          "flex-center h-[5.4rem] w-[5.4rem] rounded-[1.2rem]",
+          `${iconBackgrounds[4]}`
+        )}
+      >
+        <span className="w-[4rem]">
+          <Image src={Icons[1]} alt="icon" width={40} height={40} />
+        </span>
       </div>
       <div className="ml-[1.5rem]">
         <p className="Sub2">토익 900 달성 스터디</p>

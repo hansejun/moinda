@@ -1,4 +1,5 @@
-import Icon from "@elements/icon";
+import Icons from "@elements/icon";
+import Image from "next/image";
 
 const StudyCard = () => {
   return (
@@ -8,7 +9,15 @@ const StudyCard = () => {
       </p>
       <p className="H3 mt-[2.2rem]">모집글 제목 들어가는 곳</p>
       <p className="Cap1 text-primary-500">부가텍스트 및 스터디명 적는 곳</p>
-      <span className="mt-[3.4rem] h-[5.8rem] w-[5.8rem] ">{Icon(6)}</span>
+      <span className="mt-[3.4rem] h-[5.8rem] w-[5.8rem] ">
+        <Image
+          src={Icons[8]}
+          alt="icon"
+          width={60}
+          height={60}
+          priority={true}
+        />
+      </span>
       <div className="Cap4 mt-[2rem] flex justify-between text-primary-main">
         <span>IDhere</span>
         <div>

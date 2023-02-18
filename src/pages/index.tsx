@@ -1,3 +1,4 @@
+import { IHomeProps } from "@allTypes/props";
 import Layout from "@components/layout/layout";
 import BestStudy from "@components/main/bestStudy";
 import BestTag from "@components/main/bestTag";
@@ -7,13 +8,13 @@ import Pomodoro from "@components/main/pomodoro";
 import Studing from "@components/main/studing";
 import StudyCheck from "@components/main/studyCheck";
 import useUser from "@hooks/useUser";
+import { withIronSessionSsr } from "iron-session/next";
 import type { NextPage } from "next";
 import Head from "next/head";
 
-const Home: NextPage = () => {
-  const user = useUser({ isPrivate: false });
+const Home: NextPage = ({ loginUser }: IHomeProps) => {
   return (
-    <Layout>
+    <Layout loginUser={loginUser}>
       <Head>
         <title>MOINDA</title>
       </Head>
@@ -40,3 +41,27 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export const getServerSideProps = withIronSessionSsr(
+  async ({ req }) => {
+    const loginUser = req.session?.user;
+
+    if (!loginUser) {
+      return {
+        props: {
+          loginUser: {},
+        },
+      };
+    }
+
+    return {
+      props: {
+        loginUser,
+      },
+    };
+  },
+  {
+    password: process.env.SESSION_PASSWORD!,
+    cookieName: "Authorization",
+  }
+);

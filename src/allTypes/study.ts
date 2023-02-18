@@ -1,29 +1,36 @@
-export interface IIcon {
-  icon: number;
-}
-
-export interface IRecruit {
-  recruittitle: string | number;
-}
-
-export interface IGroupName {
-  studygroupname: string | number;
-}
-
-export interface IContact {
-  contact: string | number;
-}
+import { TNumber } from "@elements/icon";
 
 export interface IHashtag {
-  hashtag: string | number;
+  id: number;
+  studyId: number;
+  tagName: string;
 }
 
-export interface IStartdate {
-  startdate: number;
+export interface IStudy {
+  id: number;
+  userId: number;
+  title: string;
+  category: string;
+  studyName: string;
+  content: string;
+  icon: number;
+  studyStatus: string;
+  targetTime: number;
+  tel: string;
+  views: number;
+  startDate: Date;
+  createdAt: Date;
+  updatedAt: Date;
+  hashTagList: IHashtag[];
 }
 
-export interface IStudyDetail {
-  studydetail: string | number;
+export interface IWrite {
+  icon: TNumber;
+  title: string;
+  studyName: string;
+  category: string;
+  tel: string;
+  hashTag: string;
+  startDate: Date;
+  content: string;
 }
-
-export interface IStudy {}

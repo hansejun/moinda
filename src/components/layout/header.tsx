@@ -1,3 +1,4 @@
+import { IHeaderProps } from "@allTypes/props";
 import BellSvg from "@assets/svg/bellSvg";
 import SearchSvg from "@assets/svg/searchSvg";
 import cls from "@utils/client/cls";
@@ -5,36 +6,39 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
-import useUser from "@hooks/useUser";
 
-const Header = () => {
+function Header({ loginUser }: IHeaderProps) {
   const [isLogin, setIsLogin] = useState(false);
   const router = useRouter();
-  const user = useUser({ isPrivate: false });
-
   useEffect(() => {
-    if (user) {
-      setIsLogin(true);
+    if (loginUser) {
+      if (Object.hasOwn(loginUser, "id")) {
+        setIsLogin(true);
+      }
     }
-  }, [user]);
+  }, [loginUser]);
 
   const handleNavigate = useCallback(
     (pathname: string) => {
-      if (pathname === "/mypage" && !isLogin) {
-        alert("로그인이 필요한 서비스입니다.");
-        return router.push("/start/signin");
+      if (pathname === "/profile") {
+        if (isLogin) {
+          router.push(pathname + `/${loginUser?.id}`);
+        } else {
+          alert("로그인이 필요한 서비스입니다.");
+          router.push("/start/signin");
+        }
       } else {
         router.push(pathname);
       }
     },
-    [isLogin, router]
+    [router, isLogin, loginUser]
   );
 
   return (
     <header className="fixed top-0 z-[100] w-full border-b bg-primary-100">
       <div className="flex-between header-height mx-auto  w-full px-[3rem] lg:w-[144rem] lg:px-0">
         <nav className="flex items-center">
-          <Link href="/">
+          <Link href="/" passHref>
             <span className="mr-[4.2rem] text-[2.4rem] font-bold text-primary-main">
               MOINDA
             </span>
@@ -71,7 +75,7 @@ const Header = () => {
             <>
               <button
                 className="Cap2 flex-center h-[4.3rem] w-[12.8rem] rounded-full bg-primary-main text-primary-100"
-                onClick={() => router.push("/openStudy")}
+                onClick={() => router.push("/study/write")}
               >
                 스터디 모집하기
               </button>
@@ -87,7 +91,7 @@ const Header = () => {
                 className="aspect-square w-[4.3rem] cursor-pointer rounded-full"
                 src="https://avatars.dicebear.com/api/identicon/2/wooncloud.svg"
                 alt="profile"
-                onClick={() => handleNavigate("/profile")}
+                onClick={() => handleNavigate(`/profile/${loginUser?.id}`)}
               />
             </>
           ) : (
@@ -102,9 +106,7 @@ const Header = () => {
       </div>
     </header>
   );
-};
-
-export default Header;
+}
 
 const styles = {
   navItem:
@@ -114,8 +116,10 @@ const styles = {
 
 const navs = [
   { id: 0, name: "홈", pathname: "/" },
-  { id: 1, name: "마이페이지", pathname: "/mypage" },
+  { id: 1, name: "마이페이지", pathname: `/profile` },
   { id: 2, name: "스터디 게시판", pathname: "/study" },
 ];
 
 // Children ! React.Children
+
+export default Header;

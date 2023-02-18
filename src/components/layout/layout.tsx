@@ -1,14 +1,14 @@
+import { ILayoutProps } from "@allTypes/props";
 import cls from "@utils/client/cls";
 import Header from "./header";
 import Main from "./main";
 
-interface ILayout {
-  children: JSX.Element[] | JSX.Element;
-  hasBgColor?: boolean;
-  isFullHeight?: boolean;
-}
-
-const Layout = ({ children, hasBgColor, isFullHeight }: ILayout) => {
+const Layout = ({
+  children,
+  hasBgColor,
+  isFullHeight,
+  loginUser,
+}: ILayoutProps) => {
   return (
     <div
       className={cls(
@@ -16,7 +16,7 @@ const Layout = ({ children, hasBgColor, isFullHeight }: ILayout) => {
         hasBgColor ? "bg-bgColor-200" : "bg-bgColor-100"
       )}
     >
-      <Header />
+      <Header loginUser={loginUser} />
       <Main isFullHeight={isFullHeight}>{children}</Main>
     </div>
   );

@@ -1,46 +1,67 @@
-import Icon1 from "@assets/icons/icon1";
-import Icon2 from "@assets/icons/icon2";
-import Icon3 from "@assets/icons/icon3";
-import Icon4 from "@assets/icons/icon4";
-import Icon5 from "@assets/icons/icon5";
-import Icon6 from "@assets/icons/icon6";
-import Icon7 from "@assets/icons/icon7";
-import Icon8 from "@assets/icons/icon8";
-import Icon9 from "@assets/icons/icon9";
-import Icon10 from "@assets/icons/icon10";
-import Icon11 from "@assets/icons/icon11";
-import Icon12 from "@assets/icons/icon12";
-import Icon13 from "@assets/icons/icon13";
-import Icon14 from "@assets/icons/icon14";
-import Icon15 from "@assets/icons/icon15";
-import Icon16 from "@assets/icons/icon16";
-import Icon17 from "@assets/icons/icon17";
-import Icon18 from "@assets/icons/icon18";
-import Icon19 from "@assets/icons/icon19";
-import Icon20 from "@assets/icons/icon20";
-import { ReactChild } from "react";
+// import Icon1Svg from "@assets/icons/icon1.svg";
+// import Icon2Svg from "@assets/icons/icon2.svg";
+// import Icon3Svg from "@assets/icons/icon3.svg";
+// import Icon4Svg from "@assets/icons/icon4.svg";
+// import Icon5Svg from "@assets/icons/icon5.svg";
+// import Icon6Svg from "@assets/icons/icon6.svg";
+// import Icon7Svg from "@assets/icons/icon7.svg";
+// import Icon8Svg from "@assets/icons/icon8.svg";
+// import Icon9Svg from "@assets/icons/icon9.svg";
+// import Icon10Svg from "@assets/icons/icon10.svg";
+// import Icon11Svg from "@assets/icons/icon11.svg";
+// import Icon12Svg from "@assets/icons/icon12.svg";
+// import Icon13Svg from "@assets/icons/icon13.svg";
+// import Icon14Svg from "@assets/icons/icon14.svg";
+// import Icon15Svg from "@assets/icons/icon15.svg";
+// import Icon16Svg from "@assets/icons/icon16.svg";
+// import Icon17Svg from "@assets/icons/icon17.svg";
+// import Icon18Svg from "@assets/icons/icon18.svg";
+// import Icon19Svg from "@assets/icons/icon19.svg";
+// import Icon20Svg from "@assets/icons/icon20.svg";
 
-export const Icons = {
-  1: <Icon1 />,
-  2: <Icon2 />,
-  3: <Icon3 />,
-  4: <Icon4 />,
-  5: <Icon5 />,
-  6: <Icon6 />,
-  7: <Icon7 />,
-  8: <Icon8 />,
-  9: <Icon9 />,
-  10: <Icon10 />,
-  11: <Icon11 />,
-  12: <Icon12 />,
-  13: <Icon13 />,
-  14: <Icon14 />,
-  15: <Icon15 />,
-  16: <Icon16 />,
-  17: <Icon17 />,
-  18: <Icon18 />,
-  19: <Icon19 />,
-  20: <Icon20 />,
+// const Icons = {
+//   1: <Icon1Svg />,
+//   2: <Icon2Svg />,
+//   3: <Icon3Svg />,
+//   4: <Icon4Svg />,
+//   5: <Icon5Svg />,
+//   6: <Icon6Svg />,
+//   7: <Icon7Svg />,
+//   8: <Icon8Svg />,
+//   9: <Icon9Svg />,
+//   10: <Icon10Svg />,
+//   11: <Icon11Svg />,
+//   12: <Icon12Svg />,
+//   13: <Icon13Svg />,
+//   14: <Icon14Svg />,
+//   15: <Icon15Svg />,
+//   16: <Icon16Svg />,
+//   17: <Icon17Svg />,
+//   18: <Icon18Svg />,
+//   19: <Icon19Svg />,
+//   20: <Icon20Svg />,
+// };
+const Icons = {
+  1: "/icons/icon1.svg",
+  2: "/icons/icon2.svg",
+  3: "/icons/icon3.svg",
+  4: "/icons/icon4.svg",
+  5: "/icons/icon5.svg",
+  6: "/icons/icon6.svg",
+  7: "/icons/icon7.svg",
+  8: "/icons/icon8.svg",
+  9: "/icons/icon9.svg",
+  10: "/icons/icon10.svg",
+  11: "/icons/icon11.svg",
+  12: "/icons/icon12.svg",
+  13: "/icons/icon13.svg",
+  14: "/icons/icon14.svg",
+  15: "/icons/icon15.svg",
+  16: "/icons/icon16.svg",
+  17: "/icons/icon17.svg",
+  18: "/icons/icon18.svg",
+  19: "/icons/icon19.svg",
+  20: "/icons/icon20.svg",
 };
 
 export type TNumber =
@@ -88,51 +109,4 @@ export const iconBackgrounds = {
   20: "bg-[#B0F47B]",
 };
 
-const Icon = (num: TNumber): ReactChild => {
-  switch (num) {
-    case 1:
-      return <Icon1 />;
-    case 2:
-      return <Icon2 />;
-    case 3:
-      return <Icon3 />;
-    case 4:
-      return <Icon4 />;
-    case 5:
-      return <Icon5 />;
-    case 6:
-      return <Icon6 />;
-    case 7:
-      return <Icon7 />;
-    case 8:
-      return <Icon8 />;
-    case 9:
-      return <Icon9 />;
-    case 10:
-      return <Icon10 />;
-    case 11:
-      return <Icon11 />;
-    case 12:
-      return <Icon12 />;
-    case 13:
-      return <Icon13 />;
-    case 14:
-      return <Icon14 />;
-    case 15:
-      return <Icon15 />;
-    case 16:
-      return <Icon16 />;
-    case 17:
-      return <Icon17 />;
-    case 18:
-      return <Icon18 />;
-    case 19:
-      return <Icon19 />;
-    case 20:
-      return <Icon20 />;
-    default:
-      return <div />;
-  }
-};
-
-export default Icon;
+export default Icons;
