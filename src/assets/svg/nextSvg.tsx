@@ -11,7 +11,7 @@ const NextSvg = ({ className }: ISvg) => {
     >
       <path
         d="M9 4L17 12L9 20"
-        stroke="#848484"
+        stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"

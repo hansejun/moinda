@@ -62,7 +62,7 @@ function Header({ loginUser }: IHeaderProps) {
         </nav>
         <div className="flex">
           <form className="flex">
-            <label className="relative mr-[2.2rem] hidden h-[4.2rem] w-[35.6rem] items-center nm:flex">
+            <label className="relative mr-[2.2rem] hidden h-[4.2rem] min-w-[25rem] max-w-[35.6rem] items-center nm:flex nm:w-[20vw]">
               <SearchSvg className="absolute w-[1.8rem] translate-x-7 text-primary-500" />
               <input
                 type="text"

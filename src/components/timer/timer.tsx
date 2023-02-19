@@ -158,7 +158,7 @@ const Timer = () => {
 
   return (
     <>
-      <div className="absolute flex w-full justify-end space-x-[1.3rem] p-[1.5rem] text-[1.4rem]">
+      <div className="absolute top-0 flex w-full justify-end space-x-[1.3rem] p-[1.5rem] text-[1.4rem] ">
         <button
           className="cursor-pointer text-[1.3rem] hover:text-gray-500"
           onClick={onClickReset}
@@ -173,8 +173,8 @@ const Timer = () => {
         </button>
       </div>
 
-      <div className="flex-center h-full  w-full space-x-[7rem]">
-        <div className="flex-center">
+      <div className="flex-center flex-col nm:flex-row h-full w-full nm:space-x-[7rem] space-y-[3rem] nm:space-y-0">
+        <div className="flex-center ">
           <ProgressBar
             value={
               100 -
@@ -195,7 +195,7 @@ const Timer = () => {
           </ProgressBar>
         </div>
 
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center ">
           <span className="Cap2 text-primary-500 ">{studyState}</span>
           <ul className="mb-[2.1rem] mt-[2.4rem] flex space-x-[1.4rem]">
             {progressTimes.map((item, idx) => (

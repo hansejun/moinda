@@ -12,7 +12,7 @@ const CategoryBtn = () => {
   ];
   const [click, setClick] = useState("전체 분야");
   return (
-    <div className=" hidden mt-[4.6rem] max-w-[21rem] lg:flex flex-col lg:visible">
+    <div className=" hidden mt-[4.6rem]  lg:flex flex-col lg:visible">
       {categorys.map((cate) => (
         <div
           key={cate}

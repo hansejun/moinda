@@ -1,4 +1,4 @@
-import Studing from "@components/main/studing";
+import Studing from "@components/main/";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
