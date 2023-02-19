@@ -1,4 +1,7 @@
+import { IPageProps } from "@allTypes/props";
 import { IWrite } from "@allTypes/study";
+import studyApi from "@apis/query/studyApi";
+import CustomHead from "@components/layout/head";
 import Layout from "@components/layout/layout";
 import StartDatePicker from "@components/study/write/datePicker";
 import HashTagList from "@components/study/write/hashTagList";
@@ -6,22 +9,35 @@ import IconModal from "@components/study/write/iconModal";
 import Icons from "@elements/icon";
 import StudyLabel from "@elements/studyLabel";
 import withSessionSsr from "@utils/client/withSessionSsr";
+import { NextPage } from "next";
+import { useRouter } from "next/router";
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 
 /** 스터디 개설 페이지 */
-const Write = ({ loginUser }: any) => {
+const Write: NextPage = ({ loginUser }: IPageProps) => {
   const { register, handleSubmit, watch, setValue, getValues } =
     useForm<IWrite>({
       mode: "onChange",
     });
-
+  const router = useRouter();
   const [iconMode, setIconMode] = useState(false);
-  const onValid = useCallback((data: IWrite) => {
-    console.log(data);
-  }, []);
+
+  const onValid = useCallback(
+    async (data: IWrite) => {
+      try {
+        const { id } = await studyApi.AddStudy(data);
+        router.replace(`/study/${id}`);
+      } catch (e) {
+        console.log(e);
+        return;
+      }
+    },
+    [router]
+  );
   return (
     <Layout loginUser={loginUser}>
+      <CustomHead title="스터디 개설" />
       <main className="grid grid-cols-[1fr_4fr_1fr] py-[5rem]  ">
         <form
           onSubmit={handleSubmit(onValid)}

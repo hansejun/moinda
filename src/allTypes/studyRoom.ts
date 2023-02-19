@@ -1,4 +1,5 @@
 export type TStudyStatus = "모집중" | "진행중" | "완료";
+
 export interface IStudyStatus {
   status: TStudyStatus;
   color: string;

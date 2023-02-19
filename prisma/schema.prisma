@@ -36,7 +36,7 @@ model Study{
   category CATEGORY
   studyName String
   content String @db.MediumText
-  icon Int
+  icon String
   studyStatus StudyStatus @default(RECRUIT)
   targetTime Int @default(0)
   tel String

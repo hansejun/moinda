@@ -1,13 +1,11 @@
 const BestStudy = () => {
   return (
-    <div className="mt-[5.4rem] ">
-      <h2 className="H2 mb-[1.8rem] text-primary-600">
-        카테고리 별 인기스터디
-      </h2>
-      <div className="flex h-[8.6rem] w-[65.6rem] justify-between rounded-[1rem] bg-orange-100 px-[3rem]">
-        <div className="flex-center">
-          <div className="mr-[2rem] h-[3.6rem] w-[3.6rem] rounded-full bg-primary-400" />
-          <div>
+    <div className="flex flex-col space-y-[1.8rem]">
+      <h2 className="H2 text-primary-600">카테고리 별 인기스터디</h2>
+      <div className="flex h-[8.6rem] justify-between rounded-[1rem] bg-orange-100 px-[3rem]">
+        <div className="flex items-center space-x-[2rem]">
+          <div className="h-[3.6rem] w-[3.6rem] rounded-full bg-primary-400" />
+          <div className="flex flex-col">
             <p className="Sub1 text-primary-600">모인다 스터디</p>
             <p className="Cap4 text-primary-500">
               4주 동안 같이 공부 할 백엔드 스터디 모집합니다.

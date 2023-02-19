@@ -11,6 +11,6 @@ export interface IHeaderProps {
   loginUser?: User;
 }
 
-export interface IHomeProps {
+export interface IPageProps {
   loginUser?: User;
 }

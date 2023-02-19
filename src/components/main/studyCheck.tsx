@@ -1,5 +1,4 @@
 import cls from "@utils/client/cls";
-import { NowProps } from "allTypes/props";
 
 const StudyCheck = ({ now }: NowProps) => {
   return (

@@ -1,4 +1,5 @@
-import { IHomeProps } from "@allTypes/props";
+import { IPageProps } from "@allTypes/props";
+import CustomHead from "@components/layout/head";
 import Layout from "@components/layout/layout";
 import BestStudy from "@components/main/bestStudy";
 import BestTag from "@components/main/bestTag";
@@ -9,25 +10,20 @@ import Studing from "@components/main/studing";
 import StudyCheck from "@components/main/studyCheck";
 import withSessionSsr from "@utils/client/withSessionSsr";
 import type { NextPage } from "next";
-import Head from "next/head";
 
-const Home: NextPage = ({ loginUser }: IHomeProps) => {
+const Home: NextPage = ({ loginUser }: IPageProps) => {
   return (
     <Layout loginUser={loginUser}>
-      <Head>
-        <title>MOINDA</title>
-      </Head>
-      <div className="flex justify-center">
+      <CustomHead />
+      <div className="flex justify-center lg:grid lg:grid-cols-[1fr_3fr_2fr] gap-[2.6rem] mt-[5.4rem]">
         <CategoryBtn />
-        <div className="ml-[2.6rem]">
+        <div className="flex flex-col space-y-[7.2rem]">
           <BestStudy />
           <NewStudy />
         </div>
-        <div className=" ml-[5.2rem]">
-          <div>
-            <h2 className="H2 mb-[1.8rem] mt-[5.4rem] text-primary-600">
-              참여 중인 스터디그룹
-            </h2>
+        <div>
+          <div className="flex flex-col space-y-[1.8rem]">
+            <h2 className="H2 text-primary-600">참여 중인 스터디그룹</h2>
             <Studing />
           </div>
           <StudyCheck />
