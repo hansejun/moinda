@@ -10,7 +10,7 @@ export interface IStudy {
   id: number;
   userId: number;
   title: string;
-  category: string;
+  category: TCategory;
   studyName: string;
   content: string;
   icon: number;
@@ -34,3 +34,5 @@ export interface IWrite {
   startDate: Date;
   content: string;
 }
+
+type TCategory = "LANGUAGE" | "EMPLOYMENT" | "HOBBY" | "PUBLIC" | "ETC";

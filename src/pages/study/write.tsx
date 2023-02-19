@@ -9,13 +9,17 @@ import withSessionSsr from "@utils/client/withSessionSsr";
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 
+/** 스터디 개설 페이지 */
 const Write = ({ loginUser }: any) => {
   const { register, handleSubmit, watch, setValue, getValues } =
     useForm<IWrite>({
       mode: "onChange",
     });
+
   const [iconMode, setIconMode] = useState(false);
-  const onValid = useCallback(() => {}, []);
+  const onValid = useCallback((data: IWrite) => {
+    console.log(data);
+  }, []);
   return (
     <Layout loginUser={loginUser}>
       <main className="grid grid-cols-[1fr_4fr_1fr] py-[5rem]  ">
@@ -28,7 +32,7 @@ const Write = ({ loginUser }: any) => {
             label="대표아이콘"
             onClick={() => setIconMode(true)}
             src={Icons[watch("icon")]}
-          ></StudyLabel>
+          />
           <StudyLabel
             register={{ ...register("title", { required: true }) }}
             type="input"

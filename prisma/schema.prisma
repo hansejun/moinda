@@ -21,7 +21,11 @@ model User {
   totalTime Int @default(0)
   createdAt DateTime @default(now()) 
   updatedAt DateTime @updatedAt 
+
+  attendance Attendance?
   studyList Study[]
+  memberList Member[]
+  alarmList Alarm[]
 }
 
 model Study{
@@ -29,20 +33,24 @@ model Study{
   user User @relation(fields: [userId],references: [id],onDelete: Cascade)
   userId Int
   title String
-  category String
+  category CATEGORY
   studyName String
   content String @db.MediumText
   icon Int
-  studyStatus String
-  targetTime Int
+  studyStatus StudyStatus @default(RECRUIT)
+  targetTime Int @default(0)
   tel String
-  views Int
+  views Int @default(0)
   startDate DateTime
   createdAt DateTime @default(now()) 
   updatedAt DateTime @updatedAt 
   hashTagList HashTag[]
+  memberList Member[]
+  diaryList Diary[]
+  alarmList Alarm[]
   @@index([userId])
 }
+
 
 model HashTag{
   id Int @id @default(autoincrement())
@@ -50,4 +58,73 @@ model HashTag{
   studyId Int
   tagName String
   @@index([studyId])
+}
+
+model Member{
+  id Int @id @default(autoincrement())
+  user User @relation(fields: [userId],references: [id],onDelete: Cascade)
+  study Study @relation(fields: [studyId],references: [id],onDelete: Cascade)
+  userId Int
+  studyId Int
+  diaryList Diary[]
+
+  @@index([userId])
+  @@index([studyId])
+}
+
+model Diary{
+  id Int @id @default(autoincrement())
+  member Member @relation(fields: [memberId],references: [id],onDelete: Cascade)
+  study Study @relation(fields: [studyId],references: [id],onDelete: Cascade)
+  memberId Int
+  studyId Int
+  content String @db.MediumText
+  createdAt DateTime @default(now()) 
+  updatedAt DateTime @updatedAt 
+
+   @@index([memberId])
+   @@index([studyId])
+}
+
+model Attendance{
+  id Int @id @default(autoincrement())
+  user User @relation(fields: [userId],references: [id],onDelete: Cascade)
+  userId Int @unique
+  checkIn DateTime? 
+  log DateTime?
+  todayTime Int @default(0)
+}
+
+model Alarm{
+  id Int @id @default(autoincrement())
+  user User @relation(fields: [senderId],references: [id],onDelete: Cascade)
+  study Study @relation(fields: [studyId],references: [id],onDelete: Cascade)
+  studyId Int
+  senderId Int
+  receiverId Int
+  state ALARMSTATE
+  createdAt DateTime @default(now()) 
+
+  @@index([studyId])
+  @@index([senderId])
+}
+
+enum CATEGORY{
+  LANGUAGE
+  EMPLOYMENT
+  HOBBY
+  PUBLIC
+  ETC
+}
+
+enum ALARMSTATE{
+  APPROVE
+  REFUSE
+  CHECK
+}
+
+enum StudyStatus{
+  RECRUIT
+  PROGRESS
+  COMPLETE
 }
