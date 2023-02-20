@@ -1,6 +1,7 @@
 import studyApi from "@apis/query/studyApi";
 import { studyCategoryAtom } from "@atoms/studyAtom";
 import ColumnCategory from "@components/studyCommon/columnCategory";
+import Link from "next/link";
 import { useRecoilValue } from "recoil";
 import BestStudyCard from "./bestStudyCard";
 
@@ -14,9 +15,13 @@ const BestStudyList = () => {
     <div className="flex flex-col space-y-[1.3rem]">
       <h2 className="H2 text-primary-600">카테고리 별 인기스터디</h2>
       <ColumnCategory />
-      {studyList?.map((study, i) => (
-        <BestStudyCard color={COLORS[i]} key={study?.id} study={study} />
-      ))}
+      <div className="grid grid-rows-[repeat(5,8.6rem)] gap-[1.3rem]">
+        {studyList?.map((study, i) => (
+          <Link key={study?.id} href={`/study/${study?.id}`} passHref>
+            <BestStudyCard color={COLORS[i]} key={study?.id} study={study} />
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };

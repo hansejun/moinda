@@ -10,7 +10,7 @@ const style = {
   nm: "hidden nm:block",
 };
 
-const ParticipatingStudy = ({ now }: any) => {
+const ParticipatingStudy = () => {
   const router = useRouter();
   return (
     <>

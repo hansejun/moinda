@@ -79,9 +79,9 @@ function Header({ loginUser }: IHeaderProps) {
               >
                 스터디 모집하기
               </button>
-              <span className="flex-center relative mx-[1.6rem] cursor-pointer p-2 hover:text-primary-500 w-[2.1rem]">
+              <span className="flex-center relative mx-[1.6rem] w-[2.1rem] cursor-pointer p-2 hover:text-primary-500">
                 <span>
-                  <BellSvg className="w-[2.5rem] h-[2.5rem]" />
+                  <BellSvg className="h-[2.5rem] w-[2.5rem]" />
                 </span>
                 <span className="absolute right-[0rem] bottom-[1rem] h-[0.9rem] w-[0.9rem] rounded-full bg-primary-main"></span>
               </span>
@@ -92,6 +92,7 @@ function Header({ loginUser }: IHeaderProps) {
                 src="https://avatars.dicebear.com/api/identicon/2/wooncloud.svg"
                 alt="profile"
                 onClick={() => handleNavigate(`/profile/${loginUser?.id}`)}
+                priority={true}
               />
             </>
           ) : (

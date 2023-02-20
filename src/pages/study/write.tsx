@@ -38,10 +38,10 @@ const Write: NextPage = ({ loginUser }: IPageProps) => {
   return (
     <Layout loginUser={loginUser}>
       <CustomHead title="스터디 개설" />
-      <main className="grid grid-cols-[1fr_4fr_1fr] py-[5rem]  ">
+      <main className="flex flex-col py-[5rem] nm:grid nm:grid-cols-[1fr_4fr_1fr]  ">
         <form
           onSubmit={handleSubmit(onValid)}
-          className="col-start-2  flex flex-col space-y-[2.4rem]"
+          className="flex  flex-col space-y-[2.4rem] nm:col-start-2"
         >
           <StudyLabel
             type="iconBox"
@@ -97,12 +97,12 @@ const Write: NextPage = ({ loginUser }: IPageProps) => {
             placeholder="링크를 붙여넣거나 휴대폰 번호를 적어주세요."
           />
           <div className="grid grid-cols-[1fr_3fr] gap-[2.6rem]">
-            <p className="col-start-2 text-right mt-[-1rem] text-[1.2rem]">
+            <p className="col-start-2 mt-[-1rem] text-right text-[1.2rem]">
               {watch("content")?.length}/3000
             </p>
           </div>
-          <div className="grid grid-cols-[1fr_3fr] gap-[2.6rem] rounded-full ">
-            <button className="col-start-2 bg-primary-main text-white Sub2 py-[2rem] rounded-full">
+          <div className="flex gap-[2.6rem] rounded-full nm:grid nm:grid-cols-[1fr_3fr] ">
+            <button className="Sub2 col-start-2 w-full rounded-full bg-primary-main py-[2rem] text-white">
               스터디 모집 글 작성롼료
             </button>
           </div>

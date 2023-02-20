@@ -1,9 +1,4 @@
-import {
-  INewStudyListProps,
-  IStudy,
-  IStudyWithUser,
-  IWrite,
-} from "@allTypes/study";
+import { INewStudyListProps, IStudyWithUser, IWrite } from "@allTypes/study";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
@@ -48,28 +43,32 @@ const ReadRecommendStudyList = ({
       return response.data;
     },
     {
+      staleTime: 60000,
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+    }
+  );
+};
+
+/** 스터디 디테일 페이지 조회하기 */
+const ReadStudyDetail = (studyId: string) => {
+  return useQuery<IStudyWithUser>(
+    ["studyDetail", studyId],
+    async () => {
+      const response = await axios.get(`/api/study/${studyId}`);
+      return response.data;
+    },
+    {
       refetchOnWindowFocus: false,
     }
   );
 };
 
-// const AddStudy = () => {
-//   // const queryclient = useQueryClient();
-//   return useMutation(
-//     async (data: IStudy) => {
-//       const response = await axios.post("/study", data);
-//       return response;
-//     }
-//     // {
-//     //   onSuccess: () => queryclient.invalidateQueries(["studyList"]),
-//     // }
-//   );
-// };
-
 const studyApi = {
   AddStudy,
   ReadNewStudyList,
   ReadRecommendStudyList,
+  ReadStudyDetail,
 };
 
 export default studyApi;

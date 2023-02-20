@@ -44,7 +44,7 @@ const StudyLabel = ({
       )}
 
       {type === "date" && (
-        <div className="flex relative items-center ">{children}</div>
+        <div className="relative flex items-center ">{children}</div>
       )}
 
       {type === "iconBox" && (
@@ -65,13 +65,13 @@ const StudyLabel = ({
       )}
 
       {type === "button" && (
-        <div className="grid gap-[1.2rem] grid-cols-[102fr_131fr_138fr_153fr_102fr]">
+        <div className="grid grid-cols-[102fr_131fr_138fr_153fr_102fr] gap-[1.2rem]">
           {CATEGORIES.map((category) => (
             <div key={category.value}>
               <input
                 {...register}
                 type="radio"
-                className="hidden peer"
+                className="peer hidden"
                 key={category.name}
                 value={category.value}
                 id={category.value}
@@ -79,7 +79,7 @@ const StudyLabel = ({
               <label
                 className={cls(
                   styles.button,
-                  "peer-checked:bg-primary-sub1 peer-checked:text-white peer-checked:border-none "
+                  "peer-checked:border-none peer-checked:bg-primary-sub1 peer-checked:text-white "
                 )}
                 htmlFor={category.value}
               >
@@ -96,7 +96,8 @@ const StudyLabel = ({
 export default StudyLabel;
 
 const styles = {
-  label: "grid grid-cols-[1fr_3fr] gap-[2.6rem]",
+  label:
+    "flex flex-col gap-[1rem] nm:grid nm:grid-cols-[1fr_3fr] nm:gap-[2.6rem]",
   iconBox:
     "w-[8.8rem] aspect-square border border-primary-200 bg-[#F7F6F6] rounded-[0.8rem] flex-center text-[1.6rem] text-center text-primary-400 cursor-pointer hover:border-primary-400 hover:text-primary-500",
   input:

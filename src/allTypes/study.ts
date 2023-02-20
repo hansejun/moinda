@@ -54,7 +54,7 @@ export interface ICATEGORIES {
   name: string;
 }
 
-type TCategory =
+export type TCategory =
   | "TOTAL"
   | "LANGUAGE"
   | "EMPLOYMENT"

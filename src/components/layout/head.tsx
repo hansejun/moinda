@@ -8,7 +8,7 @@ interface IHead {
 const CustomHead = ({ title }: IHead) => {
   return (
     <Head>
-      <title>MOINDA {title && `| ${title}`}</title>
+      <title>{title ? `MOINDA | ${title}` : "MOINDA"}</title>
     </Head>
   );
 };
