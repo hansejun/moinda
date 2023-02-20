@@ -14,6 +14,11 @@ const ParticipatingStudy = ({ now }: any) => {
   const router = useRouter();
   return (
     <>
+      <div className="flex justify-between">
+        <h2 className="H2 text-primary-600">참여 중인 스터디그룹</h2>
+        <span className="Cap1 text-primary-500 self-end">더보기</span>
+      </div>
+
       <div
         className={cls(
           "flex items-center nm:h-[11.8rem]  justify-between rounded-[1.4rem] border border-solid border-primary-350 px-[1.6rem] py-[1.6rem] nm:py-0 cursor-pointer hover:border-primary-500 transition-colors group"
@@ -28,7 +33,13 @@ const ParticipatingStudy = ({ now }: any) => {
             )}
           >
             <span className="w-[4rem]">
-              <Image src={Icons[1]} alt="icon" width={40} height={40} />
+              <Image
+                src={Icons[1]}
+                alt="icon"
+                width={40}
+                height={40}
+                priority={true}
+              />
             </span>
           </div>
           <div className="nm:ml-[1.5rem]">

@@ -13,7 +13,7 @@ export interface IStudy {
   category: TCategory;
   studyName: string;
   content: string;
-  icon: number;
+  icon: TNumber;
   studyStatus: string;
   targetTime: number;
   tel: string;
@@ -22,6 +22,14 @@ export interface IStudy {
   createdAt: Date;
   updatedAt: Date;
   hashTagList: IHashtag[];
+}
+
+export interface IStudyWithUser extends IStudy {
+  user: {
+    id: number;
+    avatarImg: string;
+    nickname: string;
+  };
 }
 
 export interface IWrite {
@@ -35,4 +43,21 @@ export interface IWrite {
   content: string;
 }
 
-type TCategory = "LANGUAGE" | "EMPLOYMENT" | "HOBBY" | "PUBLIC" | "ETC";
+export interface INewStudyListProps {
+  category?: string;
+  count?: number;
+  page?: number;
+}
+
+export interface ICATEGORIES {
+  value: TCategory;
+  name: string;
+}
+
+type TCategory =
+  | "TOTAL"
+  | "LANGUAGE"
+  | "EMPLOYMENT"
+  | "HOBBY"
+  | "PUBLIC"
+  | "ETC";
