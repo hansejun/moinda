@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import CancelSvg from "@assets/svg/CancelSvg.svg";
+import CancelSvg from "@assets/svg/cancelSvg";
 import "swiper/css";
-import cls from "@utils/cls";
+import cls from "@utils/client/cls";
 import { useState } from "react";
 const TIME_HOURS = Array.from(Array(24).keys());
 const TIME_MINUTES = Array(12)
@@ -18,21 +18,18 @@ const SettingTime = ({ onClick }: TSettingTime) => {
     <div className="relative ml-[1rem] rounded-[1rem] bg-bgColor-100 p-[2rem] shadow-[0px_0px_5px_0px_rgba(0,0,0,0.1)]">
       <div className="relative flex justify-center">
         <span className="Cap3">목표시간</span>
-        <img
-          src={CancelSvg}
-          alt="close"
-          className="absolute right-0 w-[2rem] cursor-pointer"
-          onClick={onClick}
-        />
+        <span onClick={onClick}>
+          <CancelSvg className="absolute right-0 w-[2rem] cursor-pointer" />
+        </span>
       </div>
       <div className="mt-[1.4rem] grid grid-cols-[3fr_1fr]">
         <div className="flex justify-self-center">
           <Swiper
-            className="h-[16.8rem]  px-[1.1rem]"
+            className="h-[16.8rem]  "
             direction={"vertical"}
             slidesPerView={3}
             mousewheel
-            loopAdditionalSlides={5}
+            //loopAdditionalSlides={5}
             slideToClickedSlide
             centeredSlides
             onSlideChange={(swiper) => setHours(swiper.realIndex)}
@@ -41,7 +38,7 @@ const SettingTime = ({ onClick }: TSettingTime) => {
               <SwiperSlide key={hour}>
                 <div
                   className={cls(
-                    "flex h-[5.6rem] cursor-pointer items-center",
+                    "flex h-[5.6rem] cursor-pointer items-center px-[1.1rem]",
                     hours === hour
                       ? "H2 text-primary-700"
                       : "text-[2rem]  font-medium text-primary-500"
@@ -54,11 +51,11 @@ const SettingTime = ({ onClick }: TSettingTime) => {
           </Swiper>
           <div className="H2  flex items-center">:</div>
           <Swiper
-            className="h-[16.8rem] px-[1.1rem] "
+            className="h-[16.8rem]"
             direction={"vertical"}
             slidesPerView={3}
             mousewheel
-            loopAdditionalSlides={5}
+            //loopAdditionalSlides={5}
             slideToClickedSlide
             centeredSlides
             onSlideChange={(swiper) => setMinutes(swiper.realIndex * 5)}
@@ -67,7 +64,7 @@ const SettingTime = ({ onClick }: TSettingTime) => {
               <SwiperSlide key={minute}>
                 <div
                   className={cls(
-                    "flex h-[5.6rem] cursor-pointer items-center",
+                    "flex h-[5.6rem] cursor-pointer items-center px-[1.1rem]",
                     minutes === minute
                       ? "H2 text-primary-700"
                       : "text-[2rem]  font-medium text-primary-500"

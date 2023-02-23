@@ -1,9 +1,10 @@
-import Icon, { TNumber, iconBackgrounds } from "@elements/icon";
+import Icons, { TNumber, iconBackgrounds } from "@elements/icon";
 
 import ArrowSvg from "@assets/svg/arrowSvg";
 import CategorySvg from "@assets/svg/categorySvg";
 import cls from "@utils/client/cls";
 import GroupSvg from "@assets/svg/groupSvg";
+import Image from "next/image";
 
 interface MyStudyItemProps {
   onClick?: () => void;
@@ -33,7 +34,7 @@ const StudyItem = ({
         <div
           className={`flex-center h-[5.4rem] w-[5.4rem] rounded-[1.2rem] ${iconBackgrounds[icon]}`}
         >
-          <span className="h-[4rem] w-[4rem]">{Icon(icon)}</span>
+          <Image src={Icons[icon]} alt="아이콘" width={30} height={30} />
         </div>
         <div className="flex flex-col justify-between py-[0.2rem]">
           <h3 className="Sub2">토익 900 달성 스터디</h3>
@@ -48,7 +49,7 @@ const StudyItem = ({
           4명 참여중
         </span>
         <span className="Cap3 flex items-center  text-primary-500">
-          <CategorySvg className="mr-[0.6rem]" />
+          <CategorySvg className="mr-[0.6rem] w-[2rem]" />
           어학
         </span>
         <span

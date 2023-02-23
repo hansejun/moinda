@@ -17,7 +17,7 @@ const MyStudyItem = () => {
       className={cls(
         "group flex cursor-pointer items-center  justify-between rounded-[1.4rem] border border-solid border-primary-350  px-[1.6rem] py-[1.6rem] transition-colors hover:border-primary-500 nm:h-[11.8rem] nm:py-0"
       )}
-      onClick={() => router.push("/mystudy/1")}
+      onClick={() => router.push("/myStudy/1")}
     >
       <div className="flex items-center ">
         <div

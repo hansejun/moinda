@@ -5,10 +5,10 @@ type TLineProgressType = "PROFILE" | "MYSTUDY";
 
 interface ILineProgress {
   onClick?: () => void;
-  type: TLineProgressType;
+  type?: TLineProgressType;
 }
 
-const LineProgressBar = ({ onClick, type }: ILineProgress) => {
+const LineProgressBar = ({ onClick, type = "MYSTUDY" }: ILineProgress) => {
   return (
     <div className="flex flex-col  rounded-[1rem] bg-white p-[3rem] text-primary-600">
       <div className="mb-[2.8rem] flex items-center justify-between">

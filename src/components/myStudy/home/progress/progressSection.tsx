@@ -1,4 +1,4 @@
-import SettingTime from "@components/studyRoom/home/progress/settingTime";
+import SettingTime from "@components/myStudy/home/progress/settingTime";
 import { useCallback, useState } from "react";
 import LineProgressBar from "../../../../elements/lineProgressBar";
 
