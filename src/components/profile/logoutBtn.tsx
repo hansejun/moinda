@@ -12,7 +12,7 @@ const LogoutBtn = () => {
 
   return (
     <button
-      className="Sub2 h-[6.8rem] w-[44.6rem] rounded-[1rem] bg-white text-primary-500 underline"
+      className="Sub2 h-[6.8rem]  rounded-[1rem] bg-white text-primary-500 underline"
       onClick={handleLogout}
     >
       로그아웃

@@ -240,6 +240,5 @@ abbr[title] {
 .swiper-pagination-bullet-active {
   background: #848484 !important;
 }
-.swiper-pagination-bullets {
-  background-color: aqua;
-}
+/* .swiper-pagination-bullets {
+} */

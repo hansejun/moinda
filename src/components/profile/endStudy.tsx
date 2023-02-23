@@ -3,18 +3,22 @@ import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 import StudyEndCard from "./studyEndCard";
+import cls from "@utils/client/cls";
 
-const StudyEnd = () => {
+const EndStudy = () => {
   return (
-    <div className="mt-[2.6rem] h-[35.8rem] w-[56.4rem] rounded-[1rem] bg-white p-[3rem]">
+    <div className="flex h-[35.8rem] max-w-[57.3rem] flex-col rounded-[1rem] bg-white p-[3rem]">
       <p className="H2 mb-[2.4rem] text-primary-600">완료한 스터디</p>
       <Swiper
+        style={{ width: "100%" }}
         pagination={{
           clickable: true,
         }}
         modules={[Pagination]}
       >
-        <SwiperSlide>
+        <SwiperSlide
+          className={cls("flex flex-col space-y-[1rem] bg-red-300 pb-[2rem]")}
+        >
           <StudyEndCard />
           <StudyEndCard />
         </SwiperSlide>
@@ -27,4 +31,4 @@ const StudyEnd = () => {
   );
 };
 
-export default StudyEnd;
+export default EndStudy;

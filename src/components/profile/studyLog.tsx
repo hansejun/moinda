@@ -1,6 +1,6 @@
 const StudyLog = () => {
   return (
-    <div className="ml-[2.6rem]  h-[58.4rem] w-[32.8rem] rounded-[1rem] bg-white p-[3rem]">
+    <div className="rounded-[1rem] bg-white p-[3rem]">
       <p className="H2 text-primary-600">최근 공부 기록</p>
       <div className="Sub2 mt-[1.8rem] flex flex-row text-primary-500">
         <div className="ml-[0.4rem] h-[2.4rem] w-[2.6rem]">No.</div>

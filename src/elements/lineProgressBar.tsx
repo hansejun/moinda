@@ -1,15 +1,20 @@
 import ArrowSvg from "@assets/svg/arrowSvg";
-import { iconBackgrounds } from "@utils/getIcon";
+import { iconBackgrounds } from "@elements/icon";
+
+type TLineProgressType = "PROFILE" | "MYSTUDY";
 
 interface ILineProgress {
   onClick?: () => void;
+  type: TLineProgressType;
 }
 
-const LineProgressBar = ({ onClick }: ILineProgress) => {
+const LineProgressBar = ({ onClick, type }: ILineProgress) => {
   return (
     <div className="flex flex-col  rounded-[1rem] bg-white p-[3rem] text-primary-600">
       <div className="mb-[2.8rem] flex items-center justify-between">
-        <span className="H2 ">내 그룹 목표 달성률</span>
+        <span className="H2 ">
+          {type === "MYSTUDY" ? "내 그룹 목표 달성률" : "내 스터디 시간"}
+        </span>
         <button
           className="Cap3 flex items-center text-primary-500"
           onClick={onClick}

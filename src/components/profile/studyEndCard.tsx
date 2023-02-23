@@ -1,15 +1,14 @@
-import Icon5 from "@assets/icons/Icon5.svg";
 import CategorySvg from "@assets/svg/categorySvg";
 
 import GroupSvg from "@assets/svg/groupSvg";
-import Icon from "@elements/icon";
+import Icons from "@elements/icon";
 
 const StudyEndCard = () => {
   return (
-    <div className="mb-[1.6rem] flex w-[50.4rem] flex-row">
+    <div className="mb-[1.6rem] flex flex-row">
       <div className="flex h-[11.8rem] w-[34.9rem] flex-row items-center rounded-[1.4rem] border border-solid border-primary-350 bg-primary-250">
         <div className="flex-center mx-[1.6rem] h-[5.4rem] w-[5.4rem] rounded-[1.2rem] bg-[#B3B3B3]">
-          <span className="h-[4rem] w-[4rem]">{Icon(5)}</span>
+          <span className="h-[4rem] w-[4rem]">{Icons[5]}</span>
         </div>
         <div className="ml-[1.5rem]">
           <p className="Sub2">토익 900 달성 스터디</p>

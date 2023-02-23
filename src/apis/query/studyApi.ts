@@ -1,5 +1,5 @@
 import { INewStudyListProps, IStudyWithUser, IWrite } from "@allTypes/study";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 /** 스터디 개설하기 */

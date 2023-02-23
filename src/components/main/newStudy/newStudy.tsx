@@ -1,5 +1,5 @@
 import studyApi from "@apis/query/studyApi";
-import StudyCard from "@components/studyCommon/studyCard";
+import StudyCard from "@components/common/studyCard";
 import Link from "next/link";
 
 const NewStudy = () => {

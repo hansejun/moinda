@@ -86,8 +86,8 @@ function Header({ loginUser }: IHeaderProps) {
                 <span className="absolute right-[0rem] bottom-[1rem] h-[0.9rem] w-[0.9rem] rounded-full bg-primary-main"></span>
               </span>
               <Image
-                width={0}
-                height={0}
+                width={20}
+                height={20}
                 className="aspect-square w-[4.3rem] cursor-pointer rounded-full"
                 src="https://avatars.dicebear.com/api/identicon/2/wooncloud.svg"
                 alt="profile"

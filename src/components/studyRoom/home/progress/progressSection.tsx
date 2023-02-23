@@ -1,6 +1,6 @@
 import SettingTime from "@components/studyRoom/home/progress/settingTime";
 import { useCallback, useState } from "react";
-import LineProgressBar from "./lineProgressBar";
+import LineProgressBar from "../../../../elements/lineProgressBar";
 
 const ProgressSection = () => {
   const [isSetting, setIsSetting] = useState(false);

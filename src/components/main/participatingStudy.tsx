@@ -16,19 +16,19 @@ const ParticipatingStudy = () => {
     <>
       <div className="flex justify-between">
         <h2 className="H2 text-primary-600">참여 중인 스터디그룹</h2>
-        <span className="Cap1 text-primary-500 self-end">더보기</span>
+        <span className="Cap1 self-end text-primary-500">더보기</span>
       </div>
 
       <div
         className={cls(
-          "flex items-center nm:h-[11.8rem]  justify-between rounded-[1.4rem] border border-solid border-primary-350 px-[1.6rem] py-[1.6rem] nm:py-0 cursor-pointer hover:border-primary-500 transition-colors group"
+          "group flex cursor-pointer items-center  justify-between rounded-[1.4rem] border border-solid border-primary-350  px-[1.6rem] py-[1.6rem] transition-colors hover:border-primary-500 nm:h-[11.8rem] nm:py-0"
         )}
         onClick={() => router.push("/mystudy/1")}
       >
         <div className="flex items-center ">
           <div
             className={cls(
-              "justify-center items-center aspect-square w-[5.4rem] rounded-[1.2rem] hidden nm:flex",
+              "hidden aspect-square w-[5.4rem] items-center justify-center rounded-[1.2rem] nm:flex",
               `${iconBackgrounds[4]}`
             )}
           >
@@ -49,7 +49,7 @@ const ParticipatingStudy = () => {
             </p>
             <div
               className={cls(
-                "Cap3 mt-[1.2rem] hidden nm:flex text-primary-500"
+                "Cap3 mt-[1.2rem] hidden text-primary-500 nm:flex"
               )}
             >
               <div className="flex-center">
@@ -64,8 +64,9 @@ const ParticipatingStudy = () => {
           </div>
         </div>
 
-        <NextSvg className="w-[2rem] nm:w-[2.4rem] group-hover:text-primary-600 text-primary-500 transition-colors mt-[-0.3rem]" />
+        <NextSvg className="mt-[-0.3rem] w-[2rem] text-primary-500 transition-colors group-hover:text-primary-600 nm:w-[2.4rem]" />
       </div>
+
       <button
         className={cls(
           "Sub2 h-[6.8rem] rounded-[1rem] bg-primary-main text-white "

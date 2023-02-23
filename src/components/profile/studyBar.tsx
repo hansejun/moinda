@@ -2,7 +2,7 @@ import ArrowDownSvg from "@assets/svg/arrowDownSvg";
 
 const StudyBar = () => {
   return (
-    <div className="h-[23.4rem] w-[91.7rem] rounded-[1rem] bg-white px-[3rem] pt-[3rem] text-primary-600">
+    <div className=" h-[23.4rem] rounded-[1rem] bg-white p-[3rem_3rem_3.8rem_3rem] text-primary-600">
       <div className="flex justify-between">
         <span className="H2 ">내 스터디 시간</span>
         <button className="Cap3 flex text-primary-500">

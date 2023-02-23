@@ -1,6 +1,6 @@
 import studyApi from "@apis/query/studyApi";
 import { studyCategoryAtom } from "@atoms/studyAtom";
-import StudyCard from "@components/studyCommon/studyCard";
+import StudyCard from "@components/common/studyCard";
 import Link from "next/link";
 import React from "react";
 import { useRecoilValue } from "recoil";
