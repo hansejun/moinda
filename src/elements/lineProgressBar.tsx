@@ -31,7 +31,10 @@ const LineProgressBar = ({ onClick, type = "MYSTUDY" }: ILineProgress) => {
           <p className="H3 mt-[0.9rem] ml-[0.3rem]">2h 42m</p>
         </div>
         <div className="border-l  border-primary-200 p-[0.2rem_1.6rem]">
-          <p className="Cap1">그룹 목표시간</p>
+          <p className="Cap1">
+            {" "}
+            {type === "MYSTUDY" ? "그룹 목표시간" : "목표시간"}
+          </p>
           <p className="H3 mt-[0.9rem] ml-[0.3rem]">8h 30m</p>
         </div>
         <div className="flex w-full flex-1 items-end justify-end ">

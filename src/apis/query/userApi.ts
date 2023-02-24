@@ -35,7 +35,7 @@ export const ReadMe = () => {
   return useQuery(
     ["loginUser"],
     async () => {
-      const response = await axios.get("/api/user/me");
+      const response = await instance.get("/api/user/me");
       return response.data;
     },
     {
@@ -44,15 +44,3 @@ export const ReadMe = () => {
     }
   );
 };
-
-export const ReadUser = (userId: number) =>
-  useQuery<IMe>(
-    ["user", userId],
-    async () => {
-      const { data } = await instance.get(``);
-      return data;
-    },
-    {
-      staleTime: 1000,
-    }
-  );

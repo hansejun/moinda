@@ -20,13 +20,13 @@ const SideNav = () => {
         <ul>
           <li
             className={styles.navItem(Boolean(true))}
-            onClick={() => router.push("/mystudy/1")}
+            onClick={() => router.push("/myStudy/1")}
           >
             그룹 홈
           </li>
           <li
             className={styles.navItem(Boolean(true))}
-            onClick={() => router.push("/mystudy/1/diary")}
+            onClick={() => router.push("/myStudy/1/diary")}
           >
             스터디일지
           </li>

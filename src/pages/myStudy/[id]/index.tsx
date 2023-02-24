@@ -1,10 +1,12 @@
+import { IPageProps } from "@allTypes/props";
 import CustomHead from "@components/layout/head";
 import Layout from "@components/layout/layout";
 import MyStudyHome from "@components/myStudy/home/myStudyHome";
 import SideNav from "@components/myStudy/sideNav";
+import withSessionSsr from "@utils/client/withSessionSsr";
 import React from "react";
 
-const MyStudy = () => {
+const MyStudy = ({ loginUser }: IPageProps) => {
   return (
     <Layout hasBgColor={true} isFullHeight>
       <CustomHead title="스터디 이름" />
@@ -17,3 +19,5 @@ const MyStudy = () => {
 };
 
 export default MyStudy;
+
+export const getServerSideProps = withSessionSsr({ isPrivate: false });
