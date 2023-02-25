@@ -1,4 +1,4 @@
-import { ICheckEmail, ICheckNickname, IMe } from "@allTypes/user";
+import { ICheckEmail, ICheckNickname } from "@allTypes/user";
 import { ILogin, ISignUp } from "allTypes/user";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
