@@ -12,7 +12,7 @@ function Header({ loginUser }: IHeaderProps) {
   const router = useRouter();
   useEffect(() => {
     if (loginUser) {
-      if (Object.hasOwn(loginUser, "id")) {
+      if (loginUser?.id) {
         setIsLogin(true);
       }
     }
