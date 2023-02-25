@@ -125,15 +125,15 @@ const UpdateDiary = (studyId: string) => {
         );
         return { prevDiaryList };
       },
-      // 에러 발생 시 롤백
-      onError: (error, newDiary, context) => {
-        if (context?.prevDiaryList) {
-          queryClient.setQueryData(
-            ["diaryList", studyId],
-            context.prevDiaryList
-          );
-        }
-      },
+      // // 에러 발생 시 롤백
+      // onError: (error, newDiary, context) => {
+      //   if (context?.prevDiaryList) {
+      //     queryClient.setQueryData(
+      //       ["diaryList", studyId],
+      //       context.prevDiaryList
+      //     );
+      //   }
+      // },
       onSettled: () => {
         // 요청 성공 여부와 상관없이 쿼리를 무효화해 최신 데이터를 받아오도록 한다.
         queryClient.invalidateQueries(["diaryList", studyId]);
