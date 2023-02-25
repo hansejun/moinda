@@ -5,7 +5,6 @@ import cls from "@utils/client/cls";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { useRouteMatch } from "react-router-dom";
 
 const SideNav = () => {
   const router = useRouter();
