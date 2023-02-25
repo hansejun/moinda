@@ -23,13 +23,13 @@ const Write: NextPage = ({ loginUser }: IPageProps) => {
   const router = useRouter();
   const [iconMode, setIconMode] = useState(false);
 
+  /** 스터디 개설 */
   const onValid = useCallback(
     async (data: IWrite) => {
       try {
         const { id } = await studyApi.AddStudy(data);
         router.replace(`/study/${id}`);
       } catch (e) {
-        console.log(e);
         return;
       }
     },

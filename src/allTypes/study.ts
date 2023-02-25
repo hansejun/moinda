@@ -22,6 +22,9 @@ export interface IStudy {
   createdAt: Date;
   updatedAt: Date;
   hashTagList: IHashtag[];
+  _count?: {
+    memberList?: number;
+  };
 }
 
 export interface IStudyWithUser extends IStudy {

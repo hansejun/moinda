@@ -2,11 +2,16 @@ import { withIronSessionSsr } from "iron-session/next";
 
 interface IProps {
   isPrivate?: boolean;
+  callback?: () => unknown;
 }
 
-const withSessionSsr = ({ isPrivate = true }: IProps) =>
+const withSessionSsr = ({ isPrivate = true, callback }: IProps) =>
   withIronSessionSsr(
     async ({ req, res }) => {
+      let data;
+      if (typeof callback === "function") {
+        data = await callback();
+      }
       const loginUser = req.session?.user;
       if (!loginUser) {
         if (isPrivate) {
@@ -17,6 +22,7 @@ const withSessionSsr = ({ isPrivate = true }: IProps) =>
         return {
           props: {
             loginUser: {},
+            data: data || null,
           },
         };
       }
@@ -24,6 +30,7 @@ const withSessionSsr = ({ isPrivate = true }: IProps) =>
       return {
         props: {
           loginUser,
+          data: data || null,
         },
       };
     },

@@ -16,9 +16,15 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         score: true,
         totalTime: true,
         attendance: true,
+        email: true,
         studyList: {
           include: {
             hashTagList: true,
+            _count: {
+              select: {
+                memberList: true,
+              },
+            },
           },
         },
       },

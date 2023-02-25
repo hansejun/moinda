@@ -20,3 +20,19 @@ export default function makeSection(diaryList: IDiary[]) {
   });
   return sections;
 }
+
+// useQuery => [{},{},{},{}] => memo = makeSection([{},{},{},{}]) =>  {날짜:[],날짜:[],날짜:[]}
+
+// useQuery => select = makeSection([{},{}],{}) => {날짜:[],날짜:[],날짜:[]}
+
+/*
+
+const [movies,setMovies] = useState([]);
+
+const handleUpdateMovie = useCallback(async (index)=>{
+  const cacheMovie = movies[index];
+
+},[])
+
+
+ */

@@ -5,30 +5,31 @@ import GroupSvg from "@assets/svg/groupSvg";
 import CategorySvg from "@assets/svg/categorySvg";
 import NextSvg from "@assets/svg/nextSvg";
 import Image from "next/image";
+import { IStudy } from "@allTypes/study";
 
 const style = {
   nm: "hidden nm:block",
 };
 
-const MyStudyItem = () => {
+const MyStudyItem = ({ study }: { study: IStudy }) => {
   const router = useRouter();
   return (
     <div
       className={cls(
-        "group flex cursor-pointer items-center  justify-between rounded-[1.4rem] border border-solid border-primary-350  px-[1.6rem] py-[1.6rem] transition-colors hover:border-primary-500 nm:h-[11.8rem] nm:py-0"
+        "group flex w-screen max-w-[51.3rem] cursor-pointer items-center  justify-between rounded-[1.4rem] border border-solid border-primary-350  px-[1.6rem] py-[1.6rem] transition-colors hover:border-primary-500 nm:h-[11.8rem] nm:py-0"
       )}
-      onClick={() => router.push("/myStudy/1")}
+      onClick={() => router.push(`/myStudy/${study?.id}`)}
     >
       <div className="flex items-center ">
         <div
           className={cls(
             "hidden aspect-square w-[5.4rem] items-center justify-center rounded-[1.2rem] nm:flex",
-            `${iconBackgrounds[4]}`
+            `${iconBackgrounds[study?.icon]}`
           )}
         >
           <span className="w-[4rem]">
             <Image
-              src={Icons[1]}
+              src={Icons[study?.icon]}
               alt="icon"
               width={40}
               height={40}
@@ -36,21 +37,30 @@ const MyStudyItem = () => {
             />
           </span>
         </div>
-        <div className="nm:ml-[1.5rem]">
-          <p className="Sub2">토익 900 달성 스터디</p>
-          <p className={cls("Cap4 text-primary-500", style.nm)}>
-            #어학 #매일피드백 #700이상
-          </p>
+        <div className="flex flex-col nm:ml-[1.5rem]">
+          <p className="Sub2">{study?.studyName}</p>
+          <ul
+            className={cls(
+              "Cap4 flex  space-x-[0.3rem] text-primary-500",
+              style.nm
+            )}
+          >
+            {study?.hashTagList?.map((hashTag) => (
+              <li key={hashTag.id} className="inline">
+                #{hashTag.tagName}
+              </li>
+            ))}
+          </ul>
           <div
             className={cls("Cap3 mt-[1.2rem] hidden text-primary-500 nm:flex")}
           >
             <div className="flex-center">
               <GroupSvg className="mr-[0.6rem] h-[2rem] w-[2rem] " />
-              <span>4명 참여중</span>
+              <span>{study?._count?.memberList || 0 + 1}명 참여중</span>
             </div>
             <div className="flex-center ml-9">
               <CategorySvg className="mr-[0.6rem] h-[2rem] w-[2rem] " />
-              <span>어학</span>
+              <span>{study?.category}</span>
             </div>
           </div>
         </div>

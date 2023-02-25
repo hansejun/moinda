@@ -89,7 +89,7 @@ function Header({ loginUser }: IHeaderProps) {
                 width={20}
                 height={20}
                 className="aspect-square w-[4.3rem] cursor-pointer rounded-full"
-                src="https://avatars.dicebear.com/api/identicon/2/wooncloud.svg"
+                src={`https://avatars.dicebear.com/api/identicon/${loginUser?.id}/wooncloud.svg`}
                 alt="profile"
                 onClick={() => handleNavigate(`/profile/${loginUser?.id}`)}
                 priority={true}

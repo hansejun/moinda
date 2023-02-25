@@ -20,7 +20,7 @@ const EndStudy = () => {
           <StudyEndCard />
           <StudyEndCard />
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className={cls("flex flex-col space-y-[1rem]  pb-[4rem]")}>
           <StudyEndCard />
           <StudyEndCard />
         </SwiperSlide>

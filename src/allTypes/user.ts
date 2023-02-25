@@ -24,11 +24,11 @@ export interface ICheckNickname {
   nickname: string;
 }
 
-export interface IMe {
+export interface IUser {
   id: number;
   email: string;
   nickname: string;
-  avatarImg: string;
+  avatarImg: string | null;
   totalTime: number;
   score: number;
 }
