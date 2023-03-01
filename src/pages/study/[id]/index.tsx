@@ -3,6 +3,7 @@ import studyApi from "@apis/query/studyApi";
 import CustomHead from "@components/layout/head";
 import Layout from "@components/layout/layout";
 import Icons from "@elements/icon";
+import getImageUrl from "@utils/client/getImageUrl";
 import withSessionSsr from "@utils/client/withSessionSsr";
 import dayjs from "dayjs";
 import Image from "next/image";
@@ -40,10 +41,10 @@ const StudyDetail = ({ loginUser }: IPageProps) => {
           {study?.user?.avatarImg ? (
             <Image
               className="h-[4.3rem] w-[4.3rem] rounded-full"
-              src={study.user.avatarImg}
+              src={getImageUrl(study.user.avatarImg)}
               alt="icon"
-              width={30}
-              height={30}
+              width={43}
+              height={43}
               priority={true}
             />
           ) : (
@@ -53,8 +54,8 @@ const StudyDetail = ({ loginUser }: IPageProps) => {
               }/wooncloud.svg`}
               className="h-[4.3rem] w-[4.3rem] rounded-full bg-white"
               alt="icon"
-              width={30}
-              height={30}
+              width={43}
+              height={43}
               priority={true}
             />
           )}

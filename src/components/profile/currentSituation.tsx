@@ -1,5 +1,6 @@
 import { removeCookieToken } from "@apis/cookie";
 import profileApi from "@apis/query/profile";
+import { logout } from "@apis/query/userApi";
 import CheckInBtn from "@components/common/checkInBtn";
 import getStudyKinds from "@utils/client/getStudyKinds";
 import { useRouter } from "next/router";
@@ -9,8 +10,8 @@ const CurrentSituation = ({ id }: { id: string }) => {
   const { data } = profileApi.ReadUser(id as string);
   console.log(data);
   const router = useRouter();
-  const handleLogout = useCallback(() => {
-    removeCookieToken();
+  const handleLogout = useCallback(async () => {
+    await logout();
     router.push("/");
   }, [router]);
 

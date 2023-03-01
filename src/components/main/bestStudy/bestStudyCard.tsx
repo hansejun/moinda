@@ -1,4 +1,6 @@
 import { IStudy } from "@allTypes/study";
+import { getStudyStatus } from "@utils/client/getEnum";
+import { GetDday } from "@utils/client/getTime";
 import React from "react";
 
 interface IBestStudyCardProps {
@@ -7,7 +9,7 @@ interface IBestStudyCardProps {
 }
 const BestStudyCard = ({ color, study }: IBestStudyCardProps) => {
   return (
-    <div className="flex h-[8.6rem] justify-between rounded-[1rem] hover:bg-orange-100 px-[3rem] cursor-pointer bg-[#F7F6F6] transition-colors">
+    <div className="flex h-[8.6rem] cursor-pointer justify-between rounded-[1rem] bg-[#F7F6F6] px-[3rem] transition-colors hover:bg-orange-100">
       <div className="flex items-center space-x-[2rem]">
         <div className={`h-[3.6rem] w-[3.6rem] rounded-full bg-[${color}]`} />
         <div className="flex flex-col">
@@ -16,8 +18,8 @@ const BestStudyCard = ({ color, study }: IBestStudyCardProps) => {
         </div>
       </div>
       <div className="Cap3 flex flex-col items-end justify-center">
-        <p className="text-primary-500">{study?.studyStatus}</p>
-        <p className="text-primary-main ">{study?.startDate + ""}</p>
+        <p className="text-primary-500">{getStudyStatus[study?.studyStatus]}</p>
+        <GetDday dateArg={study?.startDate} />
       </div>
     </div>
   );

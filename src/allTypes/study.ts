@@ -14,7 +14,7 @@ export interface IStudy {
   studyName: string;
   content: string;
   icon: TNumber;
-  studyStatus: string;
+  studyStatus: TStudyStatus;
   targetTime: number;
   tel: string;
   views: number;
@@ -64,3 +64,5 @@ export type TCategory =
   | "HOBBY"
   | "PUBLIC"
   | "ETC";
+
+export type TStudyStatus = "RECRUIT" | "PROGRESS" | "COMPLETE";
