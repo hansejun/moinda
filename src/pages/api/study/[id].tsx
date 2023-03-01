@@ -24,7 +24,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     });
     res.status(200).json(study);
   } catch (e) {
-    console.log(e);
     res.status(400).send("스터디 상세페이지 조회에 실패하였습니다.");
   }
 }

@@ -5,6 +5,7 @@ declare module "iron-session" {
     user: {
       id: number;
       avatarImg: string | null;
+      nickname: string;
     };
   }
 }

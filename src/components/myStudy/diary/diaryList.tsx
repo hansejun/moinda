@@ -43,8 +43,6 @@ const DiaryList = () => {
     ]);
   }, [page]);
 
-  console.log(DiarySections);
-
   // 4. 현재 스크롤 높이 - 이전 스크롤 높이만큼 스크롤 위치를 조정한다.
   useEffect(() => {
     if (scrollRef.current) {

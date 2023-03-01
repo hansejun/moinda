@@ -2,14 +2,20 @@ import { IProfileResponse } from "@allTypes/profile";
 import CameraSvg from "@assets/svg/cameraSvg";
 import CancelSvg from "@assets/svg/cancelSvg";
 import Image from "next/image";
-import React, { useCallback, useEffect, useState } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { useForm } from "react-hook-form";
 import { nicknameValid } from "@utils/client/valids";
 import profileApi from "@apis/query/profile";
 import axios from "axios";
 import getImageUrl from "@utils/client/getImageUrl";
 interface IProfileModal {
-  onClick: (e: React.MouseEvent) => void;
+  setIsSetting: Dispatch<SetStateAction<boolean>>;
   user: IProfileResponse;
 }
 
@@ -18,12 +24,21 @@ type TProfileEditData = {
   avatarImg?: FileList;
 };
 
-const ProfileEditModal = ({ onClick, user }: IProfileModal) => {
+const ProfileEditModal = ({ setIsSetting, user }: IProfileModal) => {
   const { register, setValue, handleSubmit, watch } =
     useForm<TProfileEditData>();
   const [avatarPreview, setAvatarPreview] = useState("");
   const { mutate: editProfile } = profileApi.EditUser(user?.id + "");
   const avatarImg = watch("avatarImg");
+
+  // 모달 종료
+  const onClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      setIsSetting(false);
+    },
+    [setIsSetting]
+  );
 
   const onValid = useCallback(
     async ({ nickname, avatarImg }: TProfileEditData) => {
@@ -43,8 +58,9 @@ const ProfileEditModal = ({ onClick, user }: IProfileModal) => {
       } else {
         editProfile({ nickname });
       }
+      setIsSetting(false);
     },
-    [editProfile]
+    [editProfile, setIsSetting]
   );
 
   useEffect(() => {
@@ -91,14 +107,12 @@ const ProfileEditModal = ({ onClick, user }: IProfileModal) => {
               priority={true}
             />
           ) : (
-            <Image
-              className={"h-[9.6rem] w-[9.6rem]  rounded-full bg-primary-200"}
-              src={`https://avatars.dicebear.com/api/identicon/${user?.id}/wooncloud.svg`}
-              alt="avatar"
-              width={60}
-              height={60}
-              priority={true}
-            />
+            <div
+              className="flex-center  aspect-square w-[9.6rem] cursor-pointer rounded-full
+                bg-primary-sub1 text-[3rem]"
+            >
+              {user?.nickname.slice(0, 2)}
+            </div>
           )}
           <label className="flex-center absolute right-0 bottom-0 aspect-square w-[3.5rem] cursor-pointer rounded-full border border-[#BDBDBD] bg-primary-100 transition-colors hover:bg-primary-200">
             <CameraSvg className="w-[2rem]" />

@@ -10,7 +10,7 @@ export interface IStudy {
   id: number;
   userId: number;
   title: string;
-  category: TCategory;
+  category: TStudyCategory;
   studyName: string;
   content: string;
   icon: TNumber;
@@ -56,6 +56,13 @@ export interface ICATEGORIES {
   value: TCategory;
   name: string;
 }
+
+export type TStudyCategory =
+  | "LANGUAGE"
+  | "EMPLOYMENT"
+  | "HOBBY"
+  | "PUBLIC"
+  | "ETC";
 
 export type TCategory =
   | "TOTAL"

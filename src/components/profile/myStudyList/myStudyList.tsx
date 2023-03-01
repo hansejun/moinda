@@ -4,12 +4,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 import NoStudy from "@components/profile/noStudy";
 import PlusSvg from "@assets/svg/plusSvg";
-import ParticipatingStudy from "@components/main/participatingStudy";
 import cls from "@utils/client/cls";
 import MyStudyItem from "./studyItem";
 import profileApi from "@apis/query/profile";
 import { useMemo } from "react";
 import { IStudy } from "@allTypes/study";
+
 const isExist = true;
 // 데이터가 4개 이상이라면은 26번줄 cls pb-[6rem] or [2rem]
 
@@ -31,7 +31,6 @@ const MyStudyList = ({ id }: { id: string }) => {
     return obj;
   }, [user]);
 
-  console.log("sutdyobj", studyObj);
   return (
     <div className="flex max-w-[57.3rem] flex-col rounded-[1rem] bg-white p-[3rem]">
       <h2 className="H2 mb-[1.8rem] text-primary-600">참여 중인 스터디그룹</h2>
@@ -55,7 +54,7 @@ const MyStudyList = ({ id }: { id: string }) => {
           </SwiperSlide>
         ))}
 
-        {!isExist && (
+        {user?.studyList?.length === 0 && (
           <SwiperSlide>
             <NoStudy />
           </SwiperSlide>

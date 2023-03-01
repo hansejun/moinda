@@ -24,7 +24,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     });
     res.status(201).end();
   } catch (e) {
-    console.log(e);
     res.status(401).json({ message: "회원가입에 실패하였습니다." });
   }
 }

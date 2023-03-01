@@ -1,9 +1,13 @@
-export type TStudyStatus = "모집중" | "진행중" | "완료";
+import { TNumber } from "@elements/icon";
+import { IHashtag, TStudyCategory } from "./study";
 
+export type TStudyStatus = "모집중" | "진행중" | "완료";
+export type TStudyKey = "RECRUIT" | "PROGRESS" | "COMPLETE";
 export interface IStudyStatus {
   status: TStudyStatus;
   color: string;
   style: string;
+  value: TStudyKey;
 }
 
 /** 스터디 일지 */
@@ -20,13 +24,23 @@ export interface IDiary {
 export interface IMyStudy {
   id: string;
   hostUserId: string;
-  category: string; //enum
+  category: TStudyCategory; //enum
   studyName: string;
-  icon: string;
+  icon: TNumber;
   studyStatus: TStudyStatus; // enum
   targetTime: number;
-  members: number; // 참여중인 멤버수
-  hashTags: string[]; // 해시태그 배열
+  _count: {
+    memberList: number;
+  }; // 참여중인 멤버수
+  hashTagList: IHashtag[]; // 해시태그 배열
+}
+
+// 나의 스터디 목록 item들 (member로 조회)
+export interface IMyStudyWithMember {
+  id: number;
+  userId: number;
+  studyId: number;
+  study: IMyStudy;
 }
 
 // 목표시간 props

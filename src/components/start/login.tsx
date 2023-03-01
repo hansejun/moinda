@@ -45,7 +45,6 @@ const Login = () => {
 
         router.replace("/");
       } catch (e) {
-        console.log(e);
         alert("로그인 실패");
       }
     },

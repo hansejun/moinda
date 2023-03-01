@@ -47,16 +47,12 @@ const ProfileCard = ({ id }: { id: string }) => {
               priority={true}
             />
           ) : (
-            <Image
-              className={
-                "bg-primary-white ml-[-2.4rem] h-[9.6rem] w-[9.6rem] justify-self-center rounded-full"
-              }
-              src={`https://avatars.dicebear.com/api/identicon/${user?.id}/wooncloud.svg`}
-              alt="avatar"
-              width={120}
-              height={120}
-              priority={true}
-            />
+            <div
+              className="flex-center ml-[2.4rem]  aspect-square w-[9.6rem] cursor-pointer rounded-full
+                bg-primary-sub1 text-[3rem]"
+            >
+              {user?.nickname.slice(0, 2)}
+            </div>
           )}
 
           <div className="flex flex-col justify-center">
@@ -86,7 +82,7 @@ const ProfileCard = ({ id }: { id: string }) => {
         </div>
       </div>
       {user && isSetting && (
-        <ProfileEditModal user={user} onClick={handleSettingMode} />
+        <ProfileEditModal user={user} setIsSetting={setIsSetting} />
       )}
     </>
   );

@@ -50,6 +50,18 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
           });
         });
       }
+
+      // 맴버 생성
+      await client.member.create({
+        data: {
+          study: {
+            connect: { id: study.id },
+          },
+          user: {
+            connect: { id: id },
+          },
+        },
+      });
       res.status(201).json({ id: study.id });
     } catch (e) {
       res.status(400).send("스터디 개설에 실패하였습니다.");
@@ -94,7 +106,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       }
       res.status(200).json(studyList);
     } catch (e) {
-      console.log(e);
       res.status(400).send("스터디 조회에 실패하였습니다.");
     }
 

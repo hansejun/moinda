@@ -1,4 +1,11 @@
-import { IDiary, IMyStudy, ITargetTimeProps } from "@allTypes/studyRoom";
+import { TStudyKey } from "./../../allTypes/studyRoom";
+import { AxiosError } from "axios";
+import {
+  IDiary,
+  IMyStudy,
+  IMyStudyWithMember,
+  ITargetTimeProps,
+} from "@allTypes/studyRoom";
 import { instance } from "@apis/axios";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
@@ -7,7 +14,7 @@ const ReadStudy = (studyId: string) => {
   return useQuery<IMyStudy>(
     ["myStudy", studyId],
     async () => {
-      const { data } = await instance.get(`study/${studyId}/room`);
+      const { data } = await instance.get(`/api/myStudy/${studyId}`);
       return data;
     },
     {
@@ -18,15 +25,16 @@ const ReadStudy = (studyId: string) => {
 
 /** 본인이 속한 스터디 그룹들을 조회 */
 const ReadStudyList = () => {
-  return useQuery<IMyStudy[]>(
+  return useQuery<IMyStudyWithMember[], AxiosError, IMyStudy[]>(
     ["myStudyList"],
     async () => {
-      const { data } = await instance.get(`main/myStudy`);
+      const { data } = await instance.get(`/api/myStudy`);
       return data;
     },
     {
-      refetchOnMount: false,
       refetchOnWindowFocus: false,
+      refetchOnMount: false,
+      select: (prev) => [...prev.map((member) => ({ ...member.study }))],
     }
   );
 };
@@ -36,9 +44,7 @@ const ReadMemberList = (studyId: string) => {
   return useQuery(
     ["members", studyId],
     async () => {
-      const { data } = await instance.get(
-        `/study/${studyId}/room/memberStatus`
-      );
+      const { data } = await instance.get(`/myStudy/${studyId}/room/members`);
       return data;
     },
     {
@@ -50,7 +56,7 @@ const ReadMemberList = (studyId: string) => {
 /** 그룹의 목표 시간을 설정   */
 const SetGroupTargetTime = ({ studyId, targetTime }: ITargetTimeProps) => {
   return useMutation(async () => {
-    const response = await instance.post(`/study/${studyId}/room/targetTime`, {
+    const response = await instance.post(`/myStudy/${studyId}/targetTime`, {
       targetTime,
     });
     return response;
@@ -59,12 +65,21 @@ const SetGroupTargetTime = ({ studyId, targetTime }: ITargetTimeProps) => {
 
 /** 스터디 상태 변경 */
 const UpdateStudyStatus = (studyId: string) => {
-  return useMutation(async ({ studyStatus }: IMyStudy) => {
-    const response = await instance.put(`/study/${studyId}/studyStatus`, {
-      studyStatus,
-    });
-    return response;
-  });
+  const queryClient = useQueryClient();
+  return useMutation(
+    async ({ studyStatus }: { studyStatus: TStudyKey }) => {
+      const response = await instance.put(
+        `/api/myStudy/${studyId}/studyStatus`,
+        {
+          studyStatus,
+        }
+      );
+      return response;
+    },
+    {
+      onSuccess: () => queryClient.invalidateQueries(["myStudy", studyId]),
+    }
+  );
 };
 
 /** 스터디 일지 조회 */
@@ -73,7 +88,7 @@ const ReadDiaryList = (studyId: string, page: number) => {
     ["diaryList", studyId],
     async () => {
       const resposne = await instance.get(
-        `/study/${studyId}/diary?take=15&page=${page}`,
+        `/myStudy/${studyId}/diary?take=15&page=${page}`,
         {}
       );
       return resposne;

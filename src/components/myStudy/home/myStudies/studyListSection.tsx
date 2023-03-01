@@ -1,48 +1,41 @@
+import StudyRoomApi from "@apis/query/studyRoomApi";
 import { TNumber } from "@elements/icon";
 import { useRouter } from "next/router";
 import { useCallback, useState } from "react";
+import OhterStudyList from "./ohterStudyList";
 
 import StudyItem from "./studyItem";
 
 const StudyListSection = () => {
-  const [isSpread, setIsSpread] = useState(false);
   const router = useRouter();
+  const { id } = router.query;
+  const { data: myStudyData } = StudyRoomApi.ReadStudy(id + "");
+  const [isSpread, setIsSpread] = useState(false);
 
   const handleToggle = useCallback(() => {
     setIsSpread((prev) => !prev);
   }, []);
 
-  const handleNavigate = useCallback(
-    (num: string) => {
-      router.push(`/mystudy/${num}`);
-    },
-    [router]
-  );
+  // const handleNavigate = useCallback(
+  //   (num: string) => {
+  //     router.push(`/myStudy/${num}`);
+  //   },
+  //   [router]
+  // );
 
   // ArrowSvg 클릭 시에 내가 속한 그룹 정보들 조회
   return (
     <section className="relative flex flex-col space-y-[0.6rem]">
-      <StudyItem
-        onClick={handleToggle}
-        isCurrent
-        isActive={isSpread}
-        icon={1}
-      />
-      {isSpread && (
-        <div className="absolute top-[8.4rem] z-10 flex w-full select-none flex-col rounded-[1rem] bg-bgColor-100 p-[1.2rem] shadow-[0.2rem_0.8rem_1.8rem_rgba(0,0,0,0.13)]">
-          {data
-            .filter((value) => value !== 1)
-            .map((item) => (
-              <StudyItem
-                key={item}
-                isCurrent={false}
-                onClick={() => handleNavigate(item + "")}
-                isActive={false}
-                icon={item}
-              />
-            ))}
-        </div>
+      {myStudyData && (
+        <StudyItem
+          onClick={handleToggle}
+          isCurrent
+          isActive={isSpread}
+          myStudy={myStudyData}
+        />
       )}
+
+      {isSpread && <OhterStudyList id={myStudyData?.id + ""} />}
     </section>
   );
 };

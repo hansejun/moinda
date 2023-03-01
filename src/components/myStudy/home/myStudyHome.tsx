@@ -7,8 +7,7 @@ import ProgressSection from "./progress/progressSection";
 
 const MyStudyHome = () => {
   const router = useRouter();
-  const studyId = router.query.params;
-  //const { data } = StudyRoomApi.ReadStudy(studyId + "");
+
   return (
     <div className="flex w-full  flex-col space-y-[2.6rem]">
       <StudyListSection />

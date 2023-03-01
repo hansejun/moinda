@@ -85,15 +85,25 @@ function Header({ loginUser }: IHeaderProps) {
                 </span>
                 <span className="absolute right-[0rem] bottom-[1rem] h-[0.9rem] w-[0.9rem] rounded-full bg-primary-main"></span>
               </span>
-              <Image
-                width={40}
-                height={40}
-                className="aspect-square w-[4.3rem] cursor-pointer rounded-full"
-                src={`https://avatars.dicebear.com/api/identicon/${loginUser?.id}/wooncloud.svg`}
-                alt="profile"
-                onClick={() => handleNavigate(`/profile/${loginUser?.id}`)}
-                priority={true}
-              />
+              {loginUser?.avatarImg ? (
+                <Image
+                  width={40}
+                  height={40}
+                  className="aspect-square w-[4.3rem] cursor-pointer rounded-full"
+                  src={`https://avatars.dicebear.com/api/identicon/${loginUser?.id}/wooncloud.svg`}
+                  alt="profile"
+                  onClick={() => handleNavigate(`/profile/${loginUser?.id}`)}
+                  priority={true}
+                />
+              ) : (
+                <div
+                  className="flex-center Cap4 aspect-square w-[4.3rem] cursor-pointer rounded-full
+                    bg-[#9DA9B4]"
+                  onClick={() => handleNavigate(`/profile/${loginUser?.id}`)}
+                >
+                  {loginUser?.nickname.slice(0, 2)}
+                </div>
+              )}
             </>
           ) : (
             <button

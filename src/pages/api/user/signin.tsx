@@ -13,6 +13,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     req.session.user = {
       id: existUser?.id,
       avatarImg: existUser?.avatarImg,
+      nickname: existUser?.nickname,
     };
     await req.session.save();
     // 이메일,닉네임,비밀번호를 저장

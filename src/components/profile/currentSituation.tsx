@@ -8,7 +8,7 @@ import { useCallback, useMemo } from "react";
 
 const CurrentSituation = ({ id }: { id: string }) => {
   const { data } = profileApi.ReadUser(id as string);
-  console.log(data);
+
   const router = useRouter();
   const handleLogout = useCallback(async () => {
     await logout();

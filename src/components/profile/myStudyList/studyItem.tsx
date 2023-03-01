@@ -5,7 +5,8 @@ import GroupSvg from "@assets/svg/groupSvg";
 import CategorySvg from "@assets/svg/categorySvg";
 import NextSvg from "@assets/svg/nextSvg";
 import Image from "next/image";
-import { IStudy } from "@allTypes/study";
+import { IStudy, TCategory } from "@allTypes/study";
+import { getStudyCategory } from "@utils/client/getEnum";
 
 const style = {
   nm: "hidden nm:block",
@@ -60,7 +61,7 @@ const MyStudyItem = ({ study }: { study: IStudy }) => {
             </div>
             <div className="flex-center ml-9">
               <CategorySvg className="mr-[0.6rem] h-[2rem] w-[2rem] " />
-              <span>{study?.category}</span>
+              <span>{getStudyCategory[study?.category]}</span>
             </div>
           </div>
         </div>

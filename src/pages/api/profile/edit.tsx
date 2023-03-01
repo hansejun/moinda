@@ -5,7 +5,7 @@ import withSession from "@utils/server/withSession";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { nickname, avatarImg } = req.body;
-  console.log("nick,avatar", nickname, avatarImg);
+
   const { user } = req.session;
   let updateUser;
   try {
@@ -27,7 +27,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     }
     res.status(200).json(updateUser);
   } catch (e) {
-    console.log(e);
     res.status(400).send("프로필 수정에 실패하였습니다.");
   }
 }

@@ -1,10 +1,12 @@
-import type { IStudyStatus } from "@allTypes/studyRoom";
+import type { IStudyStatus, TStudyKey } from "@allTypes/studyRoom";
+import StudyRoomApi from "@apis/query/studyRoomApi";
 import ArrowSvg from "@assets/svg/arrowSvg";
 import CircleSvg from "@assets/svg/circleSvg";
+import { useQueryClient } from "@tanstack/react-query";
 import cls from "@utils/client/cls";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const SideNav = () => {
   const router = useRouter();
@@ -12,6 +14,24 @@ const SideNav = () => {
   //const diaryMatch = useRouteMatch("/mystudy/:studyId/diary");
   const [isStatusFocus, setIsStatusFocus] = useState(false);
   const [studyStatus, setStudyStatus] = useState<IStudyStatus>(STATUS_BTNS[0]);
+  const { id } = router?.query;
+  const { data: myStudyData } = StudyRoomApi.ReadStudy(id + "");
+  const { mutate: updateStatus } = StudyRoomApi.UpdateStudyStatus(id + "");
+  // 스터디 상태 변경
+  const handleStudyStatus = useCallback(
+    (value: TStudyKey) => {
+      updateStatus({ studyStatus: value });
+      setStudyStatus(STATUS_BTNS[STATUS_KEYS[value]]);
+    },
+    [updateStatus]
+  );
+
+  useEffect(() => {
+    if (myStudyData)
+      setStudyStatus(
+        STATUS_BTNS[STATUS_KEYS[myStudyData.studyStatus as TStudyKey]]
+      );
+  }, [myStudyData]);
 
   return (
     <aside className="col-span-1 col-start-2 flex min-w-[16rem] flex-col space-y-[6.8rem]">
@@ -31,15 +51,17 @@ const SideNav = () => {
           </li>
           <li className="flex items-center space-x-[1rem] py-[1.4rem] pl-[3.6rem] text-[1.8rem] font-medium text-primary-500">
             <span>상태</span>
-            <div
-              className={cls(
-                `Cap3 flex items-center space-x-[0.5rem] rounded-full border-2  p-[0.3rem_1.2rem] `,
-                studyStatus?.style
-              )}
-            >
-              <span>{studyStatus?.status}</span>
-              <CircleSvg color={studyStatus?.color} className="w-[0.8rem]" />
-            </div>
+            {myStudyData && myStudyData.studyStatus && (
+              <div
+                className={cls(
+                  `Cap3 flex items-center space-x-[0.5rem] rounded-full border-2  p-[0.3rem_1.2rem] `,
+                  studyStatus?.style
+                )}
+              >
+                <span>{studyStatus?.status}</span>
+                <CircleSvg color={studyStatus?.color} className="w-[0.8rem]" />
+              </div>
+            )}
           </li>
         </ul>
       </nav>
@@ -65,16 +87,16 @@ const SideNav = () => {
           </button>
           {isStatusFocus && (
             <div className="flex flex-col pt-[1.2rem] ">
-              {STATUS_BTNS.map((value) => (
+              {STATUS_BTNS.map((btn) => (
                 <button
-                  key={value.status}
+                  key={btn.status}
                   className={styles.statusBtn(
-                    studyStatus?.status === value.status
+                    studyStatus?.status === btn.status
                   )}
-                  onClick={() => setStudyStatus(value)}
-                  disabled={studyStatus?.status === value.status}
+                  onClick={() => handleStudyStatus(btn.value)}
+                  disabled={studyStatus?.status === btn.status}
                 >
-                  {value.status}
+                  {btn.status}
                 </button>
               ))}
             </div>
@@ -87,21 +109,30 @@ const SideNav = () => {
 
 export default SideNav;
 
+const STATUS_KEYS = {
+  RECRUIT: 0,
+  PROGRESS: 1,
+  COMPLETE: 2,
+};
+
 const STATUS_BTNS: IStudyStatus[] = [
   {
     status: "모집중",
     color: "#ED7868",
     style: "text-[#ED7868] border-[#ED7868]",
+    value: "RECRUIT",
   },
   {
     status: "진행중",
     color: "#4C86EF",
     style: "text-[#4C86EF] border-[#4C86EF]",
+    value: "PROGRESS",
   },
   {
     status: "완료",
     color: "#848484",
     style: "text-[#848484] border-[#848484]",
+    value: "COMPLETE",
   },
 ];
 

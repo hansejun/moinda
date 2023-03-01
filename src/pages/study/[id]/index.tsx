@@ -3,6 +3,7 @@ import studyApi from "@apis/query/studyApi";
 import CustomHead from "@components/layout/head";
 import Layout from "@components/layout/layout";
 import Icons from "@elements/icon";
+import { getStudyCategory } from "@utils/client/getEnum";
 import getImageUrl from "@utils/client/getImageUrl";
 import withSessionSsr from "@utils/client/withSessionSsr";
 import dayjs from "dayjs";
@@ -16,7 +17,7 @@ const StudyDetail = ({ loginUser }: IPageProps) => {
   const { data: study } = studyApi.ReadStudyDetail(id as string);
 
   return (
-    <Layout isFullHeight>
+    <Layout isFullHeight loginUser={loginUser}>
       <CustomHead title={""} />
       <main className="mx-auto mt-[5rem] flex w-full flex-1 flex-col nm:w-[80rem]">
         <div className="flex-center mb-[2.4rem] aspect-square w-[8.8rem] rounded-[0.8rem] border border-primary-200 bg-bgColor-200">
@@ -48,23 +49,19 @@ const StudyDetail = ({ loginUser }: IPageProps) => {
               priority={true}
             />
           ) : (
-            <Image
-              src={`https://avatars.dicebear.com/api/identicon/${
-                study?.user?.id + "" || "1"
-              }/wooncloud.svg`}
-              className="h-[4.3rem] w-[4.3rem] rounded-full bg-white"
-              alt="icon"
-              width={43}
-              height={43}
-              priority={true}
-            />
+            <div
+              className="flex-center Cap4 aspect-square w-[4.3rem] cursor-pointer rounded-full
+                bg-[#9DA9B4]"
+            >
+              {study?.user?.nickname.slice(0, 2)}
+            </div>
           )}
           <div className="flex flex-col justify-center  ">
             <span className="Cap4">{study?.user?.nickname}</span>
-            <ul className="flex min-h-[2rem]">
+            <ul className="flex min-h-[2rem] space-x-[0.5rem]">
               {study?.hashTagList?.map((hashTag) => (
                 <li key={hashTag?.id} className="Cap4 text-primary-500">
-                  {hashTag?.tagName}
+                  #{hashTag?.tagName}
                 </li>
               ))}
               {!study?.hashTagList?.length && (
@@ -89,7 +86,7 @@ const StudyDetail = ({ loginUser }: IPageProps) => {
           <div className="flex items-center space-x-[2.2rem] ">
             <span className="Sub2 w-[9.2rem]">스터디 분야</span>
             <p className="Cap2 rounded-[0.4rem] bg-[#FFE7D6] p-[0.2rem_0.8rem]">
-              {study?.category}
+              {getStudyCategory[study?.category!]}
             </p>
           </div>
           <div className="flex items-center space-x-[2.2rem] ">

@@ -53,16 +53,12 @@ const StudyCard = ({
                 priority={true}
               />
             ) : (
-              <Image
-                src={`https://avatars.dicebear.com/api/identicon/${
-                  study?.user?.id + "" || "1"
-                }/wooncloud.svg`}
-                className="h-[3rem] w-[3rem] rounded-full bg-white"
-                alt="icon"
-                width={30}
-                height={30}
-                priority={true}
-              />
+              <div
+                className="flex-center aspect-square w-[3rem] cursor-pointer rounded-full bg-[#9DA9B4]
+                    text-[1rem]"
+              >
+                {study?.user?.nickname.slice(0, 2)}
+              </div>
             )}
 
             <span className="text-primary-700">{study?.user?.nickname}</span>
