@@ -1,14 +1,14 @@
-import { removeCookieToken } from "@apis/cookie";
+import { logout } from "@apis/query/userApi";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
 
 const LogoutBtn = () => {
-  const router = useRouter();
+  //const router = useRouter();
 
-  const handleLogout = useCallback(() => {
-    removeCookieToken();
-    router.push("/");
-  }, [router]);
+  const handleLogout = useCallback(async () => {
+    await logout();
+    //router.push("/");
+  }, []);
 
   return (
     <button

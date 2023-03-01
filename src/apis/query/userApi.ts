@@ -44,3 +44,9 @@ export const ReadMe = () => {
     }
   );
 };
+
+/** 로그아웃 api */
+export const logout = async () => {
+  console.log("fhffhfhfhfh");
+  await axios.post("/api/user/logout");
+};
