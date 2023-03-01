@@ -22,6 +22,14 @@ export const postApi = axios.create({
   },
 });
 
+export const imageApi = axios.create({
+  baseURL: `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/images/v1/direct_upload`,
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${process.env.CLOUDFLARE_IMAGES_TOKEN}`,
+  },
+});
+
 /*
 // 리프레시 토큰을 발급 중인지 확인하는 boolean 값
 let isTokenRefreshing = false;

@@ -6,3 +6,8 @@ export interface IProfileResponse extends IUser {
   attendance: unknown;
   studyList: IStudy[];
 }
+
+export interface IEditProfileRequest {
+  nickname?: string;
+  avatarImg?: string;
+}

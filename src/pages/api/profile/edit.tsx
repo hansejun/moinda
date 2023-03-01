@@ -4,19 +4,27 @@ import withHandler from "@utils/server/withHandler";
 import withSession from "@utils/server/withSession";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { id } = req.query;
   const { nickname, avatarImg } = req.body;
+  console.log("nick,avatar", nickname, avatarImg);
   const { user } = req.session;
-  if (+id! !== user?.id) return res.status(403).send("수정 권한이 없습니다.");
-
+  let updateUser;
   try {
-    const updateUser = client.user.update({
-      where: { id: user.id },
-      data: {
-        nickname,
-        avatarImg,
-      },
-    });
+    if (nickname && avatarImg) {
+      updateUser = await client.user.update({
+        where: { id: user.id },
+        data: {
+          nickname,
+          avatarImg,
+        },
+      });
+    } else {
+      updateUser = await client.user.update({
+        where: { id: user.id },
+        data: {
+          nickname,
+        },
+      });
+    }
     res.status(200).json(updateUser);
   } catch (e) {
     console.log(e);

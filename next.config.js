@@ -2,7 +2,7 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["avatars.dicebear.com"],
+    domains: ["avatars.dicebear.com", "imagedelivery.net"],
   },
   webpack: (config) => {
     config.module.rules.push({

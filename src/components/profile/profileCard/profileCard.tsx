@@ -3,6 +3,7 @@ import CameraSvg from "@assets/svg/cameraSvg";
 import CancelSvg from "@assets/svg/cancelSvg";
 import SettingSvg from "@assets/svg/settingSvg";
 import SmileSvg from "@assets/svg/smileSvg";
+import getImageUrl from "@utils/client/getImageUrl";
 import Image from "next/image";
 import { useCallback, useMemo, useState } from "react";
 import ProfileEditModal from "./profileEditModal";
@@ -39,10 +40,10 @@ const ProfileCard = ({ id }: { id: string }) => {
               className={
                 "ml-[-2.4rem] h-[9.6rem] w-[9.6rem] justify-self-center rounded-full bg-white"
               }
-              src={user?.avatarImg}
+              src={getImageUrl(user?.avatarImg)}
               alt="avatar"
-              width={60}
-              height={60}
+              width={120}
+              height={120}
               priority={true}
             />
           ) : (
@@ -52,8 +53,8 @@ const ProfileCard = ({ id }: { id: string }) => {
               }
               src={`https://avatars.dicebear.com/api/identicon/${user?.id}/wooncloud.svg`}
               alt="avatar"
-              width={60}
-              height={60}
+              width={120}
+              height={120}
               priority={true}
             />
           )}

@@ -5,6 +5,7 @@ import EyesSvg from "@assets/svg/eyesSvg";
 
 import Icons from "@elements/icon";
 import cls from "@utils/client/cls";
+import getImageUrl from "@utils/client/getImageUrl";
 import dayjs from "dayjs";
 import Image from "next/image";
 
@@ -45,10 +46,10 @@ const StudyCard = ({
             {study?.user?.avatarImg ? (
               <Image
                 className="h-[3rem] w-[3rem] rounded-full"
-                src={study.user.avatarImg}
+                src={getImageUrl(study.user.avatarImg)}
                 alt="icon"
-                width={25}
-                height={25}
+                width={30}
+                height={30}
                 priority={true}
               />
             ) : (
@@ -58,8 +59,8 @@ const StudyCard = ({
                 }/wooncloud.svg`}
                 className="h-[3rem] w-[3rem] rounded-full bg-white"
                 alt="icon"
-                width={25}
-                height={25}
+                width={30}
+                height={30}
                 priority={true}
               />
             )}
