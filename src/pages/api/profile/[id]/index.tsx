@@ -17,7 +17,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         totalTime: true,
         attendance: true,
         email: true,
-        studyList: {
+      },
+    });
+    let memberList = await client.member.findMany({
+      where: { userId: +id! },
+      include: {
+        study: {
           include: {
             hashTagList: true,
             _count: {
@@ -29,7 +34,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         },
       },
     });
-    res.status(200).json(user);
+    const studyList = memberList.map((member) => ({ ...member.study }));
+    res.status(200).json({ ...user, studyList });
   } catch (e) {
     res.status(400).send("프로필 페이지 조회에 실패하였습니다.");
   }
