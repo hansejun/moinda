@@ -103,7 +103,7 @@ const Write: NextPage = ({ loginUser }: IPageProps) => {
           </div>
           <div className="flex gap-[2.6rem] rounded-full nm:grid nm:grid-cols-[1fr_3fr] ">
             <button className="Sub2 col-start-2 w-full rounded-full bg-primary-main py-[2rem] text-white">
-              스터디 모집 글 작성롼료
+              스터디 모집 글 작성완료
             </button>
           </div>
         </form>

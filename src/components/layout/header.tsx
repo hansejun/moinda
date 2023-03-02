@@ -1,6 +1,7 @@
 import { IHeaderProps } from "@allTypes/props";
 import BellSvg from "@assets/svg/bellSvg";
 import SearchSvg from "@assets/svg/searchSvg";
+import AlarmModal from "@components/common/alarm/alarmModal";
 import cls from "@utils/client/cls";
 import getImageUrl from "@utils/client/getImageUrl";
 import Image from "next/image";
@@ -10,8 +11,8 @@ import { useCallback, useEffect, useState } from "react";
 
 function Header({ loginUser }: IHeaderProps) {
   const [isLogin, setIsLogin] = useState(false);
+  const [isAlarmOpen, setIsAlarmOpen] = useState(false);
   const router = useRouter();
-  console.log(loginUser);
   useEffect(() => {
     if (loginUser) {
       if (loginUser?.id) {
@@ -81,11 +82,15 @@ function Header({ loginUser }: IHeaderProps) {
               >
                 스터디 모집하기
               </button>
-              <span className="flex-center relative mx-[1.6rem] w-[2.1rem] cursor-pointer p-2 hover:text-primary-500">
-                <span>
+              <span className="flex-center relative mx-[1.6rem] w-[2.1rem] ">
+                <span
+                  onClick={() => setIsAlarmOpen((prev) => !prev)}
+                  className="cursor-pointer p-2 hover:text-primary-500"
+                >
                   <BellSvg className="h-[2.5rem] w-[2.5rem]" />
                 </span>
                 <span className="absolute right-[0rem] bottom-[1rem] h-[0.9rem] w-[0.9rem] rounded-full bg-primary-main"></span>
+                {isAlarmOpen && <AlarmModal setIsAlarmOpen={setIsAlarmOpen} />}
               </span>
               {loginUser?.avatarImg ? (
                 <Image
