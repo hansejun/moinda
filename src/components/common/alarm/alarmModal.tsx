@@ -1,7 +1,5 @@
+import alarmApis from "@apis/query/alarm";
 import CancelSvg from "@assets/svg/cancelSvg";
-import Icons, { iconBackgrounds } from "@elements/icon";
-import cls from "@utils/client/cls";
-import Image from "next/image";
 import React, { Dispatch, SetStateAction, useCallback } from "react";
 import AlarmItems from "./alarmItem";
 
@@ -10,6 +8,7 @@ interface IAlarmModalProps {
 }
 
 const AlarmModal = ({ setIsAlarmOpen }: IAlarmModalProps) => {
+  const { data: alarmList } = alarmApis.ReadAlarms();
   const onCloseModal = useCallback(() => {
     setIsAlarmOpen(false);
   }, [setIsAlarmOpen]);
@@ -23,7 +22,7 @@ const AlarmModal = ({ setIsAlarmOpen }: IAlarmModalProps) => {
         </span>
       </div>
       <ul className="flex flex-col">
-        {ALARMS.map((alarm) => (
+        {alarmList?.map((alarm) => (
           <AlarmItems key={alarm.id} alarm={alarm} />
         ))}
       </ul>
@@ -32,13 +31,3 @@ const AlarmModal = ({ setIsAlarmOpen }: IAlarmModalProps) => {
 };
 
 export default AlarmModal;
-type TAlarmState = "APPROVE" | "REFUSE" | "CHECK";
-interface IAlarm {
-  id: number;
-  state: TAlarmState;
-}
-const ALARMS: IAlarm[] = [
-  { id: 1, state: "CHECK" },
-  { id: 2, state: "APPROVE" },
-  { id: 3, state: "REFUSE" },
-];

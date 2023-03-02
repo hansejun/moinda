@@ -12,6 +12,7 @@ import { useCallback, useEffect, useState } from "react";
 function Header({ loginUser }: IHeaderProps) {
   const [isLogin, setIsLogin] = useState(false);
   const [isAlarmOpen, setIsAlarmOpen] = useState(false);
+
   const router = useRouter();
   useEffect(() => {
     if (loginUser) {

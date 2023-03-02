@@ -1,4 +1,5 @@
 import { IPageProps } from "@allTypes/props";
+import alarmApis from "@apis/query/alarm";
 import studyApi from "@apis/query/studyApi";
 import CustomHead from "@components/layout/head";
 import Layout from "@components/layout/layout";
@@ -9,12 +10,27 @@ import withSessionSsr from "@utils/client/withSessionSsr";
 import dayjs from "dayjs";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useCallback } from "react";
 
 const StudyDetail = ({ loginUser }: IPageProps) => {
   const router = useRouter();
   const { id } = router.query;
   const { data: study } = studyApi.ReadStudyDetail(id as string);
+
+  // 스터디 신청
+  const handleApply = useCallback(async () => {
+    if (!study) return;
+    try {
+      const response = await alarmApis.sendApply({
+        receiverId: study.userId,
+        studyId: study.id,
+      });
+      alert("신청이 완료되었습니다.");
+    } catch (e) {
+      alert("신청이 실패하였습니다.");
+      console.log(e);
+    }
+  }, [study]);
 
   return (
     <Layout isFullHeight loginUser={loginUser}>
@@ -104,7 +120,10 @@ const StudyDetail = ({ loginUser }: IPageProps) => {
             {dayjs(study?.updatedAt).format("YYYY.MM.DD")} 작성
           </span>
         </div>
-        <button className="Sub1 rounded-[3.5rem] bg-primary-main p-[2rem] text-white">
+        <button
+          className="Sub1 rounded-[3.5rem] bg-primary-main p-[2rem] text-white"
+          onClick={handleApply}
+        >
           스터디 가입하기
         </button>
       </main>

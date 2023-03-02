@@ -3,12 +3,12 @@ import { useRouter } from "next/router";
 import { useCallback } from "react";
 
 const LogoutBtn = () => {
-  //const router = useRouter();
+  const router = useRouter();
 
   const handleLogout = useCallback(async () => {
     await logout();
-    //router.push("/");
-  }, []);
+    router.push("/");
+  }, [router]);
 
   return (
     <button
