@@ -82,14 +82,15 @@ function Header({ loginUser }: IHeaderProps) {
               >
                 스터디 모집하기
               </button>
-              <span className="flex-center relative mx-[1.6rem] w-[2.1rem] ">
+              <span className="flex-center relative mx-[1.6rem] w-[2.1rem]">
                 <span
                   onClick={() => setIsAlarmOpen((prev) => !prev)}
-                  className="cursor-pointer p-2 hover:text-primary-500"
+                  className="flex-center relative h-[3rem] w-[3rem] cursor-pointer p-2  hover:text-primary-500"
                 >
                   <BellSvg className="h-[2.5rem] w-[2.5rem]" />
+                  <span className=" absolute right-[0.4rem] bottom-[0.4rem] h-[0.9rem] w-[0.9rem] cursor-pointer rounded-full bg-primary-main"></span>
                 </span>
-                <span className="absolute right-[0rem] bottom-[1rem] h-[0.9rem] w-[0.9rem] rounded-full bg-primary-main"></span>
+
                 {isAlarmOpen && <AlarmModal setIsAlarmOpen={setIsAlarmOpen} />}
               </span>
               {loginUser?.avatarImg ? (
