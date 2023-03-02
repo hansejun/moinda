@@ -2,6 +2,7 @@ import { IHeaderProps } from "@allTypes/props";
 import BellSvg from "@assets/svg/bellSvg";
 import SearchSvg from "@assets/svg/searchSvg";
 import cls from "@utils/client/cls";
+import getImageUrl from "@utils/client/getImageUrl";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -10,6 +11,7 @@ import { useCallback, useEffect, useState } from "react";
 function Header({ loginUser }: IHeaderProps) {
   const [isLogin, setIsLogin] = useState(false);
   const router = useRouter();
+  console.log(loginUser);
   useEffect(() => {
     if (loginUser) {
       if (loginUser?.id) {
@@ -90,7 +92,7 @@ function Header({ loginUser }: IHeaderProps) {
                   width={40}
                   height={40}
                   className="aspect-square w-[4.3rem] cursor-pointer rounded-full"
-                  src={`https://avatars.dicebear.com/api/identicon/${loginUser?.id}/wooncloud.svg`}
+                  src={getImageUrl(loginUser?.avatarImg)}
                   alt="profile"
                   onClick={() => handleNavigate(`/profile/${loginUser?.id}`)}
                   priority={true}

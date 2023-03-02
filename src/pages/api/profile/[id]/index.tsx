@@ -5,6 +5,7 @@ import withSession from "@utils/server/withSession";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query;
+  console.log("server", req.session.user);
   try {
     const user = await client.user.findUnique({
       where: { id: +id! },

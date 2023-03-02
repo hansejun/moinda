@@ -25,6 +25,13 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         },
       });
     }
+
+    req.session.user = {
+      id: updateUser.id,
+      nickname: updateUser.nickname,
+      avatarImg: updateUser.avatarImg,
+    };
+    await req.session.save();
     res.status(200).json(updateUser);
   } catch (e) {
     res.status(400).send("프로필 수정에 실패하였습니다.");

@@ -13,6 +13,7 @@ const withSessionSsr = ({ isPrivate = true, callback }: IProps) =>
         data = await callback();
       }
       const loginUser = req.session?.user;
+      console.log("loginUser", loginUser);
       if (!loginUser) {
         if (isPrivate) {
           res.setHeader("location", "/start/signin");

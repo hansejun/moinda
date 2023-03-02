@@ -20,7 +20,6 @@ const StudyItem = ({
   onClick,
   isCurrent,
   isActive,
-  icon,
   myStudy,
 }: MyStudyItemProps) => {
   return (
@@ -50,7 +49,7 @@ const StudyItem = ({
           />
         </div>
         <div className="flex flex-col justify-between py-[0.2rem]">
-          <h3 className="Sub2">토익 900 달성 스터디</h3>
+          <h3 className="Sub2">{myStudy?.studyName}</h3>
           <ul className="flex min-h-[2rem] space-x-[0.5rem]">
             {myStudy?.hashTagList?.map((hashTag) => (
               <li key={hashTag?.id} className="Cap4 text-primary-500">
