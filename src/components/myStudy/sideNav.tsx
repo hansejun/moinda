@@ -71,7 +71,7 @@ const SideNav = ({ loginUserId }: IProps) => {
         <div className="flex flex-col space-y-[1.8rem]">
           <h3 className="H2">스터디 관리</h3>
           <nav className="flex flex-col rounded-[1rem] bg-bgColor-100 py-[2.4rem]">
-            <Link href={"/edit"} passHref>
+            <Link href={`/study/${myStudyData?.id}/edit`} passHref>
               <span className="H3 block  py-[1.4rem] pl-[3.6rem] text-primary-500">
                 모집 상세 수정
               </span>

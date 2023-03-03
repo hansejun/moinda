@@ -34,8 +34,14 @@ const LineProgressBar = ({ onClick }: ILineProgress) => {
     const { targetTime, totalTime } = profile;
 
     if (totalTime / targetTime >= 1) return "100%";
-    return `${((totalTime / targetTime) * 100) | 0}%`;
+    return `${((30 / targetTime) * 100) | 0}%`;
   }, [profile]);
+
+  const progressStyle = useMemo(() => {
+    return `w-[${progressPercent}]`;
+  }, [progressPercent]);
+
+  console.log(progressStyle);
 
   return (
     <div className="flex flex-col  rounded-[1rem] bg-white p-[3rem] text-primary-600">
@@ -74,9 +80,8 @@ const LineProgressBar = ({ onClick }: ILineProgress) => {
         <div
           className={cls(
             `
-            absolute left-0 top-0 h-[2rem] rounded-[2.1rem]`,
-
-            profile && `w-[${progressPercent}]`
+            absolute left-0 top-0 h-[2rem] rounded-[2.1rem] bg-red-300`,
+            profile && progressStyle
           )}
         />
       </div>
