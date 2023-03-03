@@ -1,5 +1,7 @@
 import StudyRoomApi from "@apis/query/studyRoomApi";
+import Icons from "@elements/icon";
 import cls from "@utils/client/cls";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import ParticipatingStudyItem from "./studyItem";
 
@@ -18,6 +20,12 @@ const ParticipatingStudyList = () => {
         </span>
       </div>
       <ul className="flex flex-col space-y-[1.6rem]">
+        {studyList?.length === 0 && (
+          <div className="Cap3 flex-center h-[11rem] flex-col space-y-[1rem] rounded-[1.4rem] border border-solid border-primary-350">
+            <Image src={Icons[16]} width={20} height={20} alt="icon" priority />
+            <span>참여중인 그룹이 없습니다.</span>
+          </div>
+        )}
         {studyList?.map((study) => (
           <ParticipatingStudyItem key={study?.id} study={study} />
         ))}
