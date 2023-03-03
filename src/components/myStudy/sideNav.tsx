@@ -2,21 +2,23 @@ import type { IStudyStatus, TStudyKey } from "@allTypes/studyRoom";
 import StudyRoomApi from "@apis/query/studyRoomApi";
 import ArrowSvg from "@assets/svg/arrowSvg";
 import CircleSvg from "@assets/svg/circleSvg";
-import { useQueryClient } from "@tanstack/react-query";
 import cls from "@utils/client/cls";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 
-const SideNav = () => {
+interface IProps {
+  loginUserId: number;
+}
+
+const SideNav = ({ loginUserId }: IProps) => {
   const router = useRouter();
-  // const homeMatch = useRouteMatch("/mystudy/:studyId");
-  //const diaryMatch = useRouteMatch("/mystudy/:studyId/diary");
   const [isStatusFocus, setIsStatusFocus] = useState(false);
   const [studyStatus, setStudyStatus] = useState<IStudyStatus>(STATUS_BTNS[0]);
   const { id } = router?.query;
   const { data: myStudyData } = StudyRoomApi.ReadStudy(id + "");
   const { mutate: updateStatus } = StudyRoomApi.UpdateStudyStatus(id + "");
+
   // 스터디 상태 변경
   const handleStudyStatus = useCallback(
     (value: TStudyKey) => {
@@ -39,13 +41,13 @@ const SideNav = () => {
         <ul>
           <li
             className={styles.navItem(Boolean(true))}
-            onClick={() => router.push("/myStudy/1")}
+            onClick={() => router.push(`/myStudy/${myStudyData?.id}`)}
           >
             그룹 홈
           </li>
           <li
             className={styles.navItem(Boolean(true))}
-            onClick={() => router.push("/myStudy/1/diary")}
+            onClick={() => router.push(`/myStudy/${myStudyData?.id}/diary`)}
           >
             스터디일지
           </li>
@@ -65,44 +67,46 @@ const SideNav = () => {
           </li>
         </ul>
       </nav>
-      <div className="flex flex-col space-y-[1.8rem]">
-        <h3 className="H2">스터디 관리</h3>
-        <nav className="flex flex-col rounded-[1rem] bg-bgColor-100 py-[2.4rem]">
-          <Link href={"/edit"} passHref>
-            <span className="H3 block  py-[1.4rem] pl-[3.6rem] text-primary-500">
-              모집 상세 수정
-            </span>
-          </Link>
-          <button
-            className={styles.toggleBtn(!isStatusFocus)}
-            onClick={() => setIsStatusFocus((prev) => !prev)}
-          >
-            <span>상태 설정</span>
-            <ArrowSvg
-              className={cls(
-                "w-[2.2rem] transition-transform duration-300",
-                isStatusFocus ? "rotate-90" : "rotate-[-90deg]"
-              )}
-            />
-          </button>
-          {isStatusFocus && (
-            <div className="flex flex-col pt-[1.2rem] ">
-              {STATUS_BTNS.map((btn) => (
-                <button
-                  key={btn.status}
-                  className={styles.statusBtn(
-                    studyStatus?.status === btn.status
-                  )}
-                  onClick={() => handleStudyStatus(btn.value)}
-                  disabled={studyStatus?.status === btn.status}
-                >
-                  {btn.status}
-                </button>
-              ))}
-            </div>
-          )}
-        </nav>
-      </div>
+      {loginUserId === myStudyData?.userId && (
+        <div className="flex flex-col space-y-[1.8rem]">
+          <h3 className="H2">스터디 관리</h3>
+          <nav className="flex flex-col rounded-[1rem] bg-bgColor-100 py-[2.4rem]">
+            <Link href={"/edit"} passHref>
+              <span className="H3 block  py-[1.4rem] pl-[3.6rem] text-primary-500">
+                모집 상세 수정
+              </span>
+            </Link>
+            <button
+              className={styles.toggleBtn(!isStatusFocus)}
+              onClick={() => setIsStatusFocus((prev) => !prev)}
+            >
+              <span>상태 설정</span>
+              <ArrowSvg
+                className={cls(
+                  "w-[2.2rem] transition-transform duration-300",
+                  isStatusFocus ? "rotate-90" : "rotate-[-90deg]"
+                )}
+              />
+            </button>
+            {isStatusFocus && (
+              <div className="flex flex-col pt-[1.2rem] ">
+                {STATUS_BTNS.map((btn) => (
+                  <button
+                    key={btn.status}
+                    className={styles.statusBtn(
+                      studyStatus?.status === btn.status
+                    )}
+                    onClick={() => handleStudyStatus(btn.value)}
+                    disabled={studyStatus?.status === btn.status}
+                  >
+                    {btn.status}
+                  </button>
+                ))}
+              </div>
+            )}
+          </nav>
+        </div>
+      )}
     </aside>
   );
 };

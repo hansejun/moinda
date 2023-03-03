@@ -1,6 +1,6 @@
 import { IWrite } from "@allTypes/study";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { UseFormSetValue, UseFormRegisterReturn } from "react-hook-form";
+import { UseFormSetValue } from "react-hook-form";
 
 interface IHashTagProps {
   label: string;
@@ -14,11 +14,10 @@ interface IHashTagProps {
 const HashTagList = ({
   label,
   setValue,
-
   placeholder,
   defaultValue,
 }: IHashTagProps) => {
-  const [hashTags, setHashTags] = useState<string[]>(defaultValue);
+  const [hashTags, setHashTags] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const [isComposing, setIsComposing] = useState(false);
 
@@ -44,6 +43,9 @@ const HashTagList = ({
     setValue("hashTagList", hashTags);
   }, [setValue, hashTags]);
 
+  useEffect(() => {
+    setHashTags(defaultValue);
+  }, [defaultValue]);
   return (
     <label className="flex flex-col gap-[1rem] nm:grid nm:grid-cols-[1fr_3fr] nm:gap-[2.6rem]">
       <h3 className="Sub2 cursor-pointer hover:text-primary-500">{label}</h3>

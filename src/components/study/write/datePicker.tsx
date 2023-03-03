@@ -12,7 +12,7 @@ interface IDatePicker {
 }
 
 const StartDatePicker = ({ setValue, defaultValue }: IDatePicker) => {
-  const [startDate, setStartDate] = useState<Date>(defaultValue || new Date());
+  const [startDate, setStartDate] = useState<Date>(new Date());
 
   const [isShow, setIsShow] = useState(false);
   const handleShow = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
@@ -22,6 +22,7 @@ const StartDatePicker = ({ setValue, defaultValue }: IDatePicker) => {
     e.preventDefault();
     setIsShow(false);
   }, []);
+
   const handleOnChange = useCallback(
     (date: Date) => {
       setStartDate(date);
@@ -34,21 +35,27 @@ const StartDatePicker = ({ setValue, defaultValue }: IDatePicker) => {
     setIsShow(false);
   }, [startDate]);
 
+  useEffect(() => {
+    if (defaultValue) {
+      setStartDate(new Date(defaultValue));
+    }
+  }, [defaultValue]);
+
   return (
     <>
       <div
         className={
-          "rounded-[0.8rem] border border-primary-200 bg-[#F7F6F6] p-[1.4rem_1.8rem]  text-[1.6rem] peer    hover:border-primary-400 flex-1 text-left text-primary-400 hover:text-primary-500 cursor-pointer"
+          "peer flex-1 cursor-pointer rounded-[0.8rem] border  border-primary-200 bg-[#F7F6F6]    p-[1.4rem_1.8rem] text-left text-[1.6rem] text-primary-400 hover:border-primary-400 hover:text-primary-500"
         }
         onClick={handleShow}
       >
         {dayjs(startDate).format("YYYY / MM / DD")}
       </div>
-      <CalendarSvg className="w-[2.3rem] absolute right-[1.8rem] cursor-pointer text-primary-500 peer-hover:text-primary-600 " />
+      <CalendarSvg className="absolute right-[1.8rem] w-[2.3rem] cursor-pointer text-primary-500 peer-hover:text-primary-600 " />
       {isShow && (
         <div
-          className="fixed
-       top-0 right-0 bottom-0 left-0  z-[999] bg-[rgba(0,0,0,0.3)] flex-center"
+          className="flex-center
+       fixed top-0 right-0 bottom-0  left-0 z-[999] bg-[rgba(0,0,0,0.3)]"
           onClick={handleCalendar}
         >
           <div onClick={(e) => e.stopPropagation()}>

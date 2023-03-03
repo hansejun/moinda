@@ -9,6 +9,7 @@ import MyStudyItem from "./studyItem";
 import profileApi from "@apis/query/profile";
 import { useMemo } from "react";
 import { IStudy } from "@allTypes/study";
+import { useRouter } from "next/router";
 
 const isExist = true;
 // 데이터가 4개 이상이라면은 26번줄 cls pb-[6rem] or [2rem]
@@ -19,7 +20,7 @@ interface IStudyList {
 
 const MyStudyList = () => {
   const { data: user } = profileApi.ReadUser();
-
+  const router = useRouter();
   const studyObj = useMemo(() => {
     if (!user) return {};
     const obj: IStudyList = {};
@@ -61,7 +62,10 @@ const MyStudyList = () => {
         )}
       </Swiper>
       <div className="flex-center mt-[2.4rem]">
-        <button className="flex-center Cap4 h-[6.8rem] w-[36.5rem] rounded-[1rem] border border-dashed border-primary-350 text-primary-600">
+        <button
+          className="flex-center Cap4 h-[6.8rem] w-[36.5rem] rounded-[1rem] border border-dashed border-primary-350 text-primary-600"
+          onClick={() => router.push("/study")}
+        >
           <PlusSvg className="mr-[0.8rem] h-[1.8rem] w-[1.8rem]" />
           스터디그룹 가입하기
         </button>

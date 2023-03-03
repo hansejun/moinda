@@ -10,7 +10,12 @@ const ParticipatingStudyList = () => {
     <>
       <div className="flex justify-between">
         <h2 className="H2 text-primary-600">참여 중인 스터디그룹</h2>
-        <span className="Cap1 self-end text-primary-500">더보기</span>
+        <span
+          className="Cap1 cursor-pointer self-end text-primary-500 hover:text-primary-600"
+          onClick={() => router.push("/mypage")}
+        >
+          더보기
+        </span>
       </div>
       <ul className="flex flex-col space-y-[1.6rem]">
         {studyList?.map((study) => (

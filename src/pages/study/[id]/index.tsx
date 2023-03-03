@@ -50,9 +50,14 @@ const StudyDetail = ({ loginUser }: IPageProps) => {
         </div>
         <div className="mb-[1.4rem] flex space-x-[1rem]">
           <p className="H3">{study?.title}</p>
-          <button className="Cap4 cursor-pointer text-primary-500">
-            게시글 수정
-          </button>
+          {loginUser?.id === study?.userId && (
+            <button
+              className="Cap4 cursor-pointer text-primary-500"
+              onClick={() => router.push(`/study/${id}/edit`)}
+            >
+              게시글 수정
+            </button>
+          )}
         </div>
         <div className="mb-[3.8rem] flex space-x-[1.3rem]">
           {study?.user?.avatarImg ? (

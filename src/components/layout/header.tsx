@@ -111,7 +111,7 @@ function Header({ loginUser }: IHeaderProps) {
                 <div
                   className="flex-center Cap4 aspect-square w-[4.3rem] cursor-pointer rounded-full
                     bg-[#9DA9B4]"
-                  onClick={() => handleNavigate(`/profile/${loginUser?.id}`)}
+                  onClick={() => handleNavigate(`/mypage`)}
                 >
                   {loginUser?.nickname.slice(0, 2)}
                 </div>

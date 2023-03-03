@@ -1,5 +1,5 @@
 import { INewStudyListProps, IStudyWithUser, IWrite } from "@allTypes/study";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 /** 스터디 개설하기 */
@@ -59,9 +59,17 @@ const ReadStudyDetail = (studyId: string) => {
       return response.data;
     },
     {
+      staleTime: Infinity,
+      refetchOnMount: false,
       refetchOnWindowFocus: false,
     }
   );
+};
+
+/** 스터디 수정하기 */
+const UpdateStudy = async (studyId: string, data: IWrite) => {
+  const response = await axios.put(`/api/study/${studyId}/edit`, data);
+  return response.data;
 };
 
 const studyApi = {
@@ -69,6 +77,7 @@ const studyApi = {
   ReadNewStudyList,
   ReadRecommendStudyList,
   ReadStudyDetail,
+  UpdateStudy,
 };
 
 export default studyApi;
