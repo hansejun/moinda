@@ -4,11 +4,11 @@ import instance from "@apis/axios";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 /** 프로필 정보 조회 */
-const ReadUser = (id: string) => {
+const ReadUser = () => {
   return useQuery<IProfileResponse>(
-    ["profile", id],
+    ["mypage"],
     async () => {
-      const response = await instance.get(`/api/profile/${id}`);
+      const response = await instance.get(`/api/mypage`);
       return response.data;
     },
     {
@@ -18,18 +18,18 @@ const ReadUser = (id: string) => {
 };
 
 /** 프로필 수정 */
-const EditUser = (id: string) => {
+const EditUser = () => {
   const queryClient = useQueryClient();
   return useMutation(
     async ({ nickname, avatarImg }: IEditProfileRequest) => {
-      const response = await instance.put(`/api/profile/edit`, {
+      const response = await instance.put(`/api/mypage/edit`, {
         nickname,
         avatarImg,
       });
       return response;
     },
     {
-      onSuccess: () => queryClient.invalidateQueries(["profile", id]),
+      onSuccess: () => queryClient.invalidateQueries(["mypage"]),
     }
   );
 };

@@ -3,6 +3,7 @@ import { IHashtag, TStudyCategory } from "./study";
 
 export type TStudyStatus = "모집중" | "진행중" | "완료";
 export type TStudyKey = "RECRUIT" | "PROGRESS" | "COMPLETE";
+
 export interface IStudyStatus {
   status: TStudyStatus;
   color: string;
@@ -22,12 +23,12 @@ export interface IDiary {
 
 // 나의 스터디
 export interface IMyStudy {
-  id: string;
-  hostUserId: string;
+  id: number;
+  userId: number;
   category: TStudyCategory; //enum
   studyName: string;
   icon: TNumber;
-  studyStatus: TStudyStatus; // enum
+  studyStatus: TStudyKey; // enum
   targetTime: number;
   _count: {
     memberList: number;
@@ -45,7 +46,6 @@ export interface IMyStudyWithMember {
 
 // 목표시간 props
 export interface ITargetTimeProps {
-  studyId: string;
   targetTime: number;
 }
 

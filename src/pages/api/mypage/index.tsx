@@ -4,11 +4,10 @@ import withHandler from "@utils/server/withHandler";
 import withSession from "@utils/server/withSession";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { id } = req.query;
-  console.log("server", req.session.user);
+  const { user } = req.session;
   try {
-    const user = await client.user.findUnique({
-      where: { id: +id! },
+    const profile = await client.user.findUnique({
+      where: { id: user.id },
       select: {
         id: true,
         nickname: true,
@@ -20,7 +19,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       },
     });
     let memberList = await client.member.findMany({
-      where: { userId: +id! },
+      where: { userId: user.id },
       include: {
         study: {
           include: {
@@ -35,7 +34,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       },
     });
     const studyList = memberList.map((member) => ({ ...member.study }));
-    res.status(200).json({ ...user, studyList });
+    res.status(200).json({ ...profile, studyList });
   } catch (e) {
     res.status(400).send("프로필 페이지 조회에 실패하였습니다.");
   }

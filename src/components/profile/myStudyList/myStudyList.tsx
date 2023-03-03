@@ -17,8 +17,8 @@ interface IStudyList {
   [key: string]: IStudy[];
 }
 
-const MyStudyList = ({ id }: { id: string }) => {
-  const { data: user } = profileApi.ReadUser(id as string);
+const MyStudyList = () => {
+  const { data: user } = profileApi.ReadUser();
 
   const studyObj = useMemo(() => {
     if (!user) return {};

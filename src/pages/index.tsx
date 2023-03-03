@@ -3,7 +3,7 @@ import CustomHead from "@components/layout/head";
 import Layout from "@components/layout/layout";
 import BestStudyList from "@components/main/bestStudy/bestStudyList";
 import BestTag from "@components/common/bestTag";
-import CategoryBtn from "@components/common/categoryBtn";
+import CategoryBtn from "@components/common/category/categoryBtn";
 import NewStudy from "@components/main/newStudy/newStudy";
 import ParticipatingStudy from "@components/main/participatingStudy";
 import Pomodoro from "@components/main/pomodoro";

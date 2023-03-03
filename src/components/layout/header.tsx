@@ -14,6 +14,8 @@ function Header({ loginUser }: IHeaderProps) {
   const [isAlarmOpen, setIsAlarmOpen] = useState(false);
 
   const router = useRouter();
+
+  // login 확인
   useEffect(() => {
     if (loginUser) {
       if (loginUser?.id) {
@@ -22,11 +24,12 @@ function Header({ loginUser }: IHeaderProps) {
     }
   }, [loginUser]);
 
+  // 다른 페이지로 이동
   const handleNavigate = useCallback(
     (pathname: string) => {
-      if (pathname === "/profile") {
+      if (pathname === "/mypage") {
         if (isLogin) {
-          router.push(pathname + `/${loginUser?.id}`);
+          router.push("/mypage");
         } else {
           alert("로그인이 필요한 서비스입니다.");
           router.push("/start/signin");
@@ -35,7 +38,7 @@ function Header({ loginUser }: IHeaderProps) {
         router.push(pathname);
       }
     },
-    [router, isLogin, loginUser]
+    [router, isLogin]
   );
 
   return (
@@ -101,7 +104,7 @@ function Header({ loginUser }: IHeaderProps) {
                   className="aspect-square w-[4.3rem] cursor-pointer rounded-full"
                   src={getImageUrl(loginUser?.avatarImg)}
                   alt="profile"
-                  onClick={() => handleNavigate(`/profile/${loginUser?.id}`)}
+                  onClick={() => handleNavigate(`/mypage`)}
                   priority={true}
                 />
               ) : (
@@ -136,7 +139,7 @@ const styles = {
 
 const navs = [
   { id: 0, name: "홈", pathname: "/" },
-  { id: 1, name: "마이페이지", pathname: `/profile` },
+  { id: 1, name: "마이페이지", pathname: `/mypage` },
   { id: 2, name: "스터디 게시판", pathname: "/study" },
 ];
 

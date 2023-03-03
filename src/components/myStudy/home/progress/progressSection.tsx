@@ -1,6 +1,10 @@
-import SettingTime from "@components/myStudy/home/progress/settingTime";
+import dynamic from "next/dynamic";
 import { useCallback, useState } from "react";
 import LineProgressBar from "../../../../elements/lineProgressBar";
+
+const SettingTime = dynamic(
+  () => import("@components/myStudy/home/progress/settingTime")
+);
 
 const ProgressSection = () => {
   const [isSetting, setIsSetting] = useState(false);
@@ -12,7 +16,7 @@ const ProgressSection = () => {
       <LineProgressBar onClick={onClickSetting} />
       {isSetting && (
         <div className="absolute right-[3rem] top-[6rem] flex w-[30rem] flex-col space-y-[2.6rem] ">
-          <SettingTime onClick={onClickSetting} />
+          <SettingTime onCloseModal={onClickSetting} />
         </div>
       )}
     </section>

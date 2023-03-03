@@ -1,29 +1,21 @@
-import StudyRoomApi from "@apis/query/studyRoomApi";
+import { IMyStudy } from "@allTypes/studyRoom";
 import { TNumber } from "@elements/icon";
-import { useRouter } from "next/router";
 import { useCallback, useState } from "react";
 import OhterStudyList from "./ohterStudyList";
-
 import StudyItem from "./studyItem";
 
-const StudyListSection = () => {
-  const router = useRouter();
-  const { id } = router.query;
-  const { data: myStudyData } = StudyRoomApi.ReadStudy(id + "");
+interface IProps {
+  myStudyData: IMyStudy;
+}
+
+const StudyListSection = ({ myStudyData }: IProps) => {
   const [isSpread, setIsSpread] = useState(false);
 
+  // 리스트 보여주기 / 끄기
   const handleToggle = useCallback(() => {
     setIsSpread((prev) => !prev);
   }, []);
 
-  // const handleNavigate = useCallback(
-  //   (num: string) => {
-  //     router.push(`/myStudy/${num}`);
-  //   },
-  //   [router]
-  // );
-
-  // ArrowSvg 클릭 시에 내가 속한 그룹 정보들 조회
   return (
     <section className="relative flex flex-col space-y-[0.6rem]">
       {myStudyData && (

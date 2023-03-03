@@ -8,6 +8,7 @@ import {
 } from "@allTypes/studyRoom";
 import { instance } from "@apis/axios";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import initialData from "@apis/initialData/initialData";
 
 /** 스터디룸 조회 */
 const ReadStudy = (studyId: string) => {
@@ -19,6 +20,8 @@ const ReadStudy = (studyId: string) => {
     },
     {
       refetchOnWindowFocus: false,
+      placeholderData: initialData.myStudyInitialData,
+      enabled: !!studyId,
     }
   );
 };
@@ -54,13 +57,22 @@ const ReadMemberList = (studyId: string) => {
 };
 
 /** 그룹의 목표 시간을 설정   */
-const SetGroupTargetTime = ({ studyId, targetTime }: ITargetTimeProps) => {
-  return useMutation(async () => {
-    const response = await instance.post(`/myStudy/${studyId}/targetTime`, {
-      targetTime,
-    });
-    return response;
-  });
+const SetGroupTargetTime = (studyId: string) => {
+  const queryClient = useQueryClient();
+  return useMutation(
+    async ({ targetTime }: ITargetTimeProps) => {
+      const response = await instance.put(
+        `/api/myStudy/${studyId}/targetTime`,
+        {
+          targetTime,
+        }
+      );
+      return response;
+    },
+    {
+      onSuccess: () => queryClient.invalidateQueries(["myStudy", studyId]),
+    }
+  );
 };
 
 /** 스터디 상태 변경 */

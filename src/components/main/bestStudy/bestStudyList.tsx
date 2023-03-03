@@ -1,6 +1,6 @@
 import studyApi from "@apis/query/studyApi";
 import { studyCategoryAtom } from "@atoms/studyAtom";
-import ColumnCategory from "@components/common/columnCategory";
+import ColumnCategory from "@components/common/category/columnCategory";
 import Link from "next/link";
 import { useRecoilValue } from "recoil";
 import BestStudyCard from "./bestStudyCard";

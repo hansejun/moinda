@@ -1,4 +1,3 @@
-import { removeCookieToken } from "@apis/cookie";
 import profileApi from "@apis/query/profile";
 import { logout } from "@apis/query/userApi";
 import CheckInBtn from "@components/common/checkInBtn";
@@ -6,20 +5,22 @@ import getStudyKinds from "@utils/client/getStudyKinds";
 import { useRouter } from "next/router";
 import { useCallback, useMemo } from "react";
 
-const CurrentSituation = ({ id }: { id: string }) => {
-  const { data } = profileApi.ReadUser(id as string);
-
+const CurrentSituation = () => {
+  const { data } = profileApi.ReadUser();
   const router = useRouter();
+
+  // 로그아웃
   const handleLogout = useCallback(async () => {
     await logout();
     router.push("/");
   }, [router]);
 
+  // 스터디 현황 (완료 / 참여중 / 개설) 분류
   const studyStatusList = useMemo(() => {
     if (!data) return {};
     const { studyList } = data;
-    return getStudyKinds(studyList, id);
-  }, [id, data]);
+    return getStudyKinds(studyList, data?.id + "");
+  }, [data]);
 
   return (
     <div className="flex min-h-[26.5rem] flex-col space-y-[1.8rem] rounded-[1rem] bg-white px-[3rem] py-[2.4rem]">
@@ -47,15 +48,3 @@ const CurrentSituation = ({ id }: { id: string }) => {
 };
 
 export default CurrentSituation;
-
-const users = [
-  { work: "완료", num: 1 },
-  { work: "참여중", num: 2 },
-  { work: "개설", num: 3 },
-];
-
-const studyStatus = [];
-
-// RECRUIT
-//   PROGRESS
-//   COMPLETE

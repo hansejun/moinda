@@ -28,7 +28,7 @@ const ProfileEditModal = ({ setIsSetting, user }: IProfileModal) => {
   const { register, setValue, handleSubmit, watch } =
     useForm<TProfileEditData>();
   const [avatarPreview, setAvatarPreview] = useState("");
-  const { mutate: editProfile } = profileApi.EditUser(user?.id + "");
+  const { mutate: editProfile } = profileApi.EditUser();
   const avatarImg = watch("avatarImg");
 
   // 모달 종료

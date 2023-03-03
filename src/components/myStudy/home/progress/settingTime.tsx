@@ -2,23 +2,37 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import CancelSvg from "@assets/svg/cancelSvg";
 import "swiper/css";
 import cls from "@utils/client/cls";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import StudyRoomApi from "@apis/query/studyRoomApi";
+import { useRouter } from "next/router";
 const TIME_HOURS = Array.from(Array(24).keys());
 const TIME_MINUTES = Array(12)
   .fill(0)
   .map((num, i) => i * 5);
 
 type TSettingTime = {
-  onClick: () => void;
+  onCloseModal: () => void;
 };
-const SettingTime = ({ onClick }: TSettingTime) => {
+const SettingTime = ({ onCloseModal }: TSettingTime) => {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
+  const router = useRouter();
+  const { id } = router.query;
+  const { mutate: setTargetTime } = StudyRoomApi.SetGroupTargetTime(
+    id as string
+  );
+
+  // 그룹 목표시간 설정
+  const handleSetTargetTime = useCallback(() => {
+    setTargetTime({ targetTime: hours * 60 + minutes });
+    onCloseModal();
+  }, [onCloseModal, setTargetTime, hours, minutes]);
+
   return (
     <div className="relative ml-[1rem] rounded-[1rem] bg-bgColor-100 p-[2rem] shadow-[0px_0px_5px_0px_rgba(0,0,0,0.1)]">
       <div className="relative flex justify-center">
         <span className="Cap3">목표시간</span>
-        <span onClick={onClick}>
+        <span onClick={onCloseModal}>
           <CancelSvg className="absolute right-0 w-[2rem] cursor-pointer" />
         </span>
       </div>
@@ -84,11 +98,14 @@ const SettingTime = ({ onClick }: TSettingTime) => {
       <div className="mt-[2rem] grid grid-cols-2 gap-[1.6rem]">
         <button
           className="Sub2 rounded-xl border border-primary-500"
-          onClick={onClick}
+          onClick={onCloseModal}
         >
           취소
         </button>
-        <button className="Sub2 rounded-xl bg-primary-main py-[1rem] text-primary-100">
+        <button
+          className="Sub2 rounded-xl bg-primary-main py-[1rem] text-primary-100"
+          onClick={handleSetTargetTime}
+        >
           저장
         </button>
       </div>
