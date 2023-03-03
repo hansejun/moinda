@@ -34,7 +34,7 @@ const LineProgressBar = ({ onClick }: ILineProgress) => {
     if (!profile) return "0%";
     const { targetTime, totalTime } = profile;
     if (totalTime / targetTime >= 1) return "100%";
-    return `${((30 / targetTime) * 100) | 0}%`;
+    return `${((40 / targetTime) * 100) | 0}%`;
   }, [profile]);
 
   const barStyle = useCallback(() => {
