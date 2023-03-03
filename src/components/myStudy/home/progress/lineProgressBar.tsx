@@ -2,7 +2,7 @@ import StudyRoomApi from "@apis/query/studyRoomApi";
 import ArrowSvg from "@assets/svg/arrowSvg";
 import { iconBackgrounds } from "@elements/icon";
 import { useRouter } from "next/router";
-import { useMemo } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import { ReadMe } from "@apis/query/userApi";
 import cls from "@utils/client/cls";
 
@@ -12,7 +12,9 @@ interface ILineProgress {
 
 const LineProgressBar = ({ onClick }: ILineProgress) => {
   const router = useRouter();
+  const barRef = useRef<HTMLDivElement>(null);
   const { id } = router.query;
+
   const { data: myStudyData } = StudyRoomApi.ReadStudy(id + "");
   const { data: profile } = ReadMe();
 
@@ -40,10 +42,18 @@ const LineProgressBar = ({ onClick }: ILineProgress) => {
     const { targetTime } = myStudyData;
     const { totalTime } = profile;
     if (totalTime / targetTime >= 1) return "100%";
-    return `${((totalTime / targetTime) * 100) | 0}%`;
+    return `${((30 / targetTime) * 100) | 0}%`;
   }, [myStudyData, profile]);
 
-  console.log(progressPercent);
+  /** 바의 style width */
+  const barStyle = useCallback(() => {
+    if (!barRef?.current) return;
+    barRef.current.style.width = progressPercent;
+  }, [progressPercent]);
+
+  useEffect(() => {
+    barStyle();
+  }, [progressPercent, barStyle]);
   return (
     <div className="flex flex-col  rounded-[1rem] bg-white p-[3rem] text-primary-600">
       <div className="mb-[2.8rem] flex items-center justify-between">
@@ -79,11 +89,10 @@ const LineProgressBar = ({ onClick }: ILineProgress) => {
 
       <div className="relative   h-[2rem]  overflow-hidden rounded-[2.1rem] bg-primary-200">
         <div
+          ref={barRef}
           className={cls(
-            `
-            absolute left-0 top-0 h-[2rem] rounded-[2.1rem]`,
-            myStudyData ? iconBackgrounds[myStudyData.icon] : "bg-primary-200",
-            myStudyData && profile && `w-[${progressPercent}]`
+            `absolute left-0 top-0 h-[2rem] rounded-[2.1rem]`,
+            myStudyData ? iconBackgrounds[myStudyData.icon] : "bg-primary-200"
           )}
         />
       </div>

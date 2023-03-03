@@ -1,5 +1,5 @@
 import ArrowSvg from "@assets/svg/arrowSvg";
-import { useMemo } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import cls from "@utils/client/cls";
 import profileApi from "@apis/query/profile";
 
@@ -9,6 +9,7 @@ interface ILineProgress {
 
 const LineProgressBar = ({ onClick }: ILineProgress) => {
   const { data: profile } = profileApi.ReadUser();
+  const barRef = useRef<HTMLDivElement>(null);
 
   // 목표시간
   const targetTime = useMemo(() => {
@@ -32,16 +33,18 @@ const LineProgressBar = ({ onClick }: ILineProgress) => {
   const progressPercent = useMemo(() => {
     if (!profile) return "0%";
     const { targetTime, totalTime } = profile;
-
     if (totalTime / targetTime >= 1) return "100%";
     return `${((30 / targetTime) * 100) | 0}%`;
   }, [profile]);
 
-  const progressStyle = useMemo(() => {
-    return `w-[${progressPercent}]`;
+  const barStyle = useCallback(() => {
+    if (!barRef?.current) return;
+    barRef.current.style.width = progressPercent;
   }, [progressPercent]);
 
-  console.log(progressStyle);
+  useEffect(() => {
+    barStyle();
+  }, [progressPercent, barStyle]);
 
   return (
     <div className="flex flex-col  rounded-[1rem] bg-white p-[3rem] text-primary-600">
@@ -78,10 +81,9 @@ const LineProgressBar = ({ onClick }: ILineProgress) => {
 
       <div className="relative   h-[2rem]  overflow-hidden rounded-[2.1rem] bg-primary-200">
         <div
+          ref={barRef}
           className={cls(
-            `
-            absolute left-0 top-0 h-[2rem] rounded-[2.1rem] bg-red-300`,
-            profile && progressStyle
+            `absolute left-0 top-0 h-[2rem] rounded-[2.1rem] bg-gradient-to-r from-primary-sub1 to-primary-main`
           )}
         />
       </div>
