@@ -27,11 +27,11 @@ const ReadStudy = (studyId: string) => {
 };
 
 /** 본인이 속한 스터디 그룹들을 조회 */
-const ReadStudyList = () => {
+const ReadStudyList = (count?: number) => {
   return useQuery<IMyStudyWithMember[], AxiosError, IMyStudy[]>(
     ["myStudyList"],
     async () => {
-      const { data } = await instance.get(`/api/myStudy`);
+      const { data } = await instance.get(`/api/myStudy?count=${count}`);
       return data;
     },
     {

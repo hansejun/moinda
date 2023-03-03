@@ -34,6 +34,22 @@ const EditUser = () => {
   );
 };
 
-const profileApi = { ReadUser, EditUser };
+/** 내 목표시간 설정 */
+const SetTargetTime = () => {
+  const queryClient = useQueryClient();
+  return useMutation(
+    async ({ targetTime }: { targetTime: number }) => {
+      const response = await instance.put(`/api/mypage/targetTime`, {
+        targetTime,
+      });
+      return response;
+    },
+    {
+      onSuccess: () => queryClient.invalidateQueries(["mypage"]),
+    }
+  );
+};
+
+const profileApi = { ReadUser, EditUser, SetTargetTime };
 
 export default profileApi;

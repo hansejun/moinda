@@ -3,9 +3,10 @@ import { useCallback, useState } from "react";
 import LineProgressBar from "./lineProgressBar";
 
 const SettingTime = dynamic(
-  () => import("@components/myStudy/home/progress/settingTime")
+  () => import("@components/profile/progress/settingTime")
 );
 
+// profile lineProgress
 const ProgressSection = () => {
   const [isSetting, setIsSetting] = useState(false);
   const onClickSetting = useCallback(() => {

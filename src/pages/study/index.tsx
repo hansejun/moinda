@@ -1,10 +1,7 @@
 import { IPageProps } from "@allTypes/props";
 import CustomHead from "@components/layout/head";
 import Layout from "@components/layout/layout";
-//import BestTag from "@components/studyCommon/bestTag";
 import CategoryBtn from "@components/common/category/categoryBtn";
-//import ParticipatingStudy from "@components/studyCommon/participatingStudy";
-//import Pomodoro from "@components/main/pomodoro";
 import CategoryStudyList from "@components/study/studyList/categoryStudyList";
 import RecommendStudyList from "@components/study/studyList/recommendStudyList";
 import ColumnCategory from "@components/common/category/columnCategory";
@@ -16,15 +13,15 @@ import { studyCategoryAtom } from "@atoms/studyAtom";
 import dynamic from "next/dynamic";
 
 const ParticipatingStudy = dynamic(
-  () => import("@components/main/participatingStudy"),
+  () => import("@components/common/paricipating/studyList"),
   { ssr: false }
 );
 
-const Pomodoro = dynamic(() => import("@components/main/pomodoro"), {
+const Pomodoro = dynamic(() => import("@components/common/pomodoro/pomodoro"), {
   ssr: false,
 });
 
-const BestTag = dynamic(() => import("@components/common/bestTag"), {
+const BestTag = dynamic(() => import("@components/common/bestTag/bestTag"), {
   ssr: false,
 });
 
@@ -51,9 +48,11 @@ const StudyList: NextPage = ({ loginUser }: IPageProps) => {
           </div>
         </div>
         <div className=" hidden nm:flex nm:max-w-[40rem] nm:flex-col">
-          <div className="flex flex-col space-y-[1.8rem]">
-            <ParticipatingStudy />
-          </div>
+          {loginUser?.id && (
+            <div className="flex flex-col space-y-[1.8rem]">
+              <ParticipatingStudy />
+            </div>
+          )}
           <BestTag />
           <Pomodoro />
         </div>

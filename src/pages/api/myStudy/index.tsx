@@ -5,9 +5,11 @@ import withSession from "@utils/server/withSession";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { user } = req.session;
+  const { count } = req.query;
 
   const memberList = await client.member.findMany({
     where: { userId: user?.id },
+    take: Number(count) ? Number(count) : undefined,
     include: {
       study: {
         include: {

@@ -14,6 +14,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         avatarImg: true,
         score: true,
         totalTime: true,
+        targetTime: true,
         attendance: true,
         email: true,
       },

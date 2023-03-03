@@ -31,4 +31,5 @@ export interface IUser {
   avatarImg: string | null;
   totalTime: number;
   score: number;
+  targetTime: number;
 }

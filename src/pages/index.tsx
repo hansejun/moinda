@@ -2,11 +2,11 @@ import { IPageProps } from "@allTypes/props";
 import CustomHead from "@components/layout/head";
 import Layout from "@components/layout/layout";
 import BestStudyList from "@components/main/bestStudy/bestStudyList";
-import BestTag from "@components/common/bestTag";
+import BestTag from "@components/common/bestTag/bestTag";
 import CategoryBtn from "@components/common/category/categoryBtn";
 import NewStudy from "@components/main/newStudy/newStudy";
-import ParticipatingStudy from "@components/main/participatingStudy";
-import Pomodoro from "@components/main/pomodoro";
+import ParticipatingStudy from "@components/common/paricipating/studyList";
+import Pomodoro from "@components/common/pomodoro/pomodoro";
 import withSessionSsr from "@utils/client/withSessionSsr";
 import type { NextPage } from "next";
 import { useSetRecoilState } from "recoil";
@@ -29,9 +29,12 @@ const Home: NextPage = ({ loginUser }: IPageProps) => {
           <NewStudy />
         </div>
         <div className="hidden nm:flex nm:max-w-[40rem] nm:flex-col ">
-          <div className="flex flex-col space-y-[1.8rem]">
-            <ParticipatingStudy />
-          </div>
+          {loginUser?.id && (
+            <div className="flex flex-col space-y-[1.8rem]">
+              <ParticipatingStudy />
+            </div>
+          )}
+
           <BestTag />
           <Pomodoro />
         </div>
