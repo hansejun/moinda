@@ -3,8 +3,8 @@ const updateAttendanceTable = require("./update");
 
 const rule = new schedule.RecurrenceRule();
 rule.tz = "Asia/Seoul";
-rule.hour = 5;
-rule.minute = 0;
+rule.hour = 2;
+rule.minute = 10;
 
 const job = schedule.scheduleJob(rule, async function () {
   try {
