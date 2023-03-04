@@ -1,6 +1,7 @@
+import { NextApiRequest, NextApiResponse } from "next";
 import client from "@utils/server/client";
 
-export default async function handler(req, res) {
+export default async function handler(_: NextApiRequest, res: NextApiResponse) {
   await client.attendance.updateMany({
     data: {
       checkIn: null,

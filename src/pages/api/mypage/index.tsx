@@ -5,6 +5,7 @@ import withSession from "@utils/server/withSession";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { user } = req.session;
+  console.log(user);
   try {
     const profile = await client.user.findUnique({
       where: { id: user.id },
@@ -35,6 +36,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       },
     });
     const studyList = memberList.map((member) => ({ ...member.study }));
+    console.log(studyList);
     res.status(200).json({ ...profile, studyList });
   } catch (e) {
     res.status(400).send("프로필 페이지 조회에 실패하였습니다.");
