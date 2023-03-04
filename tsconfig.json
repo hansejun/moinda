@@ -28,6 +28,12 @@
       "@atoms/*": ["./atoms/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/update.ts",
+    "schedule.js"
+  ],
   "exclude": ["node_modules"]
 }
