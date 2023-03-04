@@ -9,5 +9,5 @@ export default async function handler(_: NextApiRequest, res: NextApiResponse) {
       todayTime: 0,
     },
   });
-  res.status(200).end("Cron job started successfully");
+  res.status(200).end("Cron job started successfully!");
 }
