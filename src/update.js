@@ -1,15 +1,19 @@
-import { PrismaClient } from "@prisma/client";
+const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 
 const updateAttendanceTable = async () => {
-  await prisma.attendance.updateMany({
-    data: {
-      checkIn: null,
-      log: null,
-      todayTime: 0,
-    },
-  });
+  try {
+    await prisma.attendance.updateMany({
+      data: {
+        checkIn: null,
+        log: null,
+        todayTime: 0,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-export default updateAttendanceTable;
+module.exports = updateAttendanceTable;
