@@ -23,7 +23,7 @@ const LineProgressBar = ({ onClick }: ILineProgress) => {
   // 내 공부 시간
   const myStudyTime = useMemo(() => {
     if (!profile) return "00h 00m";
-    const time = profile.totalTime;
+    const time = (profile.attendance.todayTime / 60) | 0;
     const hours = ((time / 60) | 0).toString().padStart(2, "0");
     const minutes = (time % 60 || 0).toString().padStart(2, "0");
     return `${hours}h ${minutes}m`;
@@ -32,9 +32,13 @@ const LineProgressBar = ({ onClick }: ILineProgress) => {
   /** 진행률 */
   const progressPercent = useMemo(() => {
     if (!profile) return "0%";
-    const { targetTime, totalTime } = profile;
+    const {
+      targetTime,
+      attendance: { todayTime },
+    } = profile;
+    const totalTime = Math.floor(todayTime / 60);
     if (totalTime / targetTime >= 1) return "100%";
-    return `${((40 / targetTime) * 100) | 0}%`;
+    return `${((totalTime / targetTime) * 100) | 0}%`;
   }, [profile]);
 
   const barStyle = useCallback(() => {

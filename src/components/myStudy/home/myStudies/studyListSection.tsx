@@ -16,6 +16,11 @@ const StudyListSection = ({ myStudyData }: IProps) => {
     setIsSpread((prev) => !prev);
   }, []);
 
+  // 리스트 닫기
+  const handleCloseList = useCallback(() => {
+    setIsSpread(false);
+  }, []);
+
   return (
     <section className="relative flex flex-col space-y-[0.6rem]">
       {myStudyData && (
@@ -27,7 +32,9 @@ const StudyListSection = ({ myStudyData }: IProps) => {
         />
       )}
 
-      {isSpread && <OhterStudyList id={myStudyData?.id + ""} />}
+      {isSpread && (
+        <OhterStudyList onClick={handleCloseList} id={myStudyData?.id + ""} />
+      )}
     </section>
   );
 };

@@ -1,4 +1,5 @@
 import StudyRoomApi from "@apis/query/studyRoomApi";
+import AttendanceBtn from "@components/common/attendance/attendanceBtns";
 import Icons from "@elements/icon";
 import cls from "@utils/client/cls";
 import Image from "next/image";
@@ -30,13 +31,7 @@ const ParticipatingStudyList = () => {
           <ParticipatingStudyItem key={study?.id} study={study} />
         ))}
       </ul>
-      <button
-        className={cls(
-          "Sub2 h-[6.8rem] rounded-[1rem] bg-primary-main text-white "
-        )}
-      >
-        오늘 출석체크
-      </button>
+      <AttendanceBtn />
     </>
   );
 };

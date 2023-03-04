@@ -1,10 +1,12 @@
 import profileApi from "@apis/query/profile";
 import { logout } from "@apis/query/userApi";
 import CheckInBtn from "@components/common/checkInBtn";
+import AttendanceBtn from "@components/common/attendance/attendanceBtns";
 import getStudyKinds from "@utils/client/getStudyKinds";
 import { useRouter } from "next/router";
 import { useCallback, useMemo } from "react";
 
+/** 스터디 현황 페이지 */
 const CurrentSituation = () => {
   const { data } = profileApi.ReadUser();
   const router = useRouter();
@@ -36,7 +38,7 @@ const CurrentSituation = () => {
           </div>
         ))}
       </div>
-      <CheckInBtn />
+      <AttendanceBtn />
       <button
         className="Sub2 h-[6.8rem] rounded-[1rem] border  border-primary-400 bg-white text-primary-500 underline lg:hidden"
         onClick={handleLogout}

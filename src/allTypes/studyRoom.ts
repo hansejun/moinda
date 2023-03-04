@@ -1,3 +1,4 @@
+import { IUser } from "./user";
 import { TNumber } from "@elements/icon";
 import { IHashtag, TStudyCategory } from "./study";
 
@@ -57,4 +58,9 @@ export interface IMember {
   avatarImg: string;
   checkIn: Date;
   todayTime: number;
+}
+
+// 맴버 출석 조회
+export interface IMemberWithUser extends IMember {
+  user: IUser;
 }

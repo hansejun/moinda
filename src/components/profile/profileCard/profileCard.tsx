@@ -17,6 +17,15 @@ const ProfileCard = () => {
     setIsSetting((prev) => !prev);
   }, []);
 
+  // 내 공부 시간
+  const myStudyTime = useMemo(() => {
+    if (!user) return "00h 00m";
+    const time = (user.totalTime / 60) | 0;
+    const hours = ((time / 60) | 0).toString().padStart(2, "0");
+    const minutes = (time % 60).toString().padStart(2, "0");
+    return `${hours}h ${minutes}m`;
+  }, [user]);
+
   return (
     <>
       <div className="h-[33rem] rounded-[1rem] bg-white px-[2.4rem] py-[3rem]">
@@ -69,7 +78,7 @@ const ProfileCard = () => {
             </div>
             <div className="ml-[1.3rem]">
               <p className="Cap3 text-primary-500">누적 공부시간</p>
-              <p className="H2 text-primary-600">0h {user?.totalTime}m</p>
+              <p className="H2 text-primary-600">{myStudyTime}</p>
             </div>
           </div>
         </div>

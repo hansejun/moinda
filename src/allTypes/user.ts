@@ -1,3 +1,4 @@
+import { IAttendance } from "./attendance";
 export interface ILogin {
   email: string;
   password: string;
@@ -32,4 +33,5 @@ export interface IUser {
   totalTime: number;
   score: number;
   targetTime: number;
+  attendance?: IAttendance;
 }

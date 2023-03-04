@@ -5,6 +5,7 @@ import {
   IMyStudy,
   IMyStudyWithMember,
   ITargetTimeProps,
+  IMemberWithUser,
 } from "@allTypes/studyRoom";
 import { instance } from "@apis/axios";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -44,14 +45,16 @@ const ReadStudyList = (count?: number) => {
 
 /** 스터디룸 스터디원 출석 조회 */
 const ReadMemberList = (studyId: string) => {
-  return useQuery(
+  return useQuery<IMemberWithUser[]>(
     ["members", studyId],
     async () => {
-      const { data } = await instance.get(`/myStudy/${studyId}/room/members`);
+      const { data } = await instance.get(`/api/myStudy/${studyId}/members`);
       return data;
     },
     {
       refetchOnWindowFocus: false,
+      refetchOnMount: false,
+      staleTime: Infinity,
     }
   );
 };
