@@ -97,13 +97,13 @@ const SettingTime = ({ onCloseModal }: TSettingTime) => {
       </div>
       <div className="mt-[2rem] grid grid-cols-2 gap-[1.6rem]">
         <button
-          className="Sub2 rounded-xl border border-primary-500"
+          className="Sub2 z-[999] rounded-xl border  border-primary-500"
           onClick={onCloseModal}
         >
           취소
         </button>
         <button
-          className="Sub2 rounded-xl bg-primary-main py-[1rem] text-primary-100"
+          className="Sub2 z-[999] rounded-xl bg-primary-main py-[1rem] text-primary-100"
           onClick={handleSetTargetTime}
         >
           저장

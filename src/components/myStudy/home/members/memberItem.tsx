@@ -1,5 +1,7 @@
 import { IUser } from "@allTypes/user";
+import getImageUrl from "@utils/client/getImageUrl";
 import dayjs from "dayjs";
+import Image from "next/image";
 import React, { useMemo } from "react";
 
 interface IProps {
@@ -29,7 +31,24 @@ const MemberItem = ({ user }: IProps) => {
       key={user.id}
       className="grid grid-cols-[6fr_8.6fr_8.6fr] items-center border-b p-[2.2rem_1.1rem] last:border-none last:pb-0"
     >
-      <div className={`aspect-square w-[3rem] rounded-lg bg-red-300`} />
+      {user.avatarImg ? (
+        <Image
+          className="aspect-square w-[3rem] rounded-lg object-cover"
+          src={getImageUrl(user.avatarImg)}
+          alt="avatar"
+          width={30}
+          height={30}
+          priority
+        />
+      ) : (
+        <div
+          className="flex-center Cap4 aspect-square w-[3rem] cursor-pointer 
+              rounded-full bg-[#9DA9B4]"
+        >
+          {user?.nickname.slice(0, 2)}
+        </div>
+      )}
+
       <span className="Cap4">{viewCheckIn}</span>
       <span className="Cap4 text-center">{viewTodayTime}</span>
     </li>
