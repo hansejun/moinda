@@ -37,7 +37,6 @@ const ChatList = ({ roomId }: IProps) => {
     const roomMessagesQuery = getMessages();
     onSnapshot(roomMessagesQuery, (snapshot) => {
       const updatedMessages = snapshot.docs.map((doc) => {
-        console.log(doc, "dc");
         return { id: doc.id, ...doc.data() };
       });
       setChats(updatedMessages.reverse() as any);
