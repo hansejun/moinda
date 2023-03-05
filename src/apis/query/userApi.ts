@@ -1,4 +1,4 @@
-import { ICheckEmail, ICheckNickname } from "@allTypes/user";
+import { ICheckEmail, ICheckNickname, IUser } from "@allTypes/user";
 import { ILogin, ISignUp } from "allTypes/user";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
@@ -32,7 +32,7 @@ export const checkNickname = async (data: ICheckNickname) => {
 
 /** 로그인 정보 가져오는 api */
 export const ReadMe = () => {
-  return useQuery(
+  return useQuery<IUser>(
     ["loginUser"],
     async () => {
       const response = await instance.get("/api/user/me");
