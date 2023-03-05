@@ -13,7 +13,6 @@ import KakaoSvg from "@assets/svg/kakaoSvg";
 import { logIn } from "@apis/query/userApi";
 import { useRouter } from "next/router";
 import { useSetRecoilState } from "recoil";
-import { userAtom } from "@atoms/userAtom";
 
 const styles = {
   socialWrapper: "flex flex-col items-center",
@@ -24,7 +23,6 @@ const styles = {
 
 const Login = () => {
   const router = useRouter();
-  const setUser = useSetRecoilState(userAtom);
 
   const {
     register,
@@ -41,14 +39,12 @@ const Login = () => {
           data: { user },
         } = await logIn(data);
 
-        setUser(user);
-
         router.replace("/");
       } catch (e) {
         alert("로그인 실패");
       }
     },
-    [setUser, router]
+    [router]
   );
 
   // 카카오 로그인 버튼
