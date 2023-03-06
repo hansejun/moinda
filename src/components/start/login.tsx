@@ -12,7 +12,6 @@ import GoogleSvg from "@assets/svg/googleSvg";
 import KakaoSvg from "@assets/svg/kakaoSvg";
 import { logIn } from "@apis/query/userApi";
 import { useRouter } from "next/router";
-import { useSetRecoilState } from "recoil";
 
 const styles = {
   socialWrapper: "flex flex-col items-center",

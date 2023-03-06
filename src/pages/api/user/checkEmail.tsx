@@ -15,16 +15,21 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
     // 이메일 인증번호 생성해서 프론트로 전달.
     const payload = Math.floor(100000 + Math.random() * 900000) + "";
-    const sendMail = await mail.send({
-      from: "tpwnszja2@gmail.com",
+
+    console.log(process.env.SENDGRID_API_KEY);
+    const response = await mail.send({
+      from: "vyct7612@gmail.com",
       to: email,
       subject: "모인다 이메일 인증번호 입니다.",
       text: `인증번호는 ${payload}`,
       html: `인증번호는 <strong>${payload}</strong>`,
     });
+
+    console.log(response, process.env.SENDGRID_API_KEY);
+
     return res.status(201).json({ payload });
   } catch (e) {
-    return res.status(401).send("이메일 인증에 실패하였습니다.");
+    return res.status(400).send("이메일 인증에 실패하였습니다.");
   }
 }
 
