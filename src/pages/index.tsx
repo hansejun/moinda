@@ -5,20 +5,24 @@ import BestStudyList from "@components/main/bestStudy/bestStudyList";
 import BestTag from "@components/common/bestTag/bestTag";
 import CategoryBtn from "@components/common/category/categoryBtn";
 import NewStudy from "@components/main/newStudy/newStudy";
-import ParticipatingStudy from "@components/common/paricipating/studyList";
 import Pomodoro from "@components/common/pomodoro/pomodoro";
-import withSessionSsr from "@utils/client/withSessionSsr";
 import type { NextPage } from "next";
-import { useSetRecoilState } from "recoil";
-import { studyCategoryAtom } from "@atoms/studyAtom";
-import { useEffect } from "react";
+import { withIronSessionSsr } from "iron-session/next";
+import loginAndPrivateValid from "@utils/client/loginAndPrivateValid";
+import { dehydrate, QueryClient } from "@tanstack/react-query";
+import { readAttendanceApi } from "@apis/query/attendance";
+import { readMyStudyListApi } from "@apis/query/studyRoomApi";
+import {
+  readNewStudyListApi,
+  readRecommendStudyListApi,
+} from "@apis/query/studyApi";
+import dynamic from "next/dynamic";
+
+const ParticipatingStudy = dynamic(
+  () => import("@components/common/paricipating/studyList")
+);
 
 const Home: NextPage = ({ loginUser }: IPageProps) => {
-  const setCategory = useSetRecoilState(studyCategoryAtom);
-
-  useEffect(() => {
-    return () => setCategory("TOTAL");
-  }, [setCategory]);
   return (
     <Layout loginUser={loginUser}>
       <CustomHead />
@@ -45,4 +49,31 @@ const Home: NextPage = ({ loginUser }: IPageProps) => {
 
 export default Home;
 
-export const getServerSideProps = withSessionSsr({ isPrivate: false });
+export const getServerSideProps = withIronSessionSsr(
+  async ({ req, res, query }) => {
+    const loginUser = loginAndPrivateValid({ req, res, isPrivate: false });
+
+    const queryClient = new QueryClient();
+    await Promise.all([
+      queryClient.prefetchQuery(["attendance"], readAttendanceApi),
+      queryClient.prefetchQuery(["myStudyList"], () => readMyStudyListApi(3)),
+      queryClient.prefetchQuery(["studyList", "TOTAL"], () =>
+        readNewStudyListApi({ category: "TOTAL", count: 4 })
+      ),
+      queryClient.prefetchQuery(["recommendStudyList", "TOTAL"], () =>
+        readRecommendStudyListApi({ category: "TOTAL", count: 5 })
+      ),
+    ]);
+
+    return {
+      props: {
+        loginUser,
+        dehydratedState: dehydrate(queryClient),
+      },
+    };
+  },
+  {
+    password: process.env.SESSION_PASSWORD!,
+    cookieName: "Authorization",
+  }
+);

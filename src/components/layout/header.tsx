@@ -1,4 +1,5 @@
 import { IHeaderProps } from "@allTypes/props";
+import alarmApis from "@apis/query/alarm";
 import BellSvg from "@assets/svg/bellSvg";
 import SearchSvg from "@assets/svg/searchSvg";
 import AlarmModal from "@components/common/alarm/alarmModal";
@@ -12,7 +13,7 @@ import { useCallback, useEffect, useState } from "react";
 function Header({ loginUser }: IHeaderProps) {
   const [isLogin, setIsLogin] = useState(false);
   const [isAlarmOpen, setIsAlarmOpen] = useState(false);
-
+  const { data: alarmList } = alarmApis.ReadAlarms();
   const router = useRouter();
 
   // login 확인
@@ -92,7 +93,9 @@ function Header({ loginUser }: IHeaderProps) {
                   className="flex-center relative h-[3rem] w-[3rem] cursor-pointer p-2  hover:text-primary-500"
                 >
                   <BellSvg className="h-[2.5rem] w-[2.5rem]" />
-                  <span className=" absolute right-[0.4rem] bottom-[0.4rem] h-[0.9rem] w-[0.9rem] cursor-pointer rounded-full bg-primary-main"></span>
+                  {alarmList?.length! > 0 && (
+                    <span className=" absolute right-[0.4rem] bottom-[0.4rem] h-[0.9rem] w-[0.9rem] cursor-pointer rounded-full bg-primary-main"></span>
+                  )}
                 </span>
 
                 {isAlarmOpen && <AlarmModal setIsAlarmOpen={setIsAlarmOpen} />}

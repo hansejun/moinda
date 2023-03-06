@@ -3,18 +3,17 @@ import { IProfileResponse } from "@allTypes/profile";
 import instance from "@apis/axios";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
+export const readMypageApi = async () => {
+  const response = await instance.get(`/api/mypage`);
+  return response.data;
+};
+
 /** 프로필 정보 조회 */
 const ReadUser = () => {
-  return useQuery<IProfileResponse>(
-    ["mypage"],
-    async () => {
-      const response = await instance.get(`/api/mypage`);
-      return response.data;
-    },
-    {
-      refetchOnWindowFocus: false,
-    }
-  );
+  return useQuery<IProfileResponse>(["mypage"], readMypageApi, {
+    refetchOnWindowFocus: false,
+    retry: 0,
+  });
 };
 
 /** 프로필 수정 */

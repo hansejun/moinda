@@ -9,6 +9,11 @@ import React from "react";
 import withSessionSsr from "@utils/client/withSessionSsr";
 import { IPageProps } from "@allTypes/props";
 import ProgressSection from "@components/profile/progress/progressSection";
+import { withIronSessionSsr } from "iron-session/next";
+import loginAndPrivateValid from "@utils/client/loginAndPrivateValid";
+import { dehydrate, QueryClient } from "@tanstack/react-query";
+import { readAttendanceApi } from "@apis/query/attendance";
+import { readMypageApi } from "@apis/query/profile";
 
 const Mypage = ({ loginUser }: IPageProps) => {
   return (
@@ -36,4 +41,24 @@ const Mypage = ({ loginUser }: IPageProps) => {
 
 export default Mypage;
 
-export const getServerSideProps = withSessionSsr({});
+export const getServerSideProps = withIronSessionSsr(
+  async ({ req, res }) => {
+    const loginUser = loginAndPrivateValid({ req, res, isPrivate: true });
+
+    const queryClient = new QueryClient();
+    await Promise.all([
+      queryClient.prefetchQuery(["attendance"], readAttendanceApi),
+      queryClient.prefetchQuery(["mypage"], readMypageApi),
+    ]);
+    return {
+      props: {
+        loginUser,
+        dehydratedState: dehydrate(queryClient),
+      },
+    };
+  },
+  {
+    password: process.env.SESSION_PASSWORD!,
+    cookieName: "Authorization",
+  }
+);

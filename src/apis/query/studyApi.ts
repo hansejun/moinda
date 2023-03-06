@@ -8,6 +8,18 @@ const AddStudy = async (data: IWrite) => {
   return response.data;
 };
 
+export const readNewStudyListApi = async ({
+  category = "TOTAL",
+  count,
+  page,
+}: INewStudyListProps) => {
+  const { data } = await axios.get(
+    `/api/study?category=${category}&count=${count}&page=${page}`
+  );
+
+  return data;
+};
+
 /** 새로운 스터디 목록 조회하기 */
 const ReadNewStudyList = ({
   category = "TOTAL",
@@ -16,17 +28,22 @@ const ReadNewStudyList = ({
 }: INewStudyListProps) => {
   return useQuery<IStudyWithUser[]>(
     ["studyList", category],
-    async () => {
-      const { data } = await axios.get(
-        `/api/study?category=${category}&count=${count}&page=${page}`
-      );
-
-      return data;
-    },
+    () => readNewStudyListApi({ category, count, page }),
     {
+      refetchOnMount: false,
       refetchOnWindowFocus: false,
     }
   );
+};
+
+export const readRecommendStudyListApi = async ({
+  category,
+  count,
+}: INewStudyListProps) => {
+  const response = await axios.get(
+    `/api/study/recommend?category=${category}&count=${count}`
+  );
+  return response.data;
 };
 
 /** 추천 스터디 조회하기*/
@@ -36,12 +53,7 @@ const ReadRecommendStudyList = ({
 }: INewStudyListProps) => {
   return useQuery<IStudyWithUser[]>(
     ["recommendStudyList", category],
-    async () => {
-      const response = await axios.get(
-        `/api/study/recommend?category=${category}&count=${count}`
-      );
-      return response.data;
-    },
+    () => readRecommendStudyListApi({ category, count }),
     {
       staleTime: 60000,
       refetchOnWindowFocus: false,
@@ -50,16 +62,17 @@ const ReadRecommendStudyList = ({
   );
 };
 
+export const readStudyDetailApi = async (studyId: string) => {
+  const response = await axios.get(`/api/study/${studyId}`);
+  return response.data;
+};
+
 /** 스터디 디테일 페이지 조회하기 */
 const ReadStudyDetail = (studyId: string) => {
   return useQuery<IStudyWithUser>(
     ["studyDetail", studyId],
-    async () => {
-      const response = await axios.get(`/api/study/${studyId}`);
-      return response.data;
-    },
+    () => readStudyDetailApi(studyId),
     {
-      staleTime: Infinity,
       refetchOnMount: false,
       refetchOnWindowFocus: false,
     }

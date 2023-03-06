@@ -14,10 +14,17 @@ interface IUpdateAlarmRequest {
 
 /** 알림 조회 */
 const ReadAlarms = () => {
-  return useQuery<IAlarm[]>(["alarmList"], async () => {
-    const { data } = await instance.get("/api/alarm");
-    return data;
-  });
+  return useQuery<IAlarm[]>(
+    ["alarmList"],
+    async () => {
+      const { data } = await instance.get("/api/alarm");
+      return data;
+    },
+    {
+      retry: 0,
+      refetchOnWindowFocus: false,
+    }
+  );
 };
 
 /** 스터디 신청 알림 보내기 */
@@ -54,7 +61,22 @@ const RemoveAlarm = (alarmId: number) => {
       return response;
     },
     {
-      onSuccess: () => queryClient.invalidateQueries(["alarmList"]),
+      onMutate: async () => {
+        await queryClient.cancelQueries(["alarmList"]);
+        const prevAlarmList: IAlarm[] =
+          queryClient.getQueryData(["alarmList"]) || [];
+        queryClient.setQueryData(
+          ["alarmList"],
+          prevAlarmList.filter((alarm) => alarm.id !== alarmId)
+        );
+        return { prevAlarmList };
+      },
+      onError: (__, _, context) => {
+        if (context?.prevAlarmList) {
+          queryClient.setQueryData(["alarmList"], context.prevAlarmList);
+        }
+      },
+      onSettled: () => queryClient.invalidateQueries(["alarmList"]),
     }
   );
 };

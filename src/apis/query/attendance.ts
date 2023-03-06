@@ -1,20 +1,18 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
+export const readAttendanceApi = async () => {
+  const { data } = await axios.get("/api/attendance");
+  return data;
+};
+
 /** 출석 정보 조회 */
 const ReadAttendance = () => {
-  return useQuery(
-    ["attendance"],
-    async () => {
-      const { data } = await axios.get("/api/attendance");
-      return data;
-    },
-    {
-      staleTime: Infinity,
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-    }
-  );
+  return useQuery(["attendance"], readAttendanceApi, {
+    retry: 0,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+  });
 };
 
 /** 체크인 요청 */

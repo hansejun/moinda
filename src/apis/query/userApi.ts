@@ -30,19 +30,18 @@ export const checkNickname = async (data: ICheckNickname) => {
   return response;
 };
 
+export const readMeApi = async () => {
+  const response = await instance.get("/api/user/me");
+  return response.data;
+};
+
 /** 로그인 정보 가져오는 api */
 export const ReadMe = () => {
-  return useQuery<IUser>(
-    ["loginUser"],
-    async () => {
-      const response = await instance.get("/api/user/me");
-      return response.data;
-    },
-    {
-      retry: 0,
-      refetchOnWindowFocus: false,
-    }
-  );
+  return useQuery<IUser>(["loginUser"], readMeApi, {
+    retry: 0,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+  });
 };
 
 /** 로그아웃 api */

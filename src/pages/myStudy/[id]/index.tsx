@@ -1,17 +1,17 @@
 import { IPageProps } from "@allTypes/props";
-import StudyRoomApi from "@apis/query/studyRoomApi";
+import { readMemberListApi, readMyStudyApi } from "@apis/query/studyRoomApi";
+import { readMeApi } from "@apis/query/userApi";
 import CustomHead from "@components/layout/head";
 import Layout from "@components/layout/layout";
 import MyStudyHome from "@components/myStudy/home/myStudyHome";
 import SideNav from "@components/myStudy/sideNav";
-import withSessionSsr from "@utils/client/withSessionSsr";
-import { useRouter } from "next/router";
+import { dehydrate, QueryClient } from "@tanstack/react-query";
+import loginAndPrivateValid from "@utils/client/loginAndPrivateValid";
+import { withIronSessionSsr } from "iron-session/next";
 import React from "react";
+import { readAttendanceApi } from "@apis/query/attendance";
 
 const MyStudy = ({ loginUser }: IPageProps) => {
-  const router = useRouter();
-  const { id } = router.query;
-  const { data: myStudyData } = StudyRoomApi.ReadStudy(id + "");
   return (
     <Layout hasBgColor={true} isFullHeight loginUser={loginUser}>
       <CustomHead title="스터디 이름" />
@@ -26,4 +26,30 @@ const MyStudy = ({ loginUser }: IPageProps) => {
 
 export default MyStudy;
 
-export const getServerSideProps = withSessionSsr({ isPrivate: false });
+export const getServerSideProps = withIronSessionSsr(
+  async ({ req, res, query }) => {
+    const loginUser = loginAndPrivateValid({ req, res, isPrivate: true });
+    const { id } = query;
+    const queryClient = new QueryClient();
+    await Promise.all([
+      queryClient.prefetchQuery(["loginUser"], readMeApi),
+      queryClient.prefetchQuery(["members", "14"], () =>
+        readMemberListApi(id as string)
+      ),
+      queryClient.prefetchQuery(["attendance"], readAttendanceApi),
+      queryClient.prefetchQuery(["myStudy", "14"], () =>
+        readMyStudyApi(id as string)
+      ),
+    ]);
+    return {
+      props: {
+        loginUser,
+        dehydratedState: dehydrate(queryClient),
+      },
+    };
+  },
+  {
+    password: process.env.SESSION_PASSWORD!,
+    cookieName: "Authorization",
+  }
+);

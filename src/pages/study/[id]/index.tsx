@@ -1,14 +1,17 @@
 import { IPageProps } from "@allTypes/props";
 import alarmApis from "@apis/query/alarm";
-import studyApi from "@apis/query/studyApi";
+import studyApi, { readStudyDetailApi } from "@apis/query/studyApi";
 import CustomHead from "@components/layout/head";
 import Layout from "@components/layout/layout";
 import Icons from "@elements/icon";
+import { dehydrate, QueryClient } from "@tanstack/react-query";
 import { getStudyCategory } from "@utils/client/getEnum";
 import getImageUrl from "@utils/client/getImageUrl";
-import withSessionSsr from "@utils/client/withSessionSsr";
+import loginAndPrivateValid from "@utils/client/loginAndPrivateValid";
 import dayjs from "dayjs";
+import { withIronSessionSsr } from "iron-session/next";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useCallback } from "react";
 
@@ -112,9 +115,12 @@ const StudyDetail = ({ loginUser }: IPageProps) => {
           </div>
           <div className="flex items-center space-x-[2.2rem] ">
             <span className="Sub2 w-[9.2rem]">연락수단</span>
-            <a className="Cap2 rounded-[0.4rem] bg-[#FFE7D6] p-[0.2rem_0.8rem]">
+            <Link
+              href={study?.tel || ""}
+              className="Cap2 rounded-[0.4rem] bg-[#FFE7D6] p-[0.2rem_0.8rem]"
+            >
               {study?.tel}
-            </a>
+            </Link>
           </div>
         </div>
         <div className="mb-[3.4rem] flex flex-col rounded-[1rem] border border-primary-200 bg-bgColor-200 p-[2.2rem]">
@@ -138,4 +144,23 @@ const StudyDetail = ({ loginUser }: IPageProps) => {
 
 export default StudyDetail;
 
-export const getServerSideProps = withSessionSsr({ isPrivate: false });
+export const getServerSideProps = withIronSessionSsr(
+  async ({ req, res, query }) => {
+    const loginUser = loginAndPrivateValid({ req, res, isPrivate: false });
+    const { id } = query;
+    const queryClient = new QueryClient();
+    await queryClient.prefetchQuery(["studyDetail", id], () =>
+      readStudyDetailApi(id as string)
+    );
+    return {
+      props: {
+        loginUser,
+        dehydratedState: dehydrate(queryClient),
+      },
+    };
+  },
+  {
+    password: process.env.SESSION_PASSWORD!,
+    cookieName: "Authorization",
+  }
+);
