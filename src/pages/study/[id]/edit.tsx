@@ -19,7 +19,7 @@ const EditStudy: NextPage = ({ loginUser }: IPageProps) => {
   const router = useRouter();
   const { id } = router.query;
   const { data: study } = studyApi.ReadStudyDetail(id as string);
-
+  const { mutate: updateStudy } = studyApi.UpdateStudyDetail(id as string);
   const { register, handleSubmit, watch, setValue, getValues } =
     useForm<IWrite>({
       mode: "onChange",
@@ -30,13 +30,13 @@ const EditStudy: NextPage = ({ loginUser }: IPageProps) => {
   const onValid = useCallback(
     async (data: IWrite) => {
       try {
-        const response = await studyApi.UpdateStudy(id as string, data);
-        router.replace(`/study/${response.id}`);
+        updateStudy(data);
+        router.replace(`/study/${id}`);
       } catch (e) {
         return;
       }
     },
-    [id, router]
+    [id, router, updateStudy]
   );
 
   useEffect(() => {
@@ -126,7 +126,7 @@ const EditStudy: NextPage = ({ loginUser }: IPageProps) => {
           </div>
           <div className="flex gap-[2.6rem] rounded-full nm:grid nm:grid-cols-[1fr_3fr] ">
             <button className="Sub2 col-start-2 w-full rounded-full bg-primary-main py-[2rem] text-white">
-              스터디 모집 글 작성완료
+              스터디 모집 글 수정완료
             </button>
           </div>
         </form>

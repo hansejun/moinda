@@ -22,7 +22,6 @@ const Write: NextPage = ({ loginUser }: IPageProps) => {
     });
   const router = useRouter();
   const [iconMode, setIconMode] = useState(false);
-
   /** 스터디 개설 */
   const onValid = useCallback(
     async (data: IWrite) => {

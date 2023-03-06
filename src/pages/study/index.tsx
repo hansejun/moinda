@@ -29,7 +29,7 @@ const StudyList: NextPage = ({ loginUser }: IPageProps) => {
   const setCategory = useSetRecoilState(studyCategoryAtom);
 
   useEffect(() => {
-    return () => setCategory("TOTAL");
+    setCategory("TOTAL");
   }, [setCategory]);
   return (
     <Layout loginUser={loginUser}>

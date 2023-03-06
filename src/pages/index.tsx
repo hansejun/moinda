@@ -16,6 +16,9 @@ import {
   readNewStudyListApi,
   readRecommendStudyListApi,
 } from "@apis/query/studyApi";
+import { useSetRecoilState } from "recoil";
+import { studyCategoryAtom } from "@atoms/studyAtom";
+import { useEffect } from "react";
 import dynamic from "next/dynamic";
 
 const ParticipatingStudy = dynamic(
@@ -23,6 +26,11 @@ const ParticipatingStudy = dynamic(
 );
 
 const Home: NextPage = ({ loginUser }: IPageProps) => {
+  const setCategory = useSetRecoilState(studyCategoryAtom);
+
+  useEffect(() => {
+    setCategory("TOTAL");
+  }, [setCategory]);
   return (
     <Layout loginUser={loginUser}>
       <CustomHead />
