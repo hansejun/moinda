@@ -104,7 +104,7 @@ function Header({ loginUser }: IHeaderProps) {
                 <Image
                   width={40}
                   height={40}
-                  className="aspect-square w-[4.3rem] cursor-pointer rounded-full"
+                  className="aspect-square w-[4.3rem] cursor-pointer rounded-full object-cover"
                   src={getImageUrl(loginUser?.avatarImg)}
                   alt="profile"
                   onClick={() => handleNavigate(`/mypage`)}

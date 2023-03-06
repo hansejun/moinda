@@ -40,7 +40,7 @@ const ProfileCard = () => {
           {user?.avatarImg ? (
             <Image
               className={
-                "ml-[-2.4rem] h-[9.6rem] w-[9.6rem] justify-self-center rounded-full bg-white"
+                "ml-[-2.4rem] h-[9.6rem] w-[9.6rem] justify-self-center rounded-full bg-white object-cover"
               }
               src={getImageUrl(user?.avatarImg)}
               alt="avatar"
