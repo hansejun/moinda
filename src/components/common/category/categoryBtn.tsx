@@ -7,7 +7,7 @@ const CategoryBtn = () => {
   const [category, setCategory] = useRecoilState(studyCategoryAtom);
 
   return (
-    <div className=" hidden mt-[4.6rem]  lg:flex lg:flex-col">
+    <div className="mt-[4.6rem]  flex flex-col">
       {CATEGORIES.map((cate) => (
         <div
           key={cate.value}

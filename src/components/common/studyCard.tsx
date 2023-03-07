@@ -32,8 +32,9 @@ const StudyCard = ({
         <p className="Cap1  text-primary-500">{study?.studyName}</p>
       </div>
       <div className="flex flex-col">
-        <span className="w-[50%] max-w-[5rem] nm:max-w-[5.8rem]">
+        <span className="max-w-[5.8rem]">
           <Image
+            className="w-[5.8rem]"
             src={Icons[study?.icon || "1"]}
             alt="icon"
             width={60}

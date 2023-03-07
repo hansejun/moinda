@@ -25,7 +25,7 @@ const CurrentSituation = () => {
   }, [data]);
 
   return (
-    <div className="flex min-h-[26.5rem] flex-col space-y-[1.8rem] rounded-[1rem] bg-white px-[3rem] py-[2.4rem]">
+    <div className="flex min-h-[26.5rem] flex-col space-y-[2rem] rounded-[1rem] bg-white px-[3rem] py-[2.4rem]">
       <h2 className="H2">스터디 현황</h2>
       <div className="grid grid-cols-3 gap-[1.4rem]">
         {Object.entries(studyStatusList)?.map(([work, count]) => (
@@ -39,12 +39,6 @@ const CurrentSituation = () => {
         ))}
       </div>
       <AttendanceBtn />
-      <button
-        className="Sub2 h-[6.8rem] rounded-[1rem] border  border-primary-400 bg-white text-primary-500 underline lg:hidden"
-        onClick={handleLogout}
-      >
-        로그아웃
-      </button>
     </div>
   );
 };

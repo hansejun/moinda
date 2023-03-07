@@ -5,26 +5,22 @@ import GroupSvg from "@assets/svg/groupSvg";
 import CategorySvg from "@assets/svg/categorySvg";
 import NextSvg from "@assets/svg/nextSvg";
 import Image from "next/image";
-import { IStudy, TCategory } from "@allTypes/study";
+import { IStudy } from "@allTypes/study";
 import { getStudyCategory } from "@utils/client/getEnum";
-
-const style = {
-  nm: "hidden nm:block",
-};
 
 const MyStudyItem = ({ study }: { study: IStudy }) => {
   const router = useRouter();
   return (
     <div
       className={cls(
-        "group flex w-screen max-w-[51.3rem] cursor-pointer items-center  justify-between rounded-[1.4rem] border border-solid border-primary-350  px-[1.6rem] py-[1.6rem] transition-colors hover:border-primary-500 nm:h-[11.8rem] nm:py-0"
+        "group flex h-[11.8rem] w-screen  max-w-[51.3rem] cursor-pointer  items-center justify-between rounded-[1.4rem] border border-solid  border-primary-350 px-[1.6rem]  py-0 transition-colors hover:border-primary-500"
       )}
       onClick={() => router.push(`/myStudy/${study?.id}`)}
     >
       <div className="flex items-center ">
         <div
           className={cls(
-            "hidden aspect-square w-[5.4rem] items-center justify-center rounded-[1.2rem] nm:flex",
+            "flex aspect-square w-[5.4rem] items-center justify-center rounded-[1.2rem]",
             `${iconBackgrounds[study?.icon]}`
           )}
         >
@@ -38,23 +34,16 @@ const MyStudyItem = ({ study }: { study: IStudy }) => {
             />
           </span>
         </div>
-        <div className="flex flex-col nm:ml-[1.5rem]">
+        <div className="ml-[1.5rem] flex flex-col">
           <p className="Sub2">{study?.studyName}</p>
-          <ul
-            className={cls(
-              "Cap4 flex  space-x-[0.3rem] text-primary-500",
-              style.nm
-            )}
-          >
+          <ul className={cls("Cap4 flex  space-x-[0.3rem] text-primary-500")}>
             {study?.hashTagList?.map((hashTag) => (
               <li key={hashTag.id} className="inline">
                 #{hashTag.tagName}
               </li>
             ))}
           </ul>
-          <div
-            className={cls("Cap3 mt-[1.2rem] hidden text-primary-500 nm:flex")}
-          >
+          <div className={cls("Cap3 mt-[1.2rem]  flex text-primary-500")}>
             <div className="flex-center">
               <GroupSvg className="mr-[0.6rem] h-[2rem] w-[2rem] " />
               <span>{study?._count?.memberList || 0 + 1}명 참여중</span>
@@ -67,7 +56,7 @@ const MyStudyItem = ({ study }: { study: IStudy }) => {
         </div>
       </div>
 
-      <NextSvg className="mt-[-0.3rem] w-[2rem] text-primary-500 transition-colors group-hover:text-primary-600 nm:w-[2.4rem]" />
+      <NextSvg className="mt-[-0.3rem]  w-[2.4rem] text-primary-500 transition-colors group-hover:text-primary-600" />
     </div>
   );
 };

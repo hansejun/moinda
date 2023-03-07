@@ -38,7 +38,7 @@ const StudyDetail = ({ loginUser }: IPageProps) => {
   return (
     <Layout isFullHeight loginUser={loginUser}>
       <CustomHead title={""} />
-      <main className="mx-auto mt-[5rem] flex w-full flex-1 flex-col nm:w-[80rem]">
+      <main className="mx-auto mt-[5rem] flex  w-[80rem] flex-1 flex-col">
         <div className="flex-center mb-[2.4rem] aspect-square w-[8.8rem] rounded-[0.8rem] border border-primary-200 bg-bgColor-200">
           {study && (
             <Image

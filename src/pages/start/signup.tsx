@@ -7,8 +7,8 @@ import React from "react";
 const Signup: NextPage = () => {
   const router = useRouter();
   return (
-    <div className="flex-center h-full bg-[#F6F6F6] sm:max-h-full sm:min-h-screen ">
-      <div className=" flex h-screen  w-full flex-col bg-primary-100  sm:max-h-[83rem] sm:min-h-[81rem] sm:max-w-[41.2rem] sm:border sm:border-primary-400 ">
+    <div className="flex-center h-full max-h-full min-h-screen bg-[#F6F6F6] ">
+      <div className=" flex h-screen  max-h-[83rem] min-h-[81rem] w-full  max-w-[41.2rem] flex-col border border-primary-400 bg-primary-100 ">
         <header className="relative flex items-center py-[1.4rem]">
           <span className="z-[1] pl-[2.2rem]" onClick={() => router.back()}>
             <ArrowSvg className="aspect-square w-[2.4rem] cursor-pointer hover:text-primary-500" />

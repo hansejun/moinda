@@ -96,8 +96,7 @@ const StudyLabel = ({
 export default StudyLabel;
 
 const styles = {
-  label:
-    "flex flex-col gap-[1rem] nm:grid nm:grid-cols-[1fr_3fr] nm:gap-[2.6rem]",
+  label: " grid grid-cols-[1fr_3fr] gap-[2.6rem]",
   iconBox:
     "w-[8.8rem] aspect-square border border-primary-200 bg-[#F7F6F6] rounded-[0.8rem] flex-center text-[1.6rem] text-center text-primary-400 cursor-pointer hover:border-primary-400 hover:text-primary-500",
   input:

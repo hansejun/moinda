@@ -18,8 +18,8 @@ import { readMypageApi } from "@apis/query/profile";
 const Mypage = ({ loginUser }: IPageProps) => {
   return (
     <Layout hasBgColor loginUser={loginUser}>
-      <main className="mt-[5rem] grid gap-[2.6rem] lg:grid-cols-[1fr_2fr]">
-        <div className="grid grid-cols-2 gap-[2.6rem] lg:flex lg:flex-col">
+      <main className="mt-[5rem] grid grid-cols-[1fr_2fr] gap-[2.6rem]">
+        <div className=" flex flex-col gap-[2.6rem]">
           <ProfileCard />
           <CurrentSituation />
           <LogoutBtn />

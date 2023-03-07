@@ -34,13 +34,13 @@ const Home: NextPage = ({ loginUser }: IPageProps) => {
   return (
     <Layout loginUser={loginUser}>
       <CustomHead />
-      <div className="mt-[5.4rem] grid grid-cols-1 gap-[4.6rem] sm:grid-cols-[3fr_1.6fr] lg:grid-cols-[1fr_3fr_2fr] ">
+      <div className="mt-[5.4rem] grid grid-cols-[1fr_3fr_2fr] gap-[4.6rem] ">
         <CategoryBtn />
-        <div className="flex flex-col space-y-[7.2rem] sm:col-span-2 nm:col-span-1">
+        <div className="col-span-1 flex flex-col space-y-[7.2rem]">
           <BestStudyList />
           <NewStudy />
         </div>
-        <div className="hidden nm:flex nm:max-w-[40rem] nm:flex-col ">
+        <div className="flex max-w-[40rem] flex-col ">
           {loginUser?.id && (
             <div className="flex flex-col space-y-[1.8rem]">
               <ParticipatingStudy />

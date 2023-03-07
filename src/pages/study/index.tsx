@@ -34,20 +34,17 @@ const StudyList: NextPage = ({ loginUser }: IPageProps) => {
   return (
     <Layout loginUser={loginUser}>
       <CustomHead title="스터디 게시판" />
-      <div className="mt-[5.4rem] grid gap-[4.6rem] sm:grid-cols-[3fr_1.6fr] lg:grid-cols-[1fr_3fr_2fr] ">
-        <div className=" hidden lg:block">
+      <div className="mt-[5.4rem] grid grid-cols-[1fr_3fr_2fr]  gap-[4.6rem] ">
+        <div className="block">
           <CategoryBtn />
         </div>
-        <div className="flex flex-col sm:col-span-2 nm:col-span-1">
-          <div className="mb-[4rem] block lg:hidden">
-            <ColumnCategory />
-          </div>
+        <div className="col-span-1 flex  flex-col">
           <div className="flex flex-col space-y-[7.2rem]">
             <RecommendStudyList />
             <CategoryStudyList />
           </div>
         </div>
-        <div className=" hidden nm:flex nm:max-w-[40rem] nm:flex-col">
+        <div className=" flex max-w-[40rem] flex-col">
           {loginUser?.id && (
             <div className="flex flex-col space-y-[1.8rem]">
               <ParticipatingStudy />

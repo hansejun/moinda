@@ -173,7 +173,7 @@ const Timer = () => {
         </button>
       </div>
 
-      <div className="flex h-full w-full flex-col justify-center space-y-[3rem] lg:flex-row lg:space-x-[7rem] lg:space-y-0">
+      <div className="flex h-full w-full   justify-center space-x-[7rem] space-y-0">
         <div className="flex-center ">
           <ProgressBar
             value={
@@ -210,7 +210,7 @@ const Timer = () => {
           </ul>
           <div className="flex w-full flex-col space-y-3">
             <button
-              className="H3 mx-auto w-full max-w-[13rem] rounded  bg-primary-100 p-2 text-primary-500 lg:mx-0"
+              className="H3  mx-auto w-full max-w-[13rem]  rounded bg-primary-100 p-2 text-primary-500"
               onClick={onClickToggle}
             >
               {isRun ? "중지" : "시작"}

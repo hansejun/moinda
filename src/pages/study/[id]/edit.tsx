@@ -58,10 +58,10 @@ const EditStudy: NextPage = ({ loginUser }: IPageProps) => {
   return (
     <Layout loginUser={loginUser}>
       <CustomHead title="스터디 개설" />
-      <main className="flex flex-col py-[5rem] nm:grid nm:grid-cols-[1fr_4fr_1fr]  ">
+      <main className=" grid grid-cols-[1fr_4fr_1fr] py-[5rem]  ">
         <form
           onSubmit={handleSubmit(onValid)}
-          className="flex  flex-col space-y-[2.4rem] nm:col-start-2"
+          className="col-start-2  flex flex-col space-y-[2.4rem]"
         >
           <StudyLabel
             type="iconBox"
@@ -124,7 +124,7 @@ const EditStudy: NextPage = ({ loginUser }: IPageProps) => {
               {watch("content")?.length}/3000
             </p>
           </div>
-          <div className="flex gap-[2.6rem] rounded-full nm:grid nm:grid-cols-[1fr_3fr] ">
+          <div className=" grid grid-cols-[1fr_3fr] gap-[2.6rem] rounded-full ">
             <button className="Sub2 col-start-2 w-full rounded-full bg-primary-main py-[2rem] text-white">
               스터디 모집 글 수정완료
             </button>

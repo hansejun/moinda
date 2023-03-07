@@ -47,7 +47,7 @@ const HashTagList = ({
     setHashTags(defaultValue);
   }, [defaultValue]);
   return (
-    <label className="flex flex-col gap-[1rem] nm:grid nm:grid-cols-[1fr_3fr] nm:gap-[2.6rem]">
+    <label className="  grid grid-cols-[1fr_3fr] gap-[2.6rem]">
       <h3 className="Sub2 cursor-pointer hover:text-primary-500">{label}</h3>
       <div className="flex space-x-[1.2rem] rounded-[0.8rem] border  border-primary-200   bg-[#F7F6F6] text-[1.6rem] focus:border-primary-400">
         <div className="flex items-center  space-x-[0.7rem]">

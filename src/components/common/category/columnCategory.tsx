@@ -7,15 +7,15 @@ import { useRecoilState } from "recoil";
 const ColumnCategory = () => {
   const [category, setCategory] = useRecoilState(studyCategoryAtom);
   return (
-    <div className="grid gap-[1.2rem] grid-cols-6 lg:hidden">
+    <div className="grid grid-cols-6 gap-[1.2rem] ">
       {CATEGORIES?.map((cate) => (
         <button
           key={cate.value}
           className={cls(
-            "flex-center py-[1.4rem] rounded-full border text-[1.3rem] nm:text-[1.6rem] cursor-pointer break-all",
+            "flex-center cursor-pointer break-all rounded-full border py-[1.4rem] text-[1.6rem]",
             category === cate.value
-              ? "bg-primary-main text-white border-none"
-              : "bg-[#F7F6F6] border-primary-200 border"
+              ? "border-none bg-primary-main text-white"
+              : "border border-primary-200 bg-[#F7F6F6]"
           )}
           onClick={() => setCategory(cate.value)}
         >

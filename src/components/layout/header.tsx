@@ -44,14 +44,14 @@ function Header({ loginUser }: IHeaderProps) {
 
   return (
     <header className="fixed top-0 z-[100] w-full border-b bg-primary-100">
-      <div className="flex-between header-height mx-auto  w-full px-[3rem] lg:w-[144rem] lg:px-0">
+      <div className="flex-between header-height mx-auto  w-full min-w-[785px] px-[3rem] lg:w-[144rem] lg:px-0">
         <nav className="flex items-center">
           <Link href="/" passHref>
             <span className="mr-[4.2rem] text-[2.4rem] font-bold text-primary-main">
               MOINDA
             </span>
           </Link>
-          <ul className="hidden md:flex md:space-x-[3.6rem]">
+          <ul className="flex space-x-[3.6rem]">
             {navs.map((nav) => (
               <li
                 key={nav.id}
@@ -70,7 +70,7 @@ function Header({ loginUser }: IHeaderProps) {
         </nav>
         <div className="flex">
           <form className="flex">
-            <label className="relative mr-[2.2rem] hidden h-[4.2rem] min-w-[25rem] max-w-[35.6rem] items-center nm:flex nm:w-[20vw]">
+            <label className="relative mr-[2.2rem]  flex h-[4.2rem] w-[20vw] min-w-[25rem] max-w-[35.6rem] items-center">
               <SearchSvg className="absolute w-[1.8rem] translate-x-7 text-primary-500" />
               <input
                 type="text"
