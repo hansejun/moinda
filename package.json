@@ -27,6 +27,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.1",
     "react-jwt": "^1.1.8",
+    "react-loading-skeleton": "^3.2.0",
     "react-quill": "^2.0.0",
     "recoil": "^0.7.6",
     "recoil-persist": "^4.2.0",

@@ -4,13 +4,13 @@ import Layout from "@components/layout/layout";
 import CategoryBtn from "@components/common/category/categoryBtn";
 import CategoryStudyList from "@components/study/studyList/categoryStudyList";
 import RecommendStudyList from "@components/study/studyList/recommendStudyList";
-import ColumnCategory from "@components/common/category/columnCategory";
 import withSessionSsr from "@utils/client/withSessionSsr";
 import type { NextPage } from "next";
 import { useEffect } from "react";
 import { useSetRecoilState } from "recoil";
 import { studyCategoryAtom } from "@atoms/studyAtom";
 import dynamic from "next/dynamic";
+import FakeBestStudyList from "@components/skeleton/home/FakeBestStudyList";
 
 const ParticipatingStudy = dynamic(
   () => import("@components/common/paricipating/studyList"),
