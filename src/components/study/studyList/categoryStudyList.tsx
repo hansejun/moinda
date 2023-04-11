@@ -18,7 +18,7 @@ const CategoryStudyList: NextPage = () => {
   return (
     <div className="flex flex-col space-y-[1.8rem]">
       <h2 className="H2 text-primary-600">새로 생긴 스터디그룹</h2>
-      {isLoading && <FakeStudyList length={6} />}
+      {isLoading && <FakeStudyList length={8} />}
       <div className="grid grid-cols-2 gap-[2.6rem] ">
         {studyList?.map((study) => (
           <Link href={`/study/${study.id}`} key={study.id} passHref>
