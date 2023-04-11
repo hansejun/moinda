@@ -20,7 +20,6 @@ import { useSetRecoilState } from "recoil";
 import { studyCategoryAtom } from "@atoms/studyAtom";
 import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
-import FakeParticipatingLists from "@components/skeleton/home/FakeParticipatingLists";
 
 const ParticipatingStudy = dynamic(
   () => import("@components/common/paricipating/studyList")

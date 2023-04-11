@@ -30,7 +30,7 @@ const ParticipatingStudyList = () => {
             <span>참여중인 그룹이 없습니다.</span>
           </div>
         )}
-        {studyList?.map((study) => (
+        {studyList?.slice(0, 3)?.map((study) => (
           <ParticipatingStudyItem key={study?.id} study={study} />
         ))}
       </ul>

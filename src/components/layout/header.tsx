@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 
 function Header({ loginUser }: IHeaderProps) {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   const [isAlarmOpen, setIsAlarmOpen] = useState(false);
   const { data: alarmList } = alarmApis.ReadAlarms();
   const router = useRouter();
@@ -19,8 +19,8 @@ function Header({ loginUser }: IHeaderProps) {
   // login 확인
   useEffect(() => {
     if (loginUser) {
-      if (loginUser?.id) {
-        setIsLogin(true);
+      if (!loginUser?.id) {
+        setIsLogin(false);
       }
     }
   }, [loginUser]);
