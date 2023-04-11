@@ -1,12 +1,10 @@
 import Layout from "@components/layout/layout";
-import LogoutBtn from "@components/profile/logoutBtn";
 import MyStudyList from "@components/profile/myStudyList/myStudyList";
 import ProfileCard from "@components/profile/profileCard/profileCard";
 import CurrentSituation from "@components/profile/currentSituation";
 import EndStudy from "@components/profile/endStudy";
 import StudyLog from "@components/profile/studyLog";
 import React from "react";
-import withSessionSsr from "@utils/client/withSessionSsr";
 import { IPageProps } from "@allTypes/props";
 import ProgressSection from "@components/profile/progress/progressSection";
 import { withIronSessionSsr } from "iron-session/next";
@@ -14,6 +12,9 @@ import loginAndPrivateValid from "@utils/client/loginAndPrivateValid";
 import { dehydrate, QueryClient } from "@tanstack/react-query";
 import { readAttendanceApi } from "@apis/query/attendance";
 import { readMypageApi } from "@apis/query/profile";
+import dynamic from "next/dynamic";
+
+const LogoutBtn = dynamic(() => import("@components/profile/logoutBtn"));
 
 const Mypage = ({ loginUser }: IPageProps) => {
   return (
@@ -22,7 +23,7 @@ const Mypage = ({ loginUser }: IPageProps) => {
         <div className=" flex flex-col gap-[2.6rem]">
           <ProfileCard />
           <CurrentSituation />
-          <LogoutBtn />
+          {loginUser?.id && <LogoutBtn />}
         </div>
         <div className=" flex flex-col space-y-[3.2rem]">
           <ProgressSection />

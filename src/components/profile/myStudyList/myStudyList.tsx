@@ -10,9 +10,7 @@ import profileApi from "@apis/query/profile";
 import { useMemo } from "react";
 import { IStudy } from "@allTypes/study";
 import { useRouter } from "next/router";
-
-const isExist = true;
-// 데이터가 4개 이상이라면은 26번줄 cls pb-[6rem] or [2rem]
+import FakeMyStudyList from "@components/skeleton/myPage/FakeMyStudyList";
 
 interface IStudyList {
   [key: string]: IStudy[];
@@ -31,6 +29,8 @@ const MyStudyList = () => {
     });
     return obj;
   }, [user]);
+
+  if (!studyObj["0"]) return <FakeMyStudyList />;
 
   return (
     <div className="flex max-w-[57.3rem] flex-col rounded-[1rem] bg-white p-[3rem]">
