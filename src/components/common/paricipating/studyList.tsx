@@ -1,14 +1,17 @@
 import StudyRoomApi from "@apis/query/studyRoomApi";
 import AttendanceBtn from "@components/common/attendance/attendanceBtns";
+import FakeParticipatingLists from "@components/skeleton/home/FakeParticipatingLists";
 import Icons from "@elements/icon";
-import cls from "@utils/client/cls";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import ParticipatingStudyItem from "./studyItem";
 
 const ParticipatingStudyList = () => {
   const router = useRouter();
-  const { data: studyList } = StudyRoomApi.ReadStudyList(3);
+  const { data: studyList, isLoading } = StudyRoomApi.ReadStudyList(3);
+
+  if (isLoading) return <FakeParticipatingLists length={3} />;
+
   return (
     <>
       <div className="flex justify-between">

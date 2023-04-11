@@ -18,9 +18,9 @@ import {
 } from "@apis/query/studyApi";
 import { useSetRecoilState } from "recoil";
 import { studyCategoryAtom } from "@atoms/studyAtom";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
-import FakeBestStudyList from "@components/skeleton/home/FakeBestStudyList";
+import FakeParticipatingLists from "@components/skeleton/home/FakeParticipatingLists";
 
 const ParticipatingStudy = dynamic(
   () => import("@components/common/paricipating/studyList")
@@ -39,10 +39,7 @@ const Home: NextPage = ({ loginUser }: IPageProps) => {
       <div className="mt-[5.4rem] grid grid-cols-[1fr_3fr_2fr] gap-[4.6rem] ">
         <CategoryBtn />
         <div className="col-span-1 flex flex-col space-y-[7.2rem]">
-          <Suspense fallback={<FakeBestStudyList />}>
-            <BestStudyList />
-          </Suspense>
-
+          <BestStudyList />
           <NewStudy />
         </div>
         <div className="flex max-w-[40rem] flex-col ">

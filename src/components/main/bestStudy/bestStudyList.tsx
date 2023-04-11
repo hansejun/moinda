@@ -1,18 +1,23 @@
 import studyApi from "@apis/query/studyApi";
 import { studyCategoryAtom } from "@atoms/studyAtom";
-import FakeBestStudyList from "@components/skeleton/home/FakeBestStudyList";
+import dynamic from "next/dynamic";
+
+const FakeBestStudyList = dynamic(
+  () => import("@components/skeleton/home/FakeBestStudyList")
+);
 
 import Link from "next/link";
+import React from "react";
 import { useRecoilValue } from "recoil";
 import BestStudyCard from "./bestStudyCard";
 
 const BestStudyList = () => {
   const category = useRecoilValue(studyCategoryAtom);
-  const { data: studyList } = studyApi.ReadRecommendStudyList({
+  const { data: studyList, isLoading } = studyApi.ReadRecommendStudyList({
     category: category,
     count: 5,
   });
-  if (!studyList) return <FakeBestStudyList length={5} />;
+  if (isLoading) return <FakeBestStudyList length={5} />;
   return (
     <div className="flex flex-col space-y-[1.3rem]">
       <h2 className="H2 text-primary-600">카테고리 별 인기스터디</h2>
