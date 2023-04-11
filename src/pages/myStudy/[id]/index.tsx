@@ -17,7 +17,6 @@ const MyStudy = ({ loginUser }: IPageProps) => {
       <CustomHead title="스터디 이름" />
       <div className="grid flex-1 grid-cols-[1fr_2fr_8fr_1fr] gap-[2.6rem] pt-[5rem]">
         <SideNav loginUserId={loginUser?.id!} />
-
         <MyStudyHome />
       </div>
     </Layout>

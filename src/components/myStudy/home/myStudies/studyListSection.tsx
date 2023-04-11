@@ -1,5 +1,6 @@
 import { IMyStudy } from "@allTypes/studyRoom";
 import { TNumber } from "@elements/icon";
+import dynamic from "next/dynamic";
 import { useCallback, useState } from "react";
 import OhterStudyList from "./ohterStudyList";
 import StudyItem from "./studyItem";
@@ -7,6 +8,10 @@ import StudyItem from "./studyItem";
 interface IProps {
   myStudyData: IMyStudy;
 }
+
+const FakeStudySection = dynamic(
+  () => import("components/skeleton/myStudy/FakeStudySection")
+);
 
 const StudyListSection = ({ myStudyData }: IProps) => {
   const [isSpread, setIsSpread] = useState(false);
@@ -20,6 +25,8 @@ const StudyListSection = ({ myStudyData }: IProps) => {
   const handleCloseList = useCallback(() => {
     setIsSpread(false);
   }, []);
+
+  if (!myStudyData?.id) return <FakeStudySection />;
 
   return (
     <section className="relative flex flex-col space-y-[0.6rem]">

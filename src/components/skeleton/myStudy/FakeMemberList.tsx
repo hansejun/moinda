@@ -1,24 +1,9 @@
-import StudyRoomApi from "@apis/query/studyRoomApi";
 import ArrowSvg from "@assets/svg/arrowSvg";
-import dynamic from "next/dynamic";
-import { useRouter } from "next/router";
-import { Children } from "react";
-import MemberItem from "./memberItem";
+import React from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
-const FakeMemberList = dynamic(
-  () => import("components/skeleton/myStudy/FakeMemberList")
-);
-
-const MemberList = () => {
-  // 더보기 클릭시에 17번 Users 데이터 추가;
-  const router = useRouter();
-  const { id } = router.query;
-  const { data: members, isLoading } = StudyRoomApi.ReadMemberList(
-    id as string
-  );
-
-  if (isLoading) return <FakeMemberList />;
-
+const FakeMemberList = () => {
   return (
     <div className="flex h-full flex-col ">
       <div className="grid grid-cols-[6fr_8.6fr_8.6fr] px-[0.6rem]">
@@ -29,11 +14,16 @@ const MemberList = () => {
         ))}
       </div>
       <ul className="flex flex-col ">
-        {Children.toArray(
-          members?.map((member) => (
-            <MemberItem key={member.id} user={member.user} />
-          ))
-        )}
+        {[1, 2, 3, 4, 5].map((item) => (
+          <li
+            key={item}
+            className="grid grid-cols-[6fr_8.6fr_8.6fr] items-center border-b p-[2.2rem_1.1rem] last:border-none last:pb-0"
+          >
+            <Skeleton width="3rem" height="3rem" borderRadius="0.5rem" />
+            <Skeleton className="Cap4" width="5.5rem" />
+            <Skeleton className="Cap4 text-center" />
+          </li>
+        ))}
       </ul>
       <div className="Sub2 mt-[1.5rem]  flex flex-1  cursor-pointer items-end space-x-[0.3rem]   pt-[0.6rem] text-primary-500">
         <div className="flex-center w-full">
@@ -45,6 +35,6 @@ const MemberList = () => {
   );
 };
 
-export default MemberList;
+export default FakeMemberList;
 
 const Headers = ["닉네임", "출석시간", "오늘 공부 시간"];

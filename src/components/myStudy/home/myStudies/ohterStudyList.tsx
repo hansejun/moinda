@@ -1,4 +1,5 @@
 import StudyRoomApi from "@apis/query/studyRoomApi";
+import FakeOtherStudyList from "@components/skeleton/myStudy/FakeOtherStudyList";
 import Link from "next/link";
 import React from "react";
 import StudyItem from "./studyItem";
@@ -9,7 +10,9 @@ interface IOtherStudyListProps {
 }
 
 const OhterStudyList = ({ id, onClick }: IOtherStudyListProps) => {
-  const { data: myStudyList } = StudyRoomApi.ReadStudyList();
+  const { data: myStudyList, isLoading } = StudyRoomApi.ReadStudyList();
+
+  if (isLoading) return <FakeOtherStudyList />;
   return (
     <div className="absolute top-[8.4rem] z-10 flex w-full select-none flex-col rounded-[1rem] bg-bgColor-100 p-[1.2rem] shadow-[0.2rem_0.8rem_1.8rem_rgba(0,0,0,0.13)]">
       {myStudyList &&

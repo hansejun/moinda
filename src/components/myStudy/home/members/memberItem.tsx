@@ -43,9 +43,9 @@ const MemberItem = ({ user }: IProps) => {
       ) : (
         <div
           className="flex-center Cap4 aspect-square w-[3rem] cursor-pointer 
-              rounded-full bg-[#9DA9B4]"
+              rounded-lg bg-[#9DA9B4]"
         >
-          {user?.nickname.slice(0, 2)}
+          {user?.nickname?.slice(0, 2)}
         </div>
       )}
 
