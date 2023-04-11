@@ -1,14 +1,18 @@
 import profileApi from "@apis/query/profile";
-
 import SettingSvg from "@assets/svg/settingSvg";
 import SmileSvg from "@assets/svg/smileSvg";
 import getImageUrl from "@utils/client/getImageUrl";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useCallback, useMemo, useState } from "react";
 import ProfileEditModal from "./profileEditModal";
 
+const FakeProfileCard = dynamic(
+  () => import("@components/skeleton/myPage/FakeProfileCard")
+);
+
 const ProfileCard = () => {
-  const { data: user } = profileApi.ReadUser();
+  const { data: user, isLoading } = profileApi.ReadUser();
   const [isSetting, setIsSetting] = useState(false);
 
   // 수정모드 on / off
@@ -25,6 +29,8 @@ const ProfileCard = () => {
     const minutes = (time % 60).toString().padStart(2, "0");
     return `${hours}h ${minutes}m`;
   }, [user]);
+
+  if (isLoading) return <FakeProfileCard />;
 
   return (
     <>
