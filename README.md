@@ -2,7 +2,7 @@
 
 스터디 모집 및 스터디 기록을 제공하는 사이트 
 
-### [배포주소](http://likealocal-7.s3-website.ap-northeast-2.amazonaws.com/main)
+### [서비스 주소](https://moinda.vercel.app/)
 <br/>
 
 <img src="https://img.shields.io/badge/-TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white"/> <img src="https://img.shields.io/badge/-Next.js-000000?style=flat-square&logo=next.js&logoColor=white"/>
