@@ -22,8 +22,8 @@
 - 카테고리 별 인기스터디 노출
 - 새로 생긴 스터디 노출 
 - 현재 참여중인 스터디 노출
-   <br/>
-   <img src="https://user-images.githubusercontent.com/86880916/232047604-ea401139-b378-4300-807b-402882167478.gif" width="700px"/>
+<br/>
+<img src="https://user-images.githubusercontent.com/86880916/232047604-ea401139-b378-4300-807b-402882167478.gif" width="700px"/>
 1. 여행 상품 리스트의 가격(`price`), 공간(`spaceCategory`) 필터 기능을 만들어주세요.
    - 예시) 0 - 1000, 1500 - 3000 가격
    - 예시) 서울, 부산 공간
