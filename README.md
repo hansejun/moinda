@@ -1,24 +1,14 @@
 # 📚 MOINDA
+<img src="https://user-images.githubusercontent.com/86880916/232044261-9afb40ec-b7e7-4c3d-bda4-fd54c30cc23d.png"/>
 
-스터디 모집 및 스터디 기록을 제공하는 사이트 
 
-### [서비스 주소](https://moinda.vercel.app/)
+스터디 모집 및 스터디 기록을 제공하는 서비스 
+
+### [모인다 서비스 이용하기](https://moinda.vercel.app/)
 <br/>
 
-<img src="https://img.shields.io/badge/-TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white"/> <img src="https://img.shields.io/badge/-Next.js-000000?style=flat-square&logo=next.js&logoColor=white"/>
-<img src="https://img.shields.io/badge/-Vite-646CFF?style=flat-square&logo=vite&logoColor=white"/> <img src="https://img.shields.io/badge/Axios-5A29E4?style=flat-square&logo=Axios&logoColor=white"/> <img src="https://img.shields.io/badge/-React_Query-ff2660?style=flat-square&logo=react&logoColor=white"/>
+<img src="https://img.shields.io/badge/-TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white"/> <img src="https://img.shields.io/badge/-Next.js-000000?style=flat-square&logo=next.js&logoColor=white"/> <img src="https://img.shields.io/badge/Axios-5A29E4?style=flat-square&logo=Axios&logoColor=white"/> <img src="https://img.shields.io/badge/-React_Query-ff2660?style=flat-square&logo=react&logoColor=white"/>
 <img src="https://img.shields.io/badge/-Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white"/> <img src="https://img.shields.io/badge/-Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=white"/> <img src="https://img.shields.io/badge/-Vercel-000000?style=flat-square&logo=vercel&logoColor=white"/> <img src="https://img.shields.io/badge/-Prisma-1B222D?style=flat-square&logo=prisma&logoColor=white"/> <img src="https://img.shields.io/badge/-PlanetScale-0078D4?style=flat-square&logo=planetscale&logoColor=white"/>
-
-<br/>
-
-## 프로젝트 실행 방법
-
-react app
-
-```
-npm i
-npm run dev
-```
 
 <br/>
 
