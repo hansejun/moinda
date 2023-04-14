@@ -1,8 +1,6 @@
 # 📚 MOINDA
-<img src="https://user-images.githubusercontent.com/86880916/232044261-9afb40ec-b7e7-4c3d-bda4-fd54c30cc23d.png"/>
 
-
-스터디 모집 및 스터디 기록을 제공하는 서비스 
+효율적인 시간관리! 스터디 모집 및 스터디 기록을 제공하는 서비스 
 
 ### [모인다 서비스 이용하기](https://moinda.vercel.app/)
 <br/>
@@ -12,16 +10,19 @@
 
 <br/>
 
-## 요구사항
+## 프로젝트 개발기간 
+- 초안 : 2022년 1월 16일 ~ 2월 14일 [초안](https://github.com/M0INDA/Frontend)
+- 마무리 : 2022년 2월 15일 ~ 3월 7일 
+
+## 페이지 소개 
 
 >
 
-1. 유저가 페이지를 처음 열었을 때 “/main”에 도착하도록 만들어주세요
-   - main에는 여행 상품 정보 (mock JSON) 를 활용하여 여행 상품 정보를 노출해야합니다.
-   - 리스트에서 노출해야 하는 정보: idx, name, mainImage, price, spaceCategory`
-   - 예약 버튼을 달아 예약 버튼을 클릭시 여행 상품 장바구니에서 사용 할 수 있도록 상품 데이터를 저장해주세요.
-   - 여행 상품 정보를 클릭했을 때 여행 상품을 자세히 볼 수 있는 모달창을 제작해주세요
-   - 모달에서 노출해야 하는 정보: `idx`, `name`, `mainImage`, `description`, `spaceCategory`, `price`, `maximumPurchases`, `registrationDate`
+1. 메인 페이지 
+   - 카테고리 별 인기스터디 노출
+   - 새로 생긴 스터디 노출 
+   - 현재 참여중인 스터디 노출
+   <img src="https://user-images.githubusercontent.com/86880916/232047604-ea401139-b378-4300-807b-402882167478.gif" width="700px"/>
 1. 여행 상품 리스트의 가격(`price`), 공간(`spaceCategory`) 필터 기능을 만들어주세요.
    - 예시) 0 - 1000, 1500 - 3000 가격
    - 예시) 서울, 부산 공간
