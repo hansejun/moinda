@@ -14,15 +14,17 @@
 - 초안 : 2022년 1월 16일 ~ 2월 14일 [초안](https://github.com/M0INDA/Frontend)
 - 마무리 : 2022년 2월 15일 ~ 3월 7일 
 
-## 페이지 소개 
+## 주요 기능 소개 
 
 >
 
-  ### 메인 페이지 
+### 메인 페이지 
 - 카테고리 별 인기스터디 
 - 새로 생긴 스터디
 - 현재 참여중인 스터디
-<img src="https://user-images.githubusercontent.com/86880916/232047604-ea401139-b378-4300-807b-402882167478.gif" width="700px"/>
+<img src="https://user-images.githubusercontent.com/86880916/232049395-f25d21dd-21c2-44ac-a203-08871a0d7608.gif" width="700px"/>
+
+### 
 1. 여행 상품 리스트의 가격(`price`), 공간(`spaceCategory`) 필터 기능을 만들어주세요.
    - 예시) 0 - 1000, 1500 - 3000 가격
    - 예시) 서울, 부산 공간
