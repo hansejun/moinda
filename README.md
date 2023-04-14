@@ -24,7 +24,6 @@
 - 현재 참여중인 스터디
 <img src="https://user-images.githubusercontent.com/86880916/232049663-259fbef6-2317-4207-a045-999cacdaaa56.gif" width="700"/>
 
-<br/>
 
 ### 스터디 등록  
 - 대표 아이콘 설정 
