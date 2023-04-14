@@ -138,15 +138,7 @@ npm run dev
 <table>
 <tbody>
 <tr>
-<td align="center"><a href="[https://github.com/yujiseok](https://github.com/yujiseok)"><img src="https://avatars.githubusercontent.com/u/83855636?v=4" width="100px;" alt=""/><br /><sub><b>유지석(팀장)</b></sub></a><br /></td>
-<td align="center"><a href="[https://github.com/kimhw7](https://github.com/kimhw7)"><img src="https://avatars.githubusercontent.com/u/100066239?v=4" width="100px;" alt=""/><br /><sub><b>김현우</b></sub></a><br /></td>
-<td align="center"><a href="[https://github.com/Everylisy](https://github.com/Everylisy)"><img src="https://avatars.githubusercontent.com/u/60170829?v=4" width="100px;" alt=""/><br /><sub><b>이영우</b></sub></a><br /></td>
 <td align="center"><a href="[https://github.com/hansejun](https://github.com/hansejun)"><img src="https://avatars.githubusercontent.com/u/86880916?v=4" width="100px;" alt=""/><br /><sub><b>한세준</b></sub></a><br /></td>
-<tr/>
-<td align="center"><a href="[https://github.com/cwonho](https://github.com/cwonho)"><img src="https://avatars.githubusercontent.com/u/104820973?v=4" width="100px;" alt=""/><br /><sub><b>정원호</b></sub></a><br /></td>
-<td align="center"><a href="[https://github.com/sol-pine](https://github.com/sol-pine)"><img src="https://avatars.githubusercontent.com/u/105091138?v=4" width="100px;" alt=""/><br /><sub><b>조해솔</b></sub></a><br /></td>
-<td align="center"><a href="[https://github.com/ilgon0110](https://github.com/ilgon0110)"><img src="https://avatars.githubusercontent.com/u/82035356?v=4" width="100px;" alt=""/><br /><sub><b>김일곤</b></sub></a><br /></td>
-<td align="center"><a href="[https://github.com/che-97](https://github.com/che-97)"><img src="https://avatars.githubusercontent.com/u/80516736?v=4" width="100px;" alt=""/><br /><sub><b>최하은</b></sub></a><br /></td>
 <tr/>
 </tbody>
 </table>
