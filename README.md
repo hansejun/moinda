@@ -22,7 +22,7 @@
 - 카테고리 별 인기스터디 
 - 새로 생긴 스터디
 - 현재 참여중인 스터디
-<img src="https://user-images.githubusercontent.com/86880916/232049395-f25d21dd-21c2-44ac-a203-08871a0d7608.gif" width="700px"/>
+<img src="https://user-images.githubusercontent.com/86880916/232049663-259fbef6-2317-4207-a045-999cacdaaa56.gif" width="700"/>
 
 ### 
 1. 여행 상품 리스트의 가격(`price`), 공간(`spaceCategory`) 필터 기능을 만들어주세요.
