@@ -31,11 +31,12 @@
 - 스터디 시작일 설정 (react-calendar)
 <img src="https://user-images.githubusercontent.com/86880916/232050722-0c7a220b-efbd-44c2-ad47-13e73ea1b0bf.gif" width="700"/>
 
-## 출석체크 
+### 출석체크 
 - 하루 목표시간 설정 
 - 출석 체크 및 체크 아웃 (브라우저를 닫아도 출석 유지)
 - 체크 아웃 시에 공부시간 저장 
 - 05시마다 출석 정보 초기화  
+
 
 
 <br/>
