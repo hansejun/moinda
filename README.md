@@ -35,24 +35,13 @@
 - 출석 체크 및 체크 아웃 (브라우저를 닫아도 출석 유지)
 - 체크 아웃 시에 공부시간 저장 
 - 05시마다 출석 정보 초기화  
-  <img src="https://user-images.githubusercontent.com/86880916/233287289-589333ab-7c5b-43da-81b1-c541ff7225fd.gif" width="700"/>
-  <img src="https://user-images.githubusercontent.com/86880916/233288006-beb73d88-ab78-4080-9fb8-cb657169128e.gif" width="700"/>
+<img src="https://user-images.githubusercontent.com/86880916/233287289-589333ab-7c5b-43da-81b1-c541ff7225fd.gif" width="700"/>
+<img src="https://user-images.githubusercontent.com/86880916/233288006-beb73d88-ab78-4080-9fb8-cb657169128e.gif" width="700"/>
 
 
 <br/>
 
-## 🌟 최종 결과
 
-<br/>
-예약 및 모달 기능 
-<img src="https://user-images.githubusercontent.com/86880916/224321973-32aa063d-f024-4052-a15c-93f87244d5a3.gif" width="500px"/>
-<br/>
-가격 및 지역 필터링 기능
-<img src="https://user-images.githubusercontent.com/86880916/224322115-b3d492c5-61a4-4cd2-b13f-3081c69eaf30.gif" width="500px"/>
-수량 변경 및 총액 계산 기능
-<br/>
-<img src="https://user-images.githubusercontent.com/86880916/224322169-1fc9d429-6a8c-4a65-a92a-dce6ac951aa2.gif" width="500px"/> 
-<br/>
 
 ## **작업 방식 안내**
 
