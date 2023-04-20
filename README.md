@@ -45,18 +45,13 @@
 - 그룹 채팅 
 <img src="https://user-images.githubusercontent.com/86880916/233289500-70518110-4d22-4b8b-be69-d579344641e1.gif" width="700"/>
 
-<br/>
+### 뽀모도로 
+- 공부시간, 휴식시간 설정 
+- 공부시간 / 쉬는 시간으로 4사이클 후 종료
+- 새로고침 및 브라우저 종료에도 데이터 유지 
+<img src="https://user-images.githubusercontent.com/86880916/233290940-2add7d07-952b-4ac8-8bad-a6fdb4f19ef7.gif" width="700"/>
+<img src="https://user-images.githubusercontent.com/86880916/233291062-65679f5a-9c84-4a43-9e4d-9db640bc7c88.gif" width="700"/>
 
-
-
-## **작업 방식 안내**
-
-1. 각 요구사항마다 이슈를 생성합니다.
-2. 요구사항에 해당하는 작업이 완료되면, 해당 이슈에 대한 커밋을 작성합니다.
-3. 작성한 코드에 대해 리뷰를 진행합니다.
-4. 각 요구사항에 대해 Best Practice를 선정하고, 개선사항을 토론합니다.
-5. 개선사항에 맞게 코드를 수정합니다.
-6. 모든 작업이 완료되면 최종 결과물을 도출합니다.
 
 <br/>
 
