@@ -38,6 +38,12 @@
 <img src="https://user-images.githubusercontent.com/86880916/233287289-589333ab-7c5b-43da-81b1-c541ff7225fd.gif" width="700"/>
 <img src="https://user-images.githubusercontent.com/86880916/233288006-beb73d88-ab78-4080-9fb8-cb657169128e.gif" width="700"/>
 
+### 스터디 페이지
+- 그룹 목표 스터디 시간 설정
+- 그룹 상태 설정  (모집중, 진행중, 완료)
+- 해당 스터디 구성원들의 출석시간
+- 그룹 채팅 
+<img src="https://user-images.githubusercontent.com/86880916/233289500-70518110-4d22-4b8b-be69-d579344641e1.gif" width="700"/>
 
 <br/>
 
