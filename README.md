@@ -11,7 +11,7 @@
 <br/>
 
 ## 프로젝트 개발기간 
--  : 2022년 2월 15일 ~ 3월 7일 
+2022년 2월 15일 ~ 3월 7일 
 
 ## 주요 기능 소개 
 
@@ -85,7 +85,7 @@
 
 - branch : 기능별 작업
 - main(master) : 최종 배포
-  <img src="https://user-images.githubusercontent.com/80516736/221170041-8b7d3762-1152-4407-a600-d9fe1e87e08d.png" width="500px">
+<img src="https://user-images.githubusercontent.com/80516736/221170041-8b7d3762-1152-4407-a600-d9fe1e87e08d.png" width="500px">
 
 <br/>
 
