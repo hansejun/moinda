@@ -116,7 +116,7 @@ function Header({ loginUser }: IHeaderProps) {
                     bg-[#9DA9B4]"
                   onClick={() => handleNavigate(`/mypage`)}
                 >
-                  {loginUser?.nickname.slice(0, 2)}
+                  {loginUser?.nickname?.slice(0, 2)}
                 </div>
               )}
             </>
